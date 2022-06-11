@@ -1,3 +1,5 @@
+package farmer;
+
 import area.FertileField;
 import area.Ground;
 import building.Barn;
