@@ -2,6 +2,7 @@ package actions;
 
 import area.FertileField;
 import area.FloodedField;
+import area.Forest;
 import area.Ground;
 import farmer.Farmer;
 
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class FieldsManager {
 
-    private Farmer myFarmer;
+    private final Farmer myFarmer;
     private Scanner scanner;
 
     public FieldsManager(Farmer myFarmer) {
@@ -30,7 +31,6 @@ public class FieldsManager {
             case 2:
                 this.sowWheat();
                 break;
-
             case 3:
                 this.sellWheat();
                 break;
@@ -40,28 +40,25 @@ public class FieldsManager {
                 System.out.println("Wybierz 1-3");
                 break;
         }
-        }
+    }
 
     public void buyField() {
         if (myFarmer.getCash() >= 30000.00) {
             Action.buyField();
+
             System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+
             int buyFieldActionSelection = Integer.parseInt(scanner.nextLine());
+
             switch (buyFieldActionSelection) {
-                case 1: // Buy fertile field
-                    myFarmer.addField(new FertileField(), 60000.00);
-                    System.out.println(myFarmer.getField());
-                    Action.next();
+                case 1:
+                    buyField(1, 60000.00);
                     break;
-                case 2: // Buy flooded field
-                    myFarmer.addField(new FloodedField(), 30000.00);
-                    System.out.println(myFarmer.getField());
-                    Action.next();
+                case 2:
+                    buyField(2, 30000.00);
                     break;
-                case 3: // Buy forest
-                    myFarmer.addField(new FloodedField(), 90000.00);
-                    System.out.println(myFarmer.getField());
-                    Action.next();
+                case 3:
+                    buyField(3, 90000.00);
                     break;
                 case 4:
                     break;
@@ -70,21 +67,39 @@ public class FieldsManager {
                     break;
             }
         } else {
-        System.out.println("Nie masz odpowiedniej kwoty, wróć gdy status Twojego konta będzie wynosił conajmniej 30 000.00 PLN");
-        System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
-        Action.next();
-    }
+            System.out.println("Nie masz odpowiedniej kwoty, wróć gdy status Twojego konta będzie wynosił conajmniej 30 000.00 PLN");
+            System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+            Action.next();
+        }
     }
 
-    public void sowWheat(){
-        if(myFarmer.isSeederInBarn()) {
+    public void buyField(Integer type, Double price){
+        if(type == 1){
+            myFarmer.addField(new FertileField(), price);
+        } else if (type == 2){
+            myFarmer.addField(new FloodedField(), price);
+        } else if (type == 3){
+            myFarmer.addField(new Forest(), price);
+        }
+        System.out.println(myFarmer.getField());
+        Action.next();
+
+    }
+
+    public void sowWheat() {
+        if (myFarmer.isSeederInBarn()) {
             System.out.println("Wybierz nr pola");
-            int fieldNumber = Integer.parseInt(scanner.nextLine())-1;
-            if(fieldNumber >= myFarmer.getField().size()){
+            int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
+            if (fieldNumber >= myFarmer.getField().size()) {
                 System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
+
+//                tu sprawdzic co sie dzieje w tym miejscu
+
             }
+
             Ground chosenField = myFarmer.getSingleField(fieldNumber);
-            if(Objects.equals(chosenField.getState(), "Gotowe do wysiewu")){
+
+            if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
                 chosenField.changeState();
                 System.out.println(myFarmer.getSingleField(fieldNumber));
             } else {
@@ -113,15 +128,18 @@ public class FieldsManager {
         }
     }
 
-    public void sellWheat(){
+    public void sellWheat() {
         System.out.println("Wybierz nr pola");
-        int fieldNumber = Integer.parseInt(scanner.nextLine())-1;
-        if(fieldNumber >= myFarmer.getField().size()){
+        int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
+
+        if (fieldNumber >= myFarmer.getField().size()) {
             System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
             sellWheat();
         }
+
         Ground chosenField = myFarmer.getSingleField(fieldNumber);
-        if(Objects.equals(chosenField.getState(), "Rośnie zboże")){
+
+        if (Objects.equals(chosenField.getState(), "Rośnie zboże")) {
             chosenField.changeState();
             myFarmer.addCash(7200.00);
             System.out.println("Z pola zebrano 4,5 tony zboża. Cena zboża to 1 600.00 PLN za 1 tonę.");
