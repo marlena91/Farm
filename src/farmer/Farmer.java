@@ -23,8 +23,8 @@ public class Farmer {
         field.add(new FertileField());
         field.add(new FertileField());
         this.buildings = new ArrayList<Outbuilding>();
-        buildings.add(new Barn());
-        buildings.add(new Cowshed());
+        buildings.add(new Barn(200000.00));
+        buildings.add(new Cowshed(100000.00));
     }
 
     public String getName(){
@@ -46,8 +46,8 @@ public class Farmer {
         return field;
     }
 
-    public List<Ground> getBuild(){
-        return field;
+    public List<Outbuilding> getBuild(){
+        return buildings;
     }
 
     public Ground getSingleField(Integer nr) {
@@ -81,7 +81,6 @@ public class Farmer {
         return "Farmer " + name + ",\n" +
                 "dostępna gotówka: " + cash + " PLN" + "\n" +
                 "Posiadane pola: " + field + "\n" +
-                "Posiadane budynki: " + buildings + "\n"
-        ;
+                "Posiadane budynki: " + buildings + "\n";
     }
 }

@@ -9,7 +9,8 @@ public class Barn extends Outbuilding{
     private Seeder seeder;
     private Plow plow;
 
-    public Barn() {
+    public Barn(Double value) {
+        super(value);
         this.tractor = new Tractor("Ursus", "C360", 1980, 3.2, 52);
     }
 

@@ -1,4 +1,5 @@
 import actions.Action;
+import actions.BuildingsManager;
 import actions.FieldsManager;
 import area.FertileField;
 import area.FloodedField;
@@ -31,8 +32,9 @@ public class Main {
                     fieldsManager.start();
                     break;
 
-                case 2: // Buildings
-                    System.out.println("budynki");
+                case 2:
+                    BuildingsManager buildingsManager = new BuildingsManager(myFarmer);
+                    buildingsManager.start();
                     break;
                 case 3:
                     System.out.println("zwierzeta");
