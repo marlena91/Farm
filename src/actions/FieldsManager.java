@@ -94,59 +94,51 @@ public class FieldsManager {
             buySeeder();
         }
 
+        System.out.println(myFarmer.getField());
         System.out.println("Wybierz nr pola");
         int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
-        checkFieldNumber(fieldNumber);
-
-
-
-
-        Ground chosenField = myFarmer.getSingleField(fieldNumber);
-
-        if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
-            chosenField.changeState();
-            System.out.println(myFarmer.getSingleField(fieldNumber));
-        } else {
-            System.out.println("Nie można zasiać na: " + chosenField.getState());
-        }
-
-        Action.next();
-
-//
-//
-        //dlaczego sie wykrzacza
-    }
-
-    public void checkFieldNumber(Integer fieldNumber){
-        System.out.println("Wielkosc pola farmera: "+ myFarmer.getField().size());
-        System.out.println("nr pola:" + fieldNumber);
-        if (fieldNumber >= myFarmer.getField().size()) {
+        if(checkFieldNumber(fieldNumber)){
             System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
             sowWheat();
+        } else {
+            Ground chosenField = myFarmer.getSingleField(fieldNumber);
+            if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
+                chosenField.changeState();
+                System.out.println(myFarmer.getSingleField(fieldNumber));
+            } else {
+                System.out.println("Nie można zasiać na: " + chosenField.getState());
+            }
+            Action.next();
         }
+    }
+
+    public Boolean checkFieldNumber(Integer fieldNumber){
+        return fieldNumber >= myFarmer.getField().size();
     }
 
     public void sellWheat() {
+
+        System.out.println(myFarmer.getField());
+
         System.out.println("Wybierz nr pola");
         int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
 
-        if (fieldNumber >= myFarmer.getField().size()) {
+        if(checkFieldNumber(fieldNumber)){
             System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
             sellWheat();
-        }
-
-        Ground chosenField = myFarmer.getSingleField(fieldNumber);
-
-        if (Objects.equals(chosenField.getState(), "Rośnie zboże")) {
-            chosenField.changeState();
-            myFarmer.addCash(7200.00);
-            System.out.println("Z pola zebrano 4,5 tony zboża. Cena zboża to 1 600.00 PLN za 1 tonę.");
-            System.out.println("Na konto przelano 7 200.00 PLN");
-            System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
         } else {
-            System.out.println("Nie ma zboża na tym polu, wybierz inne pole lub zasiej zboże na tym.");
+            Ground chosenField = myFarmer.getSingleField(fieldNumber);
+            if (Objects.equals(chosenField.getState(), "Rośnie zboże")) {
+                chosenField.changeState();
+                myFarmer.addCash(7200.00);
+                System.out.println("Z pola zebrano 4,5 tony zboża. Cena zboża to 1 600.00 PLN za 1 tonę.");
+                System.out.println("Na konto przelano 7 200.00 PLN");
+                System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+            } else {
+                System.out.println("Nie ma zboża na tym polu, wybierz inne pole lub zasiej zboże na tym.");
+            }
+            Action.next();
         }
-        Action.next();
     }
 
     public void buySeeder() {

@@ -26,7 +26,7 @@ public class Main {
             int userSelection = Integer.parseInt(scanner.nextLine());
             switch (userSelection) {
 
-                case 1: // Field
+                case 1:
                     FieldsManager fieldsManager = new FieldsManager(myFarmer);
                     fieldsManager.start();
                     break;
