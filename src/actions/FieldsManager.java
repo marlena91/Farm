@@ -73,12 +73,12 @@ public class FieldsManager {
         }
     }
 
-    public void buyField(Integer type, Double price){
-        if(type == 1){
+    public void buyField(Integer type, Double price) {
+        if (type == 1) {
             myFarmer.addField(new FertileField(), price);
-        } else if (type == 2){
+        } else if (type == 2) {
             myFarmer.addField(new FloodedField(), price);
-        } else if (type == 3){
+        } else if (type == 3) {
             myFarmer.addField(new Forest(), price);
         }
         System.out.println(myFarmer.getField());
@@ -87,44 +87,42 @@ public class FieldsManager {
     }
 
     public void sowWheat() {
-        if (myFarmer.isSeederInBarn()) {
-            System.out.println("Wybierz nr pola");
-            int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
-            if (fieldNumber >= myFarmer.getField().size()) {
-                System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
-
-//                tu sprawdzic co sie dzieje w tym miejscu
-
-            }
-
-            Ground chosenField = myFarmer.getSingleField(fieldNumber);
-
-            if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
-                chosenField.changeState();
-                System.out.println(myFarmer.getSingleField(fieldNumber));
-            } else {
-                System.out.println("Nie można zasiać na: " + chosenField.getState());
-            }
-            Action.next();
-        } else {
+        if (!myFarmer.isSeederInBarn()) {
             System.out.println("Aby zasiac zboże na swoim polu potrzebujesz zespołu maszyn Traktor + Siewnik.");
             System.out.println("Czy posiadasz w swojej stodole powyższy ekwipunek? Sprawdź to. Wcisnij enter.");
             Action.next();
-            Action.buySeeder();
-            System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
-            int buySeederActionSelection = Integer.parseInt(scanner.nextLine());
-            switch (buySeederActionSelection) {
-                case 1: // Buy a seeder
-                    myFarmer.buySeeder();
-                    System.out.println("Pomyślnie zakupiono siewnik.");
-                    Action.next();
-                    break;
-                case 2: // Don't buy a seeder
-                    break;
-                default:
-                    System.out.println("Wybierz 1-2");
-                    break;
-            }
+            buySeeder();
+        }
+
+        System.out.println("Wybierz nr pola");
+        int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
+        checkFieldNumber(fieldNumber);
+
+
+
+
+        Ground chosenField = myFarmer.getSingleField(fieldNumber);
+
+        if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
+            chosenField.changeState();
+            System.out.println(myFarmer.getSingleField(fieldNumber));
+        } else {
+            System.out.println("Nie można zasiać na: " + chosenField.getState());
+        }
+
+        Action.next();
+
+//
+//
+        //dlaczego sie wykrzacza
+    }
+
+    public void checkFieldNumber(Integer fieldNumber){
+        System.out.println("Wielkosc pola farmera: "+ myFarmer.getField().size());
+        System.out.println("nr pola:" + fieldNumber);
+        if (fieldNumber >= myFarmer.getField().size()) {
+            System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
+            sowWheat();
         }
     }
 
@@ -150,4 +148,23 @@ public class FieldsManager {
         }
         Action.next();
     }
+
+    public void buySeeder() {
+        Action.buySeeder();
+        System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+        int buySeederActionSelection = Integer.parseInt(scanner.nextLine());
+
+        if (buySeederActionSelection == 1) {
+            myFarmer.buySeeder();
+            System.out.println("Pomyślnie zakupiono siewnik.");
+            Action.next();
+        } else if (buySeederActionSelection == 2) {
+            Action.start();
+        } else {
+            System.out.println("Wybierz 1-2");
+            buySeeder();
+        }
+
+    }
+
 }
