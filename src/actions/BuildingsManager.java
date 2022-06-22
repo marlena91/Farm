@@ -1,5 +1,7 @@
 package actions;
 
+import building.Barn;
+import building.BeeYard;
 import building.Cowshed;
 import building.Outbuilding;
 import farmer.Farmer;
@@ -44,18 +46,25 @@ public class BuildingsManager {
         switch (buildingSelection){
             case 1:
                 System.out.println("1. Zagroda");
-
                 break;
             case 2:
                 System.out.println("2. Pasieka");
+                boolean found = false;
+                for(Outbuilding building: myFarmer.getBuild()) {
+                    if (building.getClass().getSimpleName().equals("BeeYard")) {
+                        found = true;
+                        break;
+                    }
+                }
+                System.out.println(found);
                 break;
             case 3:
                 System.out.println("3. Obora");
                 for(Outbuilding building: myFarmer.getBuild()){
-                    if(building instanceof Cowshed){
-                        System.out.println("Masz już w swoim gospodarstwie oborę");
-                    } else {System.out.println("Nie");}
+                    System.out.println(building.getClass().getSimpleName().equals("Barn"));
+
                 }
+
                 break;
             case 4:
                 System.out.println("4. Stodoła");
@@ -73,4 +82,15 @@ public class BuildingsManager {
                 break;
         }
     }
+
+//    public Boolean checkBuildingInFarm(){
+//        boolean found = false;
+//        for(Outbuilding building: myFarmer.getBuild()){
+//            if(building.getClass()){
+//                found = true;
+//                break;
+//            }
+//        }
+//        return found;
+//    }
 }
