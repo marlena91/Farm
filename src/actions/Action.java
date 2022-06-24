@@ -36,8 +36,7 @@ public class Action {
         System.out.println("4. \"Dziękuje, nie skorzystam\"");
     }
 
-    public static void buySeeder() {
-        System.out.println("Nie posiadasz siewnika. Czy chcesz zakupić za jedyne 20 000.00 PLN?");
+    public static void yesNo() {
         System.out.println("1. TAK");
         System.out.println("2. NIE");
     }
@@ -59,5 +58,25 @@ public class Action {
         System.out.println("6. Chlew");
         System.out.println("7. Cofnij");
     }
+
+    public static void farmAction(){
+        System.out.println("Tu beda opcje do zagrody");
+    }
+    public static void cowshedAction(){
+        System.out.println("Tu beda opcje do obory");
+    }
+    public static void beeYardAction(){
+        System.out.println("Tu beda opcje do pasieki");
+    }
+    public static void barnAction(){
+        System.out.println("Tu beda opcje do zagrody");
+    }
+    public static void henhouseAction(){
+        System.out.println("Tu beda opcje do zagrody");
+    }
+    public static void pighouseAction(){
+        System.out.println("Tu beda opcje do zagrody");
+    }
+
 
 }

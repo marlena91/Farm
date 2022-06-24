@@ -142,7 +142,8 @@ public class FieldsManager {
     }
 
     public void buySeeder() {
-        Action.buySeeder();
+        System.out.println("Nie posiadasz siewnika. Czy chcesz zakupić za jedyne 20 000.00 PLN?");
+        Action.yesNo();
         System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
         int buySeederActionSelection = Integer.parseInt(scanner.nextLine());
 

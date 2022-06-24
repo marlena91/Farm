@@ -43,37 +43,66 @@ public class BuildingsManager {
 
         Action.allAvailableBuildings();
         int buildingSelection = Integer.parseInt(scanner.nextLine());
-        switch (buildingSelection){
+        switch (buildingSelection) {
             case 1:
                 System.out.println("1. Zagroda");
+                if(checkBuildingInFarm("Farm")){
+                    System.out.println("Posiadasz juz Zagrodę");
+                    Action.farmAction();
+                } else {
+                    System.out.println("Nie posiadasz Zagrody. W zagrodzie możesz mieć kozy i owce, ktore bedziesz mógł/mogla rozmanazac. Chcesz kupić?");
+                    Action.yesNo();
+                }
                 break;
             case 2:
                 System.out.println("2. Pasieka");
-                boolean found = false;
-                for(Outbuilding building: myFarmer.getBuild()) {
-                    if (building.getClass().getSimpleName().equals("BeeYard")) {
-                        found = true;
-                        break;
-                    }
+                if(checkBuildingInFarm("BeeYard")){
+                    System.out.println("Posiadasz już Pasiekę");
+                    Action.beeYardAction();
+                } else {
+                    System.out.println("Nie posiadasz Pasieki. W pasiece możesz mieć pszczoły, ktore dadzą Ci miód. Chcesz wybudować?");
+                    Action.yesNo();
                 }
-                System.out.println(found);
                 break;
             case 3:
                 System.out.println("3. Obora");
-                for(Outbuilding building: myFarmer.getBuild()){
-                    System.out.println(building.getClass().getSimpleName().equals("Barn"));
-
+                if(checkBuildingInFarm("Cowshed")){
+                    System.out.println("Posiadasz już Oborę");
+                    Action.cowshedAction();
+                } else {
+                    System.out.println("Nie posiadasz Obory. W oborze możesz mieć krowy, ktore dadzą Ci mleko. Chcesz wybudować?");
+                    Action.yesNo();
                 }
-
                 break;
             case 4:
                 System.out.println("4. Stodoła");
+                if(checkBuildingInFarm("Barn")){
+                    System.out.println("Posiadasz już Stodołę");
+                    Action.barnAction();
+                } else {
+                    System.out.println("Nie posiadasz Stodoły. W stodole możesz mieć sprzęt, ktory przyda Ci się do pracy w polu. Chcesz wybudować?");
+                    Action.yesNo();
+                }
                 break;
             case 5:
                 System.out.println("5. Kurnik");
+                if(checkBuildingInFarm("Henhouse")){
+                    System.out.println("Posiadasz już Kurnik");
+                    Action.henhouseAction();
+                } else {
+                    System.out.println("Nie posiadasz Kurnika. W kurniku możesz mieć kury, ktore dadzą Ci jajka. Chcesz wybudować?");
+                    Action.yesNo();
+                }
                 break;
             case 6:
                 System.out.println("6. Chlew");
+                if(checkBuildingInFarm("Pighouse")){
+                    System.out.println("Posiadasz już Chlew");
+                    Action.pighouseAction();
+                } else {
+                    System.out.println("Nie posiadasz Chlewu. W chlewie możesz mieć świnie, ktore możesz karmić i sprzedawac ich mieso. Chcesz wybudować?");
+                    Action.yesNo();
+                }
                 break;
             case 7:
                 break;
@@ -83,14 +112,14 @@ public class BuildingsManager {
         }
     }
 
-//    public Boolean checkBuildingInFarm(){
-//        boolean found = false;
-//        for(Outbuilding building: myFarmer.getBuild()){
-//            if(building.getClass()){
-//                found = true;
-//                break;
-//            }
-//        }
-//        return found;
-//    }
+    public Boolean checkBuildingInFarm(String className) {
+        boolean found = false;
+        for (Outbuilding building : myFarmer.getBuild()) {
+            if (building.getClass().getSimpleName().equals(className)) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
 }
