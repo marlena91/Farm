@@ -83,7 +83,6 @@ public class FieldsManager {
         }
         System.out.println(myFarmer.getField());
         Action.next();
-
     }
 
     public void sowWheat() {

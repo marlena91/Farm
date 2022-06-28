@@ -1,6 +1,9 @@
 package actions;
 
-import building.Outbuilding;
+import area.FertileField;
+import area.FloodedField;
+import area.Forest;
+import building.*;
 import farmer.Farmer;
 
 import java.util.Scanner;
@@ -47,10 +50,10 @@ public class BuildingsManager {
                     System.out.println("Posiadasz juz Zagrodę");
                     Action.farmAction();
                 } else {
-                    checkAvailableCash(1);
                     System.out.println("Nie posiadasz Zagrody. W zagrodzie możesz mieć kozy i owce, ktore bedziesz mógł/mogla rozmanazac. Chcesz kupić?");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(1);
+                    buyOrNoChosenBuilding(1, 60000.00);
                 }
                 break;
             case 2:
@@ -61,7 +64,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Pasieki. W pasiece możesz mieć pszczoły, ktore dadzą Ci miód. Chcesz wybudować?");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(2);
+                    buyOrNoChosenBuilding(2, 30000.00);
                 }
                 break;
             case 3:
@@ -72,7 +75,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Obory. W oborze możesz mieć krowy, ktore dadzą Ci mleko. Chcesz wybudować?");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(3);
+                    buyOrNoChosenBuilding(3, 100000.00);
                 }
                 break;
             case 4:
@@ -83,7 +86,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Stodoły. W stodole możesz mieć sprzęt, ktory przyda Ci się do pracy w polu. Chcesz wybudować?");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(4);
+                    buyOrNoChosenBuilding(4, 200000.00);
                 }
                 break;
             case 5:
@@ -94,7 +97,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Kurnika. W kurniku możesz mieć kury, ktore dadzą Ci jajka. Chcesz wybudować?");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(5);
+                    buyOrNoChosenBuilding(5, 20000.00);
                 }
                 break;
             case 6:
@@ -105,7 +108,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Chlewu. W chlewie możesz mieć świnie, ktore możesz karmić i sprzedawac ich mieso. Chcesz wybudować?");
                     Action.yesNo();
-                    buyOrNoChosenBuilding(6);
+                    buyOrNoChosenBuilding(6, 70000.00);
                 }
                 break;
             case 7:
@@ -127,30 +130,34 @@ public class BuildingsManager {
         return found;
     }
 
-    public void buyOrNoChosenBuilding(Integer building){
-        System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+    public void buyOrNoChosenBuilding(Integer building, Double price){
         int buildingSelection = Integer.parseInt(scanner.nextLine());
 
-        if (buildingSelection == 1) {
-            myFarmer.buyBuilding(building);
-            System.out.println("Pomyślnie zakupiono budynek.");
-            Action.next();
+        if(buildingSelection == 1 & myFarmer.getCash() >= price){
+            buyBuilding(building, price);
         } else if (buildingSelection == 2) {
             Action.start();
         } else {
             System.out.println("Wybierz 1-2");
-            buyOrNoChosenBuilding(building);
+            buyOrNoChosenBuilding(building, price);
         }
     }
 
-    public void checkAvailableCash(Integer building){
-        if(building == 1){
-            //
+    public void buyBuilding(Integer type, Double price) {
+        if (type == 1) {
+            myFarmer.addBuilding(new Farm(price), price);
+        } else if (type == 2) {
+            myFarmer.addBuilding(new BeeYard(price), price);
+        } else if (type == 3) {
+            myFarmer.addBuilding(new Cowshed(price), price);
+        } else if (type == 4) {
+            myFarmer.addBuilding(new Barn(price), price);
+        } else if (type == 5) {
+            myFarmer.addBuilding(new Henhouse(price), price);
+        }  else if (type == 6) {
+            myFarmer.addBuilding(new Pigsty(price), price);
         }
-        else if(building == 2){}
-        else if(building == 3){}
-        else if(building == 4){}
-        else if(building == 5){}
-        else if(building == 6){}
+        System.out.println(myFarmer.getBuild());
+        Action.next();
     }
 }

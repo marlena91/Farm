@@ -18,7 +18,7 @@ public class Farmer {
 
     public Farmer(String name) {
         this.name = name;
-        this.cash = 30000.00;
+        this.cash = 60000.00;
         this.field = new ArrayList<Ground>();
         field.add(new FertileField());
         field.add(new FertileField());
@@ -76,8 +76,10 @@ public class Farmer {
         }
     }
 
-    public void buyBuilding(Integer building) {
-        //
+    public void addBuilding(Outbuilding building, Double price) {
+        this.buildings.add(building);
+        this.cash -= price;
+        System.out.println("Kupiono budynek");
     }
 
     @Override
