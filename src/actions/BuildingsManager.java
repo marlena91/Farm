@@ -1,8 +1,5 @@
 package actions;
 
-import building.Barn;
-import building.BeeYard;
-import building.Cowshed;
 import building.Outbuilding;
 import farmer.Farmer;
 
@@ -50,8 +47,10 @@ public class BuildingsManager {
                     System.out.println("Posiadasz juz Zagrodę");
                     Action.farmAction();
                 } else {
+                    checkAvailableCash(1);
                     System.out.println("Nie posiadasz Zagrody. W zagrodzie możesz mieć kozy i owce, ktore bedziesz mógł/mogla rozmanazac. Chcesz kupić?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(1);
                 }
                 break;
             case 2:
@@ -62,6 +61,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Pasieki. W pasiece możesz mieć pszczoły, ktore dadzą Ci miód. Chcesz wybudować?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(2);
                 }
                 break;
             case 3:
@@ -72,6 +72,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Obory. W oborze możesz mieć krowy, ktore dadzą Ci mleko. Chcesz wybudować?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(3);
                 }
                 break;
             case 4:
@@ -82,6 +83,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Stodoły. W stodole możesz mieć sprzęt, ktory przyda Ci się do pracy w polu. Chcesz wybudować?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(4);
                 }
                 break;
             case 5:
@@ -92,6 +94,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Kurnika. W kurniku możesz mieć kury, ktore dadzą Ci jajka. Chcesz wybudować?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(5);
                 }
                 break;
             case 6:
@@ -102,6 +105,7 @@ public class BuildingsManager {
                 } else {
                     System.out.println("Nie posiadasz Chlewu. W chlewie możesz mieć świnie, ktore możesz karmić i sprzedawac ich mieso. Chcesz wybudować?");
                     Action.yesNo();
+                    buyOrNoChosenBuilding(6);
                 }
                 break;
             case 7:
@@ -121,5 +125,32 @@ public class BuildingsManager {
             }
         }
         return found;
+    }
+
+    public void buyOrNoChosenBuilding(Integer building){
+        System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
+        int buildingSelection = Integer.parseInt(scanner.nextLine());
+
+        if (buildingSelection == 1) {
+            myFarmer.buyBuilding(building);
+            System.out.println("Pomyślnie zakupiono budynek.");
+            Action.next();
+        } else if (buildingSelection == 2) {
+            Action.start();
+        } else {
+            System.out.println("Wybierz 1-2");
+            buyOrNoChosenBuilding(building);
+        }
+    }
+
+    public void checkAvailableCash(Integer building){
+        if(building == 1){
+            //
+        }
+        else if(building == 2){}
+        else if(building == 3){}
+        else if(building == 4){}
+        else if(building == 5){}
+        else if(building == 6){}
     }
 }

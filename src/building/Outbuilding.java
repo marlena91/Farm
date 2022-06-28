@@ -8,9 +8,13 @@ public abstract class Outbuilding {
 
     protected Double value;
 
-    public Outbuilding(Double value){
+    public Outbuilding(Double value) {
         this.value = value;
-    };
+    }
+
+    public Double getValue() {
+        return value;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -27,26 +27,27 @@ public class Farmer {
         buildings.add(new Cowshed(100000.00));
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Double getCash(){
+    public Double getCash() {
         return this.cash;
     }
 
-    public void addCash(Double cash){
+    public void addCash(Double cash) {
         this.cash += cash;
     }
 
-    public List<Ground> getField(){
+    public List<Ground> getField() {
         return field;
     }
 
-    public List<Outbuilding> getBuild(){
+    public List<Outbuilding> getBuild() {
         return buildings;
     }
 
@@ -59,21 +60,24 @@ public class Farmer {
         return barn.getSeeder() != null;
     }
 
-    public void buySeeder(){
+    public void buySeeder() {
         Barn barn = (Barn) this.buildings.get(0);
         barn.addSeeder();
         this.cash -= 20000.00;
     }
 
-    public void addField(Ground field, Double price){
-        if(this.cash < price){
+    public void addField(Ground field, Double price) {
+        if (this.cash < price) {
             System.out.println("Za mało pieniędzy na zakup tej działki");
         } else {
             this.field.add(field);
-            this.cash -=price;
+            this.cash -= price;
             System.out.println("Pomyślnie zakupiono ziemię.");
         }
+    }
 
+    public void buyBuilding(Integer building) {
+        //
     }
 
     @Override
