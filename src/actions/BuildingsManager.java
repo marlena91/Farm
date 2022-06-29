@@ -46,11 +46,12 @@ public class BuildingsManager {
         switch (buildingSelection) {
             case 1:
                 System.out.println("1. Zagroda");
-                if(checkBuildingInFarm("Farm")){
+                if(myFarmer.checkBuildingInFarm("Farm")){
                     System.out.println("Posiadasz juz Zagrodę");
                     Action.farmAction();
                 } else {
                     System.out.println("Nie posiadasz Zagrody. W zagrodzie możesz mieć kozy i owce, ktore bedziesz mógł/mogla rozmanazac. Chcesz kupić?");
+                    System.out.println("Koszt to 60.000,00 PLN");
                     System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(1, 60000.00);
@@ -58,55 +59,65 @@ public class BuildingsManager {
                 break;
             case 2:
                 System.out.println("2. Pasieka");
-                if(checkBuildingInFarm("BeeYard")){
+                if(myFarmer.checkBuildingInFarm("BeeYard")){
                     System.out.println("Posiadasz już Pasiekę");
                     Action.beeYardAction();
                 } else {
                     System.out.println("Nie posiadasz Pasieki. W pasiece możesz mieć pszczoły, ktore dadzą Ci miód. Chcesz wybudować?");
+                    System.out.println("Koszt to 30.000,00 PLN");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(2, 30000.00);
                 }
                 break;
             case 3:
                 System.out.println("3. Obora");
-                if(checkBuildingInFarm("Cowshed")){
+                if(myFarmer.checkBuildingInFarm("Cowshed")){
                     System.out.println("Posiadasz już Oborę");
                     Action.cowshedAction();
                 } else {
                     System.out.println("Nie posiadasz Obory. W oborze możesz mieć krowy, ktore dadzą Ci mleko. Chcesz wybudować?");
+                    System.out.println("Koszt to 100.000,00 PLN");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(3, 100000.00);
                 }
                 break;
             case 4:
                 System.out.println("4. Stodoła");
-                if(checkBuildingInFarm("Barn")){
+                if(myFarmer.checkBuildingInFarm("Barn")){
                     System.out.println("Posiadasz już Stodołę");
                     Action.barnAction();
                 } else {
                     System.out.println("Nie posiadasz Stodoły. W stodole możesz mieć sprzęt, ktory przyda Ci się do pracy w polu. Chcesz wybudować?");
+                    System.out.println("Koszt to 200.000,00 PLN");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(4, 200000.00);
                 }
                 break;
             case 5:
                 System.out.println("5. Kurnik");
-                if(checkBuildingInFarm("Henhouse")){
+                if(myFarmer.checkBuildingInFarm("Henhouse")){
                     System.out.println("Posiadasz już Kurnik");
                     Action.henhouseAction();
                 } else {
                     System.out.println("Nie posiadasz Kurnika. W kurniku możesz mieć kury, ktore dadzą Ci jajka. Chcesz wybudować?");
+                    System.out.println("Koszt to 20.000,00 PLN");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(5, 20000.00);
                 }
                 break;
             case 6:
                 System.out.println("6. Chlew");
-                if(checkBuildingInFarm("Pighouse")){
+                if(myFarmer.checkBuildingInFarm("Pighouse")){
                     System.out.println("Posiadasz już Chlew");
                     Action.pighouseAction();
                 } else {
                     System.out.println("Nie posiadasz Chlewu. W chlewie możesz mieć świnie, ktore możesz karmić i sprzedawac ich mieso. Chcesz wybudować?");
+                    System.out.println("Koszt to 70.000,00 PLN");
+                    System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
                     Action.yesNo();
                     buyOrNoChosenBuilding(6, 70000.00);
                 }
@@ -119,21 +130,9 @@ public class BuildingsManager {
         }
     }
 
-    public Boolean checkBuildingInFarm(String className) {
-        boolean found = false;
-        for (Outbuilding building : myFarmer.getBuild()) {
-            if (building.getClass().getSimpleName().equals(className)) {
-                found = true;
-                break;
-            }
-        }
-        return found;
-    }
-
     public void buyOrNoChosenBuilding(Integer building, Double price){
         int buildingSelection = Integer.parseInt(scanner.nextLine());
-
-        if(buildingSelection == 1 & myFarmer.getCash() >= price){
+        if(buildingSelection == 1){
             buyBuilding(building, price);
         } else if (buildingSelection == 2) {
             Action.start();

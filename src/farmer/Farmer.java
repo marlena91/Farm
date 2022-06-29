@@ -23,8 +23,11 @@ public class Farmer {
         field.add(new FertileField());
         field.add(new FertileField());
         this.buildings = new ArrayList<Outbuilding>();
-        buildings.add(new Barn(200000.00));
+
         buildings.add(new Cowshed(100000.00));
+        buildings.add(new Barn(200000.00));
+
+
     }
 
     public String getName() {
@@ -61,13 +64,18 @@ public class Farmer {
     }
 
     public void buySeeder() {
-        Barn barn = (Barn) this.buildings.get(0);
+        for (Outbuilding building : this.getBuild()) {
+            if (building.getClass().getSimpleName().equals("Barn")) {
+                System.out.println(building);
+            }
+        }
+        Barn barn = (Barn) this.buildings.get(1);
         barn.addSeeder();
         this.cash -= 20000.00;
     }
 
     public void addField(Ground field, Double price) {
-        if (this.cash < price) {
+        if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tej działki");
         } else {
             this.field.add(field);
@@ -76,10 +84,25 @@ public class Farmer {
         }
     }
 
+    public Boolean checkBuildingInFarm(String className) {
+        boolean found = false;
+        for (Outbuilding building : this.getBuild()) {
+            if (building.getClass().getSimpleName().equals(className)) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
+
     public void addBuilding(Outbuilding building, Double price) {
-        this.buildings.add(building);
-        this.cash -= price;
-        System.out.println("Kupiono budynek");
+        if (this.cash <= price) {
+            System.out.println("Za mało pieniędzy na zakup tego budynku");
+        } else {
+            this.buildings.add(building);
+            this.cash -= price;
+            System.out.println("Kupiono budynek");
+        }
     }
 
     @Override
