@@ -19,15 +19,14 @@ public class Farmer {
     public Farmer(String name) {
         this.name = name;
         this.cash = 60000.00;
+
         this.field = new ArrayList<Ground>();
         field.add(new FertileField());
         field.add(new FertileField());
-        this.buildings = new ArrayList<Outbuilding>();
 
+        this.buildings = new ArrayList<Outbuilding>();
         buildings.add(new Cowshed(100000.00));
         buildings.add(new Barn(200000.00));
-
-
     }
 
     public String getName() {
@@ -45,6 +44,9 @@ public class Farmer {
     public void addCash(Double cash) {
         this.cash += cash;
     }
+    public void subtractCash(Double cash) {
+        this.cash -= cash;
+    }
 
     public List<Ground> getField() {
         return field;
@@ -58,22 +60,6 @@ public class Farmer {
         return this.field.get(nr);
     }
 
-    public Boolean isSeederInBarn() {
-        Barn barn = (Barn) this.buildings.get(0);
-        return barn.getSeeder() != null;
-    }
-
-    public void buySeeder() {
-        for (Outbuilding building : this.getBuild()) {
-            if (building.getClass().getSimpleName().equals("Barn")) {
-                System.out.println(building);
-            }
-        }
-        Barn barn = (Barn) this.buildings.get(1);
-        barn.addSeeder();
-        this.cash -= 20000.00;
-    }
-
     public void addField(Ground field, Double price) {
         if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tej działki");
@@ -84,16 +70,6 @@ public class Farmer {
         }
     }
 
-    public Boolean checkBuildingInFarm(String className) {
-        boolean found = false;
-        for (Outbuilding building : this.getBuild()) {
-            if (building.getClass().getSimpleName().equals(className)) {
-                found = true;
-                break;
-            }
-        }
-        return found;
-    }
 
     public void addBuilding(Outbuilding building, Double price) {
         if (this.cash <= price) {

@@ -4,6 +4,8 @@ import area.FertileField;
 import area.FloodedField;
 import area.Forest;
 import area.Ground;
+import building.Barn;
+import building.Outbuilding;
 import farmer.Farmer;
 
 import java.util.Objects;
@@ -20,7 +22,6 @@ public class FieldsManager {
     }
 
     public void start() {
-
         System.out.println(myFarmer.getField());
         Action.myFields();
         int fieldActionSelection = Integer.parseInt(scanner.nextLine());
@@ -86,7 +87,7 @@ public class FieldsManager {
     }
 
     public void sowWheat() {
-        if (!myFarmer.isSeederInBarn()) {
+        if (!isSeederInBarn()) {
             System.out.println("Aby zasiac zboże na swoim polu potrzebujesz zespołu maszyn Traktor + Siewnik.");
             System.out.println("Czy posiadasz w swojej stodole powyższy ekwipunek? Sprawdź to. Wcisnij enter.");
             Action.next();
@@ -147,7 +148,15 @@ public class FieldsManager {
         int buySeederActionSelection = Integer.parseInt(scanner.nextLine());
 
         if (buySeederActionSelection == 1) {
-            myFarmer.buySeeder();
+            Barn barn = null;
+            for (Outbuilding building : myFarmer.getBuild()) {
+                if (building.getClass().getSimpleName().equals("Barn")) {
+                    barn = (Barn) building;
+                }
+            }
+            assert barn != null;
+            barn.addSeeder();
+            myFarmer.subtractCash(20000.00);
             System.out.println("Pomyślnie zakupiono siewnik.");
             Action.next();
         } else if (buySeederActionSelection == 2) {
@@ -156,7 +165,17 @@ public class FieldsManager {
             System.out.println("Wybierz 1-2");
             buySeeder();
         }
-
     }
 
+    public Boolean isSeederInBarn() {
+        Barn barn = null;
+        for (Outbuilding building : myFarmer.getBuild()) {
+            if (building.getClass().getSimpleName().equals("Barn")) {
+                barn = (Barn) building;
+                break;
+            }
+        }
+        assert barn != null;
+        return barn.getSeeder() != null;
+    }
 }

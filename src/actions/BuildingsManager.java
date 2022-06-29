@@ -26,12 +26,15 @@ public class BuildingsManager {
         int buildingActionSelection = Integer.parseInt(scanner.nextLine());
         switch (buildingActionSelection) {
             case 1:
-                buyBuilding();
+//                chooseBuilding();
                 break;
             case 2:
-                System.out.println("Sprzedaj budynek");
+                buyBuilding();
                 break;
             case 3:
+                System.out.println("Sprzedaj budynek");
+                break;
+            case 4:
                 break;
             default:
                 System.out.println("Wybierz 1-3");
@@ -41,12 +44,11 @@ public class BuildingsManager {
 
     public void buyBuilding() {
 
-        Action.allAvailableBuildings();
+        Action.allAvailableBuildingsWithPrices();
         int buildingSelection = Integer.parseInt(scanner.nextLine());
         switch (buildingSelection) {
             case 1:
-                System.out.println("1. Zagroda");
-                if(myFarmer.checkBuildingInFarm("Farm")){
+                if(checkBuildingInFarm("Farm")){
                     System.out.println("Posiadasz juz Zagrodę");
                     Action.farmAction();
                 } else {
@@ -58,8 +60,7 @@ public class BuildingsManager {
                 }
                 break;
             case 2:
-                System.out.println("2. Pasieka");
-                if(myFarmer.checkBuildingInFarm("BeeYard")){
+                if(checkBuildingInFarm("BeeYard")){
                     System.out.println("Posiadasz już Pasiekę");
                     Action.beeYardAction();
                 } else {
@@ -71,8 +72,7 @@ public class BuildingsManager {
                 }
                 break;
             case 3:
-                System.out.println("3. Obora");
-                if(myFarmer.checkBuildingInFarm("Cowshed")){
+                if(checkBuildingInFarm("Cowshed")){
                     System.out.println("Posiadasz już Oborę");
                     Action.cowshedAction();
                 } else {
@@ -84,8 +84,7 @@ public class BuildingsManager {
                 }
                 break;
             case 4:
-                System.out.println("4. Stodoła");
-                if(myFarmer.checkBuildingInFarm("Barn")){
+                if(checkBuildingInFarm("Barn")){
                     System.out.println("Posiadasz już Stodołę");
                     Action.barnAction();
                 } else {
@@ -97,8 +96,7 @@ public class BuildingsManager {
                 }
                 break;
             case 5:
-                System.out.println("5. Kurnik");
-                if(myFarmer.checkBuildingInFarm("Henhouse")){
+                if(checkBuildingInFarm("Henhouse")){
                     System.out.println("Posiadasz już Kurnik");
                     Action.henhouseAction();
                 } else {
@@ -110,8 +108,7 @@ public class BuildingsManager {
                 }
                 break;
             case 6:
-                System.out.println("6. Chlew");
-                if(myFarmer.checkBuildingInFarm("Pighouse")){
+                if(checkBuildingInFarm("Pighouse")){
                     System.out.println("Posiadasz już Chlew");
                     Action.pighouseAction();
                 } else {
@@ -158,5 +155,16 @@ public class BuildingsManager {
         }
         System.out.println(myFarmer.getBuild());
         Action.next();
+    }
+
+    public Boolean checkBuildingInFarm(String className) {
+        boolean found = false;
+        for (Outbuilding building : myFarmer.getBuild()) {
+            if (building.getClass().getSimpleName().equals(className)) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 }

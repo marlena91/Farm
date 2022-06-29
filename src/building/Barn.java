@@ -17,6 +17,12 @@ public class Barn extends Outbuilding{
     public Seeder getSeeder() {
         return this.seeder;
     }
+    public Tractor getTractor() {
+        return this.tractor;
+    }
+    public Plow getPlow() {
+        return this.plow;
+    }
 
     public void addSeeder() {
         this.seeder = new Seeder(3, 250);

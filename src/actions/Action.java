@@ -43,39 +43,64 @@ public class Action {
 
     public static void myBuildings() {
         System.out.println("Dostępne akcje: ");
-        System.out.println("1. Kup nowy budynek");
-        System.out.println("2. Sprzedaj budynek");
-        System.out.println("3. Cofnij");
+        System.out.println("1. Wybierz budynek");
+        System.out.println("2. Kup nowy budynek");
+        System.out.println("3. Sprzedaj budynek");
+        System.out.println("4. Cofnij");
     }
 
-    public static void allAvailableBuildings(){
-        System.out.println("Dostępne budynki: ");
-        System.out.println("1. Zagroda");
-        System.out.println("2. Pasieka");
-        System.out.println("3. Obora");
-        System.out.println("4. Stodoła");
-        System.out.println("5. Kurnik");
-        System.out.println("6. Chlew");
+    public static void allAvailableBuildingsWithPrices(){
+        System.out.println("Wybierz budynek: ");
+        System.out.println("1. Zagroda - 60.000,00 PLN");
+        System.out.println("2. Pasieka - 30.000,00 PLN");
+        System.out.println("3. Obora - 100.000,00 PLN");
+        System.out.println("4. Stodoła - 200.000,00 PLN");
+        System.out.println("5. Kurnik - 20.000,00 PLN");
+        System.out.println("6. Chlew - 70.000,00 PLN");
         System.out.println("7. Cofnij");
     }
 
     public static void farmAction(){
-        System.out.println("Tu beda opcje do zagrody");
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup zwierzę");
+        System.out.println("2. Sprzedaj zwierzę");
+        System.out.println("3. Zbierz i sprzedaj mleko od kóz");
+        System.out.println("4. Ostrzyż owce i sprzedaj wełnę");
+        System.out.println("5. Nakarm zwierzęta");
+        System.out.println("6. Rozmnażaj zwierzęta");
+        System.out.println("7. Cofnij");
     }
     public static void cowshedAction(){
-        System.out.println("Tu beda opcje do obory");
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup krowę");
+        System.out.println("2. Sprzedaj krowę");
+        System.out.println("3. Zbierz i sprzedaj mleko od krów");
+        System.out.println("4. Nakarm krowy");
+        System.out.println("5. Cofnij");
     }
     public static void beeYardAction(){
-        System.out.println("Tu beda opcje do pasieki");
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup rój pszczół");
+        System.out.println("2. Zbierz i sprzedaj miód");
+        System.out.println("3. Cofnij");
     }
     public static void barnAction(){
-        System.out.println("Tu beda opcje do zagrody");
+        System.out.println("Tu beda opcje do stodoły");
     }
     public static void henhouseAction(){
-        System.out.println("Tu beda opcje do zagrody");
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup kurę");
+        System.out.println("2. Zbierz i sprzedaj jajka");
+        System.out.println("3. Nakarm kury");
+        System.out.println("4. Cofnij");
     }
     public static void pighouseAction(){
-        System.out.println("Tu beda opcje do zagrody");
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup świnię");
+        System.out.println("2. Sprzedaj świnię");
+        System.out.println("3. Nakarm zwierzęta");
+        System.out.println("4. Rozmnażaj zwierzęta");
+        System.out.println("5. Cofnij");
     }
 
 
