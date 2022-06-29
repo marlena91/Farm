@@ -22,4 +22,10 @@ public class Sheep extends Animal implements Collectible, Feedable, Selable {
     public void sell() {
         System.out.println("Sprzedaje owce");
     }
+
+    @Override
+    public String toString() {
+        return "Owca: " +
+                name + '\'';
+    }
 }

@@ -11,7 +11,7 @@ public class Farm extends Outbuilding {
 
     @Override
     public List<Animal> getAnimals() {
-        return null;
+        return animals;
     }
 
     @Override
@@ -21,6 +21,6 @@ public class Farm extends Outbuilding {
 
     @Override
     public String toString() {
-        return "\n*Zagroda";
+        return "\n*Zagroda W oborze znajduje się: \""+animals;
     }
 }

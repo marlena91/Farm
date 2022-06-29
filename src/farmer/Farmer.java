@@ -60,12 +60,22 @@ public class Farmer {
     }
 
     public void getAnimals(){
-
         for (Outbuilding building : this.getBuild()) {
             if (!building.getClass().getSimpleName().equals("Barn")) {
                 System.out.println(building.getAnimals());
             }
         }
+    }
+
+    public List<Animal> getAnimals(String farmBuilding){
+        List<Animal> animals = null;
+        for (Outbuilding building : this.getBuild()) {
+            if (building.getClass().getSimpleName().equals(farmBuilding)) {
+                animals = building.getAnimals();
+                break;
+            }
+        }
+        return animals;
     }
 
     public Ground getSingleField(Integer nr) {

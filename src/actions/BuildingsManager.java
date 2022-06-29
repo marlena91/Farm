@@ -169,16 +169,15 @@ public class BuildingsManager {
     }
 
     public void buildingAction(Integer numberOfAction, Integer buildingType){
-
-
         if(numberOfAction == 1 & buildingType == 1){
             System.out.println("Jakie imie wybierasz dla swojej nowej owcy?");
             String animalName = scanner.nextLine();
             myFarmer.addAnimal(new Sheep(animalName), 1000.00, "Farm");
+            start();
         }
 
         if(numberOfAction == 2 & buildingType == 1){
-            System.out.println("2. Sprzedaj owcę");
+            System.out.println(myFarmer.getAnimals("Farm"));
         }
 
         if(numberOfAction == 4 & buildingType == 1){
