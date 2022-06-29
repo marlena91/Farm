@@ -1,8 +1,11 @@
 package building;
 
+import animals.Animal;
 import equipment.Plow;
 import equipment.Seeder;
 import equipment.Tractor;
+
+import java.util.List;
 
 public class Barn extends Outbuilding{
     private Tractor tractor;
@@ -12,6 +15,16 @@ public class Barn extends Outbuilding{
     public Barn(Double value) {
         super(value);
         this.tractor = new Tractor("Ursus", "C360", 1980, 3.2, 52);
+    }
+
+    @Override
+    public List<Animal> getAnimals() {
+        return null;
+    }
+
+    @Override
+    public void addAnimal(Animal animal) {
+        //
     }
 
     public Seeder getSeeder() {

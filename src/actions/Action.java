@@ -44,9 +44,8 @@ public class Action {
     public static void myBuildings() {
         System.out.println("Dostępne akcje: ");
         System.out.println("1. Wybierz budynek");
-        System.out.println("2. Kup nowy budynek");
-        System.out.println("3. Sprzedaj budynek");
-        System.out.println("4. Cofnij");
+        System.out.println("2. Sprzedaj budynek");
+        System.out.println("3. Cofnij");
     }
 
     public static void allAvailableBuildingsWithPrices(){
@@ -60,15 +59,15 @@ public class Action {
         System.out.println("7. Cofnij");
     }
 
+
+
     public static void farmAction(){
         System.out.println("Dostępne akcje: ");
         System.out.println("1. Kup zwierzę");
         System.out.println("2. Sprzedaj zwierzę");
-        System.out.println("3. Zbierz i sprzedaj mleko od kóz");
         System.out.println("4. Ostrzyż owce i sprzedaj wełnę");
         System.out.println("5. Nakarm zwierzęta");
-        System.out.println("6. Rozmnażaj zwierzęta");
-        System.out.println("7. Cofnij");
+        System.out.println("6. Cofnij");
     }
     public static void cowshedAction(){
         System.out.println("Dostępne akcje: ");
@@ -99,8 +98,16 @@ public class Action {
         System.out.println("1. Kup świnię");
         System.out.println("2. Sprzedaj świnię");
         System.out.println("3. Nakarm zwierzęta");
+        System.out.println("4. Cofnij");
+    }
+
+    public static void myAnimals(){
+        System.out.println("1. Dokup zwierzę");
+        System.out.println("2. Sprzedaj zwierzę");
+        System.out.println("3. Nakarm zwierzę");
         System.out.println("4. Rozmnażaj zwierzęta");
-        System.out.println("5. Cofnij");
+        System.out.println("5. Zbierz");
+        System.out.println("6. Cofnij");
     }
 
 

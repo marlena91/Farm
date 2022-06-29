@@ -8,11 +8,6 @@ public class Cow extends Animal implements Collectible, Feedable, Selable{
     }
 
     @Override
-    public String toString() {
-        return "\nKrowa " + name;
-    }
-
-    @Override
     public void collect() {
         System.out.println("Doję krowy");
     }
@@ -25,5 +20,11 @@ public class Cow extends Animal implements Collectible, Feedable, Selable{
     @Override
     public void sell() {
         System.out.println("Sprzedaję krowy");
+    }
+
+    @Override
+    public String toString() {
+        return "Krowa" +
+                name + '\'';
     }
 }

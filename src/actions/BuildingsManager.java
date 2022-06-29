@@ -1,5 +1,6 @@
 package actions;
 
+import animals.Sheep;
 import area.FertileField;
 import area.FloodedField;
 import area.Forest;
@@ -26,15 +27,12 @@ public class BuildingsManager {
         int buildingActionSelection = Integer.parseInt(scanner.nextLine());
         switch (buildingActionSelection) {
             case 1:
-//                chooseBuilding();
-                break;
-            case 2:
                 buyBuilding();
                 break;
-            case 3:
+            case 2:
                 System.out.println("Sprzedaj budynek");
                 break;
-            case 4:
+            case 3:
                 break;
             default:
                 System.out.println("Wybierz 1-3");
@@ -51,6 +49,8 @@ public class BuildingsManager {
                 if(checkBuildingInFarm("Farm")){
                     System.out.println("Posiadasz juz Zagrodę");
                     Action.farmAction();
+                    int farmActionSelection = Integer.parseInt(scanner.nextLine());
+                    buildingAction(farmActionSelection, 1);
                 } else {
                     System.out.println("Nie posiadasz Zagrody. W zagrodzie możesz mieć kozy i owce, ktore bedziesz mógł/mogla rozmanazac. Chcesz kupić?");
                     System.out.println("Koszt to 60.000,00 PLN");
@@ -167,4 +167,28 @@ public class BuildingsManager {
         }
         return found;
     }
+
+    public void buildingAction(Integer numberOfAction, Integer buildingType){
+
+
+        if(numberOfAction == 1 & buildingType == 1){
+            System.out.println("Jakie imie wybierasz dla swojej nowej owcy?");
+            String animalName = scanner.nextLine();
+            myFarmer.addAnimal(new Sheep(animalName), 1000.00, "Farm");
+        }
+
+        if(numberOfAction == 2 & buildingType == 1){
+            System.out.println("2. Sprzedaj owcę");
+        }
+
+        if(numberOfAction == 4 & buildingType == 1){
+            System.out.println("4. Ostrzyż owce i sprzedaj wełnę");
+        }
+
+        if(numberOfAction == 5 & buildingType == 1){
+            System.out.println("5. Nakarm zwierzęta");
+        }
+
+    }
+
 }

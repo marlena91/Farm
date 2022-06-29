@@ -1,10 +1,12 @@
 package farmer;
 
+import animals.Animal;
 import area.FertileField;
 import area.Ground;
 import building.Barn;
 import building.Cowshed;
 import building.Outbuilding;
+import building.Pigsty;
 import equipment.Seeder;
 
 import java.util.ArrayList;
@@ -13,19 +15,20 @@ import java.util.List;
 public class Farmer {
     private String name;
     private Double cash;
-    private List<Ground> field;
-    private List<Outbuilding> buildings;
+    private List<Ground> field = new ArrayList<Ground>();
+    private List<Outbuilding> buildings = new ArrayList<Outbuilding>();
+
 
     public Farmer(String name) {
         this.name = name;
-        this.cash = 60000.00;
+        this.cash = 600000.00;
 
-        this.field = new ArrayList<Ground>();
         field.add(new FertileField());
         field.add(new FertileField());
 
-        this.buildings = new ArrayList<Outbuilding>();
-        buildings.add(new Cowshed(100000.00));
+        Cowshed cowshed = new Cowshed(100000.00);
+        buildings.add(cowshed);
+        cowshed.addCow("Bettina");
         buildings.add(new Barn(200000.00));
     }
 
@@ -56,6 +59,15 @@ public class Farmer {
         return buildings;
     }
 
+    public void getAnimals(){
+
+        for (Outbuilding building : this.getBuild()) {
+            if (!building.getClass().getSimpleName().equals("Barn")) {
+                System.out.println(building.getAnimals());
+            }
+        }
+    }
+
     public Ground getSingleField(Integer nr) {
         return this.field.get(nr);
     }
@@ -78,6 +90,21 @@ public class Farmer {
             this.buildings.add(building);
             this.cash -= price;
             System.out.println("Kupiono budynek");
+        }
+    }
+
+    public void addAnimal(Animal animal, Double price, String className){
+        if (this.cash <= price) {
+            System.out.println("Za mało pieniędzy na zakup tego zwierzęcia");
+        } else {
+            Outbuilding buildingForAnimal = null;
+            for (Outbuilding building : getBuild()) {
+                if (building.getClass().getSimpleName().equals(className)) {
+                    building.addAnimal(animal);
+                }
+            }
+            this.cash -= price;
+            System.out.println("Kupiono zwierze");
         }
     }
 

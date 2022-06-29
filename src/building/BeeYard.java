@@ -1,6 +1,9 @@
 package building;
 
+import animals.Animal;
 import animals.Bee;
+
+import java.util.List;
 
 public class BeeYard extends Outbuilding{
 
@@ -8,6 +11,16 @@ public class BeeYard extends Outbuilding{
 
     public BeeYard(Double value){
         super(value);
+    }
+
+    @Override
+    public List<Animal> getAnimals() {
+        return null;
+    }
+
+    @Override
+    public void addAnimal(Animal animal) {
+    //
     }
 
     public Bee getBees() {

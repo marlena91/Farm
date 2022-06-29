@@ -1,19 +1,34 @@
 package building;
 
+import animals.Animal;
 import animals.Cow;
+
+import java.util.List;
 
 public class Cowshed extends Outbuilding {
 
-    private Cow cow;
 
     public Cowshed(Double value){
         super(value);
-        this.cow = new Cow("Bettina");
     }
 
+    public void addCow(String name){
+        Cow cow = new Cow(name);
+        animals.add(cow);
+    }
+
+    @Override
+    public List<Animal> getAnimals(){
+        return animals;
+    }
+
+    @Override
+    public void addAnimal(Animal animal) {
+
+    }
 
     @Override
     public String toString() {
-        return "\n* Obora. W oborze znajduje się: " + cow;
+        return "\n* Obora. W oborze znajduje się: " + animals;
     }
 }

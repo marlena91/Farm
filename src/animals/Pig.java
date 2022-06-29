@@ -1,6 +1,12 @@
 package animals;
 
-public class Pig extends Animal implements Feedable, Reproducible, Selable {
+public class Pig extends Animal implements Feedable, Selable {
+
+    private String name;
+
+    public Pig(String name) {
+        this.name = name;
+    }
 
     @Override
     public void feed() {
@@ -8,12 +14,13 @@ public class Pig extends Animal implements Feedable, Reproducible, Selable {
     }
 
     @Override
-    public void reproduce() {
-        System.out.println("Rzomanżam świnie");
+    public void sell() {
+        System.out.println("Sprzedaje swinie");
     }
 
     @Override
-    public void sell() {
-        System.out.println("Sprzedaje swinie");
+    public String toString() {
+        return "Świnia" +
+                name + '\'';
     }
 }
