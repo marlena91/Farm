@@ -21,7 +21,7 @@ public class Tractor {
 
     @Override
     public String toString() {
-        return "\n" + producer + " " + model + ", " +
+        return  "\tTraktor: "+ producer + " " + model + ", " +
                 ", rok produkcji: " + yearOfProduction +
                 ", pojemność silnika: " + engineCapacity + "l" +
                 ", moc silnika: " + enginePower + "KM"

@@ -4,7 +4,7 @@ import animals.Animal;
 
 import java.util.List;
 
-public class Farm extends Outbuilding implements AnimalRemovable{
+public class Farm extends Outbuilding  {
     public Farm(Double value){
         super(value);
     }
@@ -26,6 +26,6 @@ public class Farm extends Outbuilding implements AnimalRemovable{
 
     @Override
     public String toString() {
-        return "\n*Zagroda W zagrodzie znajduje się: \""+animals;
+        return "\n\t~Zagroda. W zagrodzie znajdują się: "+animals;
     }
 }

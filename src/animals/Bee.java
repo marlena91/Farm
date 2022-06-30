@@ -6,4 +6,9 @@ public class Bee extends Animal implements Collectible{
     public void collect() {
         System.out.println("Zbieram miód");
     }
+
+    @Override
+    public String toString() {
+            return "Rój pszczół ";
+    }
 }

@@ -125,11 +125,22 @@ public class Farmer {
         }
     }
 
+    public void sellGoods(String className){
+        for (Outbuilding building : getBuild()) {
+            if (building.getClass().getSimpleName().equals(className)) {
+                Double profit = 1000.00*(building.getAnimals().size());
+                addCash(profit);
+                System.out.println("Zarobiłeś "+profit+"PLN ");
+                System.out.println("Aktualny stan konta: "+getCash());
+            }
+        }
+    }
+
     @Override
     public String toString() {
-        return "Farmer " + name + ",\n" +
-                "dostępna gotówka: " + cash + " PLN" + "\n" +
-                "Posiadane pola: " + field + "\n" +
-                "Posiadane budynki: " + buildings + "\n";
+        return "\tFarmer " + name + ",\n\n" +
+                "\tDostępna gotówka: " + cash + " PLN" + "\n\n" +
+                "\tPosiadane pola: " + field + "\n\n" +
+                "\tPosiadane budynki: " + buildings + "\n\n";
     }
 }

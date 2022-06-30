@@ -42,13 +42,10 @@ public class Main {
                     animalsManager.start();
                     break;
                 case 4:
-                    System.out.println("sprzet");
-                    break;
-                case 5:
                     System.out.println(myFarmer);
                     Action.next();
                     break;
-                case 6:
+                case 5:
                     break first;
                 default:
                     System.out.println("Wybierz 1-6");

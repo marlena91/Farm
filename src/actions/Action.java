@@ -11,9 +11,8 @@ public class Action {
         System.out.println("1. Pole");
         System.out.println("2. Budynki");
         System.out.println("3. Zwierzęta");
-        System.out.println("4. Sprzęt");
-        System.out.println("5. Podsumowanie");
-        System.out.println("6. Zakończ program");
+        System.out.println("4. Podsumowanie");
+        System.out.println("5. Zakończ program");
     }
 
     public static void next() {
@@ -63,41 +62,36 @@ public class Action {
 
     public static void farmAction(){
         System.out.println("Dostępne akcje: ");
-        System.out.println("1. Kup zwierzę");
-        System.out.println("2. Sprzedaj zwierzę");
-        System.out.println("4. Ostrzyż owce i sprzedaj wełnę");
-        System.out.println("5. Nakarm zwierzęta");
-        System.out.println("6. Cofnij");
+        System.out.println("1. Kup owce");
+        System.out.println("2. Sprzedaj owce");
+        System.out.println("3. Ostrzyż owce i sprzedaj wełnę");
+        System.out.println("4. Cofnij");
     }
-    public static void cowshedAction(){
-        System.out.println("Dostępne akcje: ");
-        System.out.println("1. Kup krowę");
-        System.out.println("2. Sprzedaj krowę");
-        System.out.println("3. Zbierz i sprzedaj mleko od krów");
-        System.out.println("4. Nakarm krowy");
-        System.out.println("5. Cofnij");
-    }
+
     public static void beeYardAction(){
         System.out.println("Dostępne akcje: ");
         System.out.println("1. Kup rój pszczół");
         System.out.println("2. Zbierz i sprzedaj miód");
         System.out.println("3. Cofnij");
     }
-    public static void barnAction(){
-        System.out.println("Tu beda opcje do stodoły");
+    public static void cowshedAction(){
+        System.out.println("Dostępne akcje: ");
+        System.out.println("1. Kup krowę");
+        System.out.println("2. Sprzedaj krowę");
+        System.out.println("3. Zbierz i sprzedaj mleko od krów");
+        System.out.println("4. Cofnij");
     }
+
     public static void henhouseAction(){
         System.out.println("Dostępne akcje: ");
         System.out.println("1. Kup kurę");
         System.out.println("2. Zbierz i sprzedaj jajka");
-        System.out.println("3. Nakarm kury");
-        System.out.println("4. Cofnij");
+        System.out.println("3. Cofnij");
     }
     public static void pighouseAction(){
         System.out.println("Dostępne akcje: ");
         System.out.println("1. Kup świnię");
         System.out.println("2. Sprzedaj świnię");
-        System.out.println("3. Nakarm zwierzęta");
         System.out.println("4. Cofnij");
     }
 

@@ -18,10 +18,10 @@ public abstract class Ground {
 
     @Override
     public String toString() {
-        return "\nPole: " +
+        return "\n\t~Pole: " +
                 "powierzchnia: " + area + "ha" +
                 ", typ: " + type +
-                ", status: '" + state + '\'' ;
+                ", status: '" + state;
     }
 
     public void changeState() {

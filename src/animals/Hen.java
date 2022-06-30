@@ -4,26 +4,7 @@ import building.Outbuilding;
 
 import java.util.List;
 
-public class Hen extends Outbuilding implements Collectible, Feedable {
-
-    public Hen(Double value){
-        super(value);
-    }
-
-    @Override
-    public List<Animal> getAnimals() {
-        return null;
-    }
-
-    @Override
-    public void addAnimal(Animal animal) {
-        //
-    }
-
-    @Override
-    public void deleteAnimal(Animal animal) {
-        //
-    }
+public class Hen extends Animal implements Collectible, Feedable {
 
     @Override
     public void collect() {
