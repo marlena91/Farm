@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Outbuilding {
+public abstract class Outbuilding implements AnimalRemovable {
 
     protected Double value;
     protected List<Animal> animals = new ArrayList<Animal>();
@@ -39,3 +39,4 @@ public abstract class Outbuilding {
 
     public abstract void addAnimal(Animal animal);
 }
+

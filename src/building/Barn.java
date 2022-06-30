@@ -27,6 +27,11 @@ public class Barn extends Outbuilding{
         //
     }
 
+    @Override
+    public void deleteAnimal(Animal animal) {
+        //
+    }
+
     public Seeder getSeeder() {
         return this.seeder;
     }

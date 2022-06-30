@@ -21,6 +21,11 @@ public class Hen extends Outbuilding implements Collectible, Feedable {
     }
 
     @Override
+    public void deleteAnimal(Animal animal) {
+        //
+    }
+
+    @Override
     public void collect() {
         System.out.println("Zbieram jajka");
     }

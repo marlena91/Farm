@@ -1,5 +1,6 @@
 package actions;
 
+import animals.Animal;
 import animals.Sheep;
 import area.FertileField;
 import area.FloodedField;
@@ -168,16 +169,15 @@ public class BuildingsManager {
         return found;
     }
 
+
+
     public void buildingAction(Integer numberOfAction, Integer buildingType){
         if(numberOfAction == 1 & buildingType == 1){
-            System.out.println("Jakie imie wybierasz dla swojej nowej owcy?");
-            String animalName = scanner.nextLine();
-            myFarmer.addAnimal(new Sheep(animalName), 1000.00, "Farm");
-            start();
+            buySheepToFarm();
         }
 
         if(numberOfAction == 2 & buildingType == 1){
-            System.out.println(myFarmer.getAnimals("Farm"));
+            sellSheepFromFarm();
         }
 
         if(numberOfAction == 4 & buildingType == 1){
@@ -190,4 +190,29 @@ public class BuildingsManager {
 
     }
 
+    public void buySheepToFarm(){
+        System.out.println("Jakie imie wybierasz dla swojej nowej owcy?");
+        String animalName = scanner.nextLine();
+        myFarmer.addAnimal(new Sheep(animalName), 1000.00, "Farm");
+        start();
+    }
+
+    public void sellSheepFromFarm(){
+        System.out.println("Ktore zwierze chcesz sprzedac?");
+        int i = 1;
+        for(Animal animal : myFarmer.getAnimals("Farm")){
+            System.out.println(i+". "+animal);
+            i++;
+        }
+        int animalToDeleteSelection = Integer.parseInt(scanner.nextLine());
+        i=1;
+        for(Animal animal : myFarmer.getAnimals("Farm")){
+            if(animalToDeleteSelection == i){
+                myFarmer.deleteAnimal(animal, "Farm");
+                System.out.println("Pomyslnie sprzedano "+animal);
+                break;
+            }
+            i++;
+        }
+    }
 }

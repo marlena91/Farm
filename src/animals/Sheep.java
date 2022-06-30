@@ -1,5 +1,7 @@
 package animals;
 
+import java.util.Objects;
+
 public class Sheep extends Animal implements Collectible, Feedable, Selable {
 
     private String name;
@@ -27,5 +29,18 @@ public class Sheep extends Animal implements Collectible, Feedable, Selable {
     public String toString() {
         return "Owca: " +
                 name + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sheep)) return false;
+        Sheep sheep = (Sheep) o;
+        return Objects.equals(name, sheep.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -23,6 +23,11 @@ public class BeeYard extends Outbuilding{
     //
     }
 
+    @Override
+    public void deleteAnimal(Animal animal) {
+        //
+    }
+
     public Bee getBees() {
         return bees;
     }

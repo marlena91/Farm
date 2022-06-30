@@ -27,6 +27,11 @@ public class Pigsty extends Outbuilding{
     }
 
     @Override
+    public void deleteAnimal(Animal animal) {
+    //
+    }
+
+    @Override
     public String toString() {
         return "\n*Chlew";
     }

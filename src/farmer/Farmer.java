@@ -107,7 +107,6 @@ public class Farmer {
         if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tego zwierzęcia");
         } else {
-            Outbuilding buildingForAnimal = null;
             for (Outbuilding building : getBuild()) {
                 if (building.getClass().getSimpleName().equals(className)) {
                     building.addAnimal(animal);
@@ -115,6 +114,14 @@ public class Farmer {
             }
             this.cash -= price;
             System.out.println("Kupiono zwierze");
+        }
+    }
+
+    public void deleteAnimal(Animal animal, String className){
+        for (Outbuilding building : getBuild()) {
+            if (building.getClass().getSimpleName().equals(className)) {
+                building.deleteAnimal(animal);
+            }
         }
     }
 
