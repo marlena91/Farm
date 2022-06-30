@@ -103,6 +103,14 @@ public class Farmer {
         }
     }
 
+    public void removeBuilding(Outbuilding building){
+        if(!building.getClass().getSimpleName().equals("Barn")){
+            buildings.remove(building);
+            System.out.println("Budynek został zburzony ");
+
+        } else{ System.out.println("Nie mozna zburzyc stodoły ");}
+    }
+
     public void addAnimal(Animal animal, Double price, String className){
         if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tego zwierzęcia");

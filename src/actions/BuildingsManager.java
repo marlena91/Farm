@@ -30,7 +30,7 @@ public class BuildingsManager {
                 buyBuilding();
                 break;
             case 2:
-                System.out.println("Sprzedaj budynek");
+                destroyBuilding();
                 break;
             case 3:
                 break;
@@ -128,7 +128,7 @@ public class BuildingsManager {
                 }
                 break;
             case 7:
-                break;
+                Action.totalStart(myFarmer);
             default:
                 System.out.println("Wybierz 1-7");
                 break;
@@ -214,7 +214,7 @@ public class BuildingsManager {
         }
 
         if(numberOfAction == 2 & buildingType == 5){
-            myFarmer.sellGoods("BeeYard");
+            myFarmer.sellGoods("Henhouse");
         }
 
         if(numberOfAction == 1 & buildingType == 6){
@@ -286,6 +286,29 @@ public class BuildingsManager {
         myFarmer.addAnimal(new Hen(), 500.00, "Henhouse");
         Action.next();
         start();
+    }
+
+    public void destroyBuilding(){
+        if(myFarmer.getBuild().isEmpty()){
+            System.out.println("Nie masz żadnych budynków, które mógłbyś sprzedać.");
+            start();
+        }
+        System.out.println("Ktory budynek chcesz sprzedac?");
+        int i = 1;
+        for(Outbuilding building : myFarmer.getBuild()){
+            System.out.println(i+". "+building);
+            i++;
+        }
+        int buildingToDestroySelection = Integer.parseInt(scanner.nextLine());
+        i=1;
+        for(Outbuilding building : myFarmer.getBuild()){
+            if(buildingToDestroySelection == i){
+                myFarmer.removeBuilding(building);
+                break;
+            }
+            i++;
+        }
+
     }
 
 }

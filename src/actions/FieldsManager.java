@@ -1,5 +1,6 @@
 package actions;
 
+import animals.Animal;
 import area.FertileField;
 import area.FloodedField;
 import area.Forest;
@@ -22,9 +23,9 @@ public class FieldsManager {
     }
 
     public void start() {
-        System.out.println(myFarmer.getField());
         Action.myFields();
         int fieldActionSelection = Integer.parseInt(scanner.nextLine());
+
         switch (fieldActionSelection) {
             case 1:
                 this.buyField();
@@ -36,7 +37,7 @@ public class FieldsManager {
                 this.sellWheat();
                 break;
             case 4:
-                break;
+                Action.totalStart(myFarmer);
             default:
                 System.out.println("Wybierz 1-3");
                 break;
@@ -71,6 +72,7 @@ public class FieldsManager {
             System.out.println("Nie masz odpowiedniej kwoty, wróć gdy status Twojego konta będzie wynosił conajmniej 30 000.00 PLN");
             System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
             Action.next();
+            start();
         }
     }
 
@@ -84,6 +86,7 @@ public class FieldsManager {
         }
         System.out.println(myFarmer.getField());
         Action.next();
+        start();
     }
 
     public void sowWheat() {
@@ -94,7 +97,11 @@ public class FieldsManager {
             buySeeder();
         }
 
-        System.out.println(myFarmer.getField());
+        int i = 1;
+        for(Ground field : myFarmer.getField()){
+            System.out.println(i+". "+field);
+            i++;
+        }
         System.out.println("Wybierz nr pola");
         int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
         if(checkFieldNumber(fieldNumber)){
@@ -104,11 +111,11 @@ public class FieldsManager {
             Ground chosenField = myFarmer.getSingleField(fieldNumber);
             if (Objects.equals(chosenField.getState(), "Gotowe do wysiewu")) {
                 chosenField.changeState();
-                System.out.println(myFarmer.getSingleField(fieldNumber));
+                start();
             } else {
                 System.out.println("Nie można zasiać na: " + chosenField.getState());
             }
-            Action.next();
+            start();
         }
     }
 
@@ -118,8 +125,11 @@ public class FieldsManager {
 
     public void sellWheat() {
 
-        System.out.println(myFarmer.getField());
-
+        int i = 1;
+        for(Ground field : myFarmer.getField()){
+            System.out.println(i+". "+field);
+            i++;
+        }
         System.out.println("Wybierz nr pola");
         int fieldNumber = Integer.parseInt(scanner.nextLine()) - 1;
 
@@ -158,9 +168,9 @@ public class FieldsManager {
             barn.addSeeder();
             myFarmer.subtractCash(20000.00);
             System.out.println("Pomyślnie zakupiono siewnik.");
-            Action.next();
+            start();
         } else if (buySeederActionSelection == 2) {
-            Action.start();
+            start();
         } else {
             System.out.println("Wybierz 1-2");
             buySeeder();
