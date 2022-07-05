@@ -1,7 +1,4 @@
-import actions.Action;
-import actions.AnimalsManager;
-import actions.BuildingsManager;
-import actions.FieldsManager;
+import actions.*;
 import area.FertileField;
 import area.FloodedField;
 import area.Ground;
@@ -19,8 +16,12 @@ public class Main {
         System.out.println("Podaj swoje imię: ");
         String farmerName = scanner.nextLine();
         Farmer myFarmer = new Farmer(farmerName);
+        TimeManager time = new TimeManager();
 
-        System.out.println(myFarmer);
+        time.start();
+
+
+//        System.out.println(myFarmer);
 
         first:
         while(true){

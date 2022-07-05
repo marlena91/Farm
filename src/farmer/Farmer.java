@@ -18,18 +18,11 @@ public class Farmer {
     private List<Ground> field = new ArrayList<Ground>();
     private List<Outbuilding> buildings = new ArrayList<Outbuilding>();
 
+    private static final Double DEFAULT_CASH_FOR_START = 600000.00;
 
     public Farmer(String name) {
         this.name = name;
-        this.cash = 600000.00;
-
-        field.add(new FertileField());
-        field.add(new FertileField());
-
-        Cowshed cowshed = new Cowshed(100000.00);
-        buildings.add(cowshed);
-        cowshed.addCow("Bettina");
-        buildings.add(new Barn(200000.00));
+        this.cash = DEFAULT_CASH_FOR_START;
     }
 
     public String getName() {
