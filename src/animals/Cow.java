@@ -1,6 +1,6 @@
 package animals;
 
-public class Cow extends Animal implements Collectible, Feedable, Selable{
+public class Cow extends Animal implements Collectible, Feedable{
     private String name;
 
     public Cow(String name){
@@ -17,14 +17,10 @@ public class Cow extends Animal implements Collectible, Feedable, Selable{
         System.out.println("Karmię krowy");
     }
 
-    @Override
-    public void sell() {
-        System.out.println("Sprzedaję krowy");
-    }
 
     @Override
     public String toString() {
-        return "Krowa" +
-                name + '\'';
+        return "Krowa: " +
+                name + ". ";
     }
 }

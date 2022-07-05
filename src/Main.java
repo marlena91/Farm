@@ -23,39 +23,7 @@ public class Main {
 
 //        System.out.println(myFarmer);
 
-        first:
-        while(true){
-            Action.start();
-            int userSelection = Integer.parseInt(scanner.nextLine());
-            switch (userSelection) {
-
-                case 1:
-                    FieldsManager fieldsManager = new FieldsManager(myFarmer);
-                    fieldsManager.start();
-                    break;
-
-                case 2:
-                    BuildingsManager buildingsManager = new BuildingsManager(myFarmer);
-                    buildingsManager.start();
-                    break;
-                case 3:
-                    AnimalsManager animalsManager = new AnimalsManager(myFarmer);
-                    animalsManager.start();
-                    break;
-                case 4:
-                    System.out.println("sprzet");
-                    break;
-                case 5:
-                    System.out.println(myFarmer);
-                    Action.next();
-                    break;
-                case 6:
-                    break first;
-                default:
-                    System.out.println("Wybierz 1-6");
-                    break;
-            }
-        }
+        Action.totalStart(myFarmer);
 
     }
 }

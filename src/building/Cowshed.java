@@ -24,16 +24,16 @@ public class Cowshed extends Outbuilding {
 
     @Override
     public void addAnimal(Animal animal) {
-
+        animals.add(animal);
     }
 
     @Override
     public void deleteAnimal(Animal animal) {
-        //
+        animals.remove(animal);
     }
 
     @Override
     public String toString() {
-        return "\n* Obora. W oborze znajduje się: " + animals;
+        return "\n\t~Obora. W oborze znajduje się: " + animals;
     }
 }

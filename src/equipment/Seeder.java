@@ -17,7 +17,7 @@ public class Seeder {
 
         @Override
         public String toString() {
-            return "\nSiewnik: " +
+            return "\n\tSiewnik: " +
                     "szerokość robocza: " + width + "m, " +
                     "pojemność skrzyni ładunkowej: " + capacity + "dm3, " +
                     "spulchniacz śladów: " + trackEradicator

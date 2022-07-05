@@ -12,21 +12,21 @@ public class Henhouse extends Outbuilding{
 
     @Override
     public List<Animal> getAnimals() {
-        return null;
+        return animals;
     }
 
     @Override
     public void addAnimal(Animal animal) {
-    //
+        animals.add(animal);
     }
 
     @Override
     public void deleteAnimal(Animal animal) {
-    //
+        animals.remove(animal);
     }
 
     @Override
     public String toString() {
-        return "\n*Kurnik";
+        return "\n\t~Kurnik";
     }
 }
