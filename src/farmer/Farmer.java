@@ -15,8 +15,9 @@ import java.util.List;
 public class Farmer {
     private String name;
     private Double cash;
-    private List<Ground> field = new ArrayList<Ground>();
-    private List<Outbuilding> buildings = new ArrayList<Outbuilding>();
+    private List<Ground> field = new ArrayList<>();
+    private List<Outbuilding> buildings = new ArrayList<>();
+    private List<Animal> animals = new ArrayList<>();
 
     private static final Double DEFAULT_CASH_FOR_START = 600000.00;
 
@@ -58,6 +59,17 @@ public class Farmer {
                 System.out.println(building.getAnimals());
             }
         }
+    }
+
+    public List<Animal> getAllAnimalsCount(){
+        for (Outbuilding building : this.getBuild()) {
+            if (!building.getClass().getSimpleName().equals("Barn")) {
+                this.animals = building.getAnimals();
+            }
+        }
+
+        return this.animals;
+
     }
 
     public List<Animal> getAnimals(String farmBuilding){
@@ -139,9 +151,11 @@ public class Farmer {
 
     @Override
     public String toString() {
-        return "\tFarmer " + name + ",\n\n" +
-                "\tDostępna gotówka: " + cash + " PLN" + "\n\n" +
-                "\tPosiadane pola: " + field + "\n\n" +
-                "\tPosiadane budynki: " + buildings + "\n\n";
+
+        return "\n\tFarmer " + name + ",\n\n" +
+                "\tDostępna gotówka: " + cash + " PLN" + "\n" +
+                "\tPosiadane pola: " + (long) field.size() + "\n" +
+                "\tPosiadane budynki: " + (long) buildings.size() + "\n"+
+                "\tPosiadane zwierzeta: " + (long) getAllAnimalsCount().size() + "\n";
     }
 }

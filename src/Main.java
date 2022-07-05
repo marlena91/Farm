@@ -23,7 +23,7 @@ public class Main {
 
 //        System.out.println(myFarmer);
 
-        Action.totalStart(myFarmer);
+        Action.start(myFarmer);
 
     }
 }

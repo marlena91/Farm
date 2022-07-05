@@ -37,7 +37,7 @@ public class FieldsManager {
                 this.sellWheat();
                 break;
             case 4:
-                Action.totalStart(myFarmer);
+                Action.start(myFarmer);
             default:
                 System.out.println("Wybierz 1-3");
                 break;

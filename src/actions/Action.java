@@ -9,36 +9,35 @@ public class Action {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void totalStart(Farmer myFarmer){
+    public static void start(Farmer myFarmer){
+        System.out.println(myFarmer);
 
-        while(true){
-            Action.start();
-            int userSelection = Integer.parseInt(scanner.nextLine());
-            switch (userSelection) {
-                case 1 -> {
-                    FieldsManager fieldsManager = new FieldsManager(myFarmer);
-                    fieldsManager.start();
-                }
-                case 2 -> {
-                    BuildingsManager buildingsManager = new BuildingsManager(myFarmer);
-                    buildingsManager.start();
-                }
-                case 3 -> {
-                    System.out.println("Zwierzęta w Twoim gospodarstwie:");
-                    myFarmer.getAnimals();
-                    System.out.println("Poszczegolne akcje dotyczace zwierzat w odpowiadajacym ich budynkach.");
-                }
-                case 4 -> {
-                    System.out.println(myFarmer);
-                    Action.next();
-                }
-                case 5 -> System.exit(0);
-                default -> System.out.println("Wybierz 1-6");
-            }
+//            Action.startText();
+//            int userSelection = Integer.parseInt(scanner.nextLine());
+//            switch (userSelection) {
+//                case 1 -> {
+//                    FieldsManager fieldsManager = new FieldsManager(myFarmer);
+//                    fieldsManager.start();
+//                }
+//                case 2 -> {
+//                    BuildingsManager buildingsManager = new BuildingsManager(myFarmer);
+//                    buildingsManager.start();
+//                }
+//                case 3 -> {
+//                    System.out.println("Zwierzęta w Twoim gospodarstwie:");
+//                    myFarmer.getAnimals();
+//                    System.out.println("Poszczegolne akcje dotyczace zwierzat w odpowiadajacym ich budynkach.");
+//                }
+//                case 4 -> {
+//                    System.out.println(myFarmer);
+//                    Action.next();
+//                }
+//                case 5 -> System.exit(0);
+//                default -> System.out.println("Wybierz 1-6");
+//            }
         }
-    }
 
-    public static void start() {
+    public static void startText() {
         System.out.println("");
         System.out.println("Wybierz akcję: ");
         System.out.println("1. Pole");

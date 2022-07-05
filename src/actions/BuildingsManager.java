@@ -128,7 +128,7 @@ public class BuildingsManager {
                 }
                 break;
             case 7:
-                Action.totalStart(myFarmer);
+                Action.start(myFarmer);
             default:
                 System.out.println("Wybierz 1-7");
                 break;
@@ -140,7 +140,7 @@ public class BuildingsManager {
         if(buildingSelection == 1){
             buyBuilding(building, price);
         } else if (buildingSelection == 2) {
-            Action.start();
+            Action.start(myFarmer);
         } else {
             System.out.println("Wybierz 1-2");
             buyOrNoChosenBuilding(building, price);
