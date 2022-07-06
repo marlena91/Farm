@@ -7,10 +7,27 @@ import java.util.Scanner;
 
 public class Action {
 
+    private Farmer myFarmer;
+    private TimeManager time;
+    private BuildingsManager buildingsManager;
+    private FieldsManager fieldsManager;
+
     static Scanner scanner = new Scanner(System.in);
 
-    public static void start(Farmer myFarmer){
-        System.out.println(myFarmer);
+    public Action(Farmer myFarmer, TimeManager time){
+        this.myFarmer = myFarmer;
+        this.time = time;
+        this.buildingsManager = new BuildingsManager(this.myFarmer);
+        this.fieldsManager = new FieldsManager(this.myFarmer);
+    }
+
+    public void start(){
+        this.time.start();
+        System.out.println(this.myFarmer);
+        this.fieldsManager.generateRandomFarms();
+        this.fieldsManager.generateRandomFarms();
+
+
 
 //            Action.startText();
 //            int userSelection = Integer.parseInt(scanner.nextLine());

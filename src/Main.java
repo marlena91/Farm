@@ -1,6 +1,4 @@
 import actions.*;
-import area.FertileField;
-import area.FloodedField;
 import area.Ground;
 import farmer.Farmer;
 
@@ -17,13 +15,9 @@ public class Main {
         String farmerName = scanner.nextLine();
         Farmer myFarmer = new Farmer(farmerName);
         TimeManager time = new TimeManager();
+        Action action = new Action(myFarmer, time);
 
-        time.start();
-
-
-//        System.out.println(myFarmer);
-
-        Action.start(myFarmer);
+        action.start();
 
     }
 }

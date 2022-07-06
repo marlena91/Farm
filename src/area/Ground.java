@@ -1,37 +1,38 @@
 package area;
 
+import actions.RandomInteger;
+
+import java.util.List;
 import java.util.Random;
 
-public abstract class Ground {
+public class Ground {
 
-    protected Double area;
-    protected String type;
-    protected String state;
+    private Integer area;
+    private String state;
 
-    String[] typesOfGround = {"A", "B", "C"};
+    public Ground(Integer area) {
+        this.area = area;
+    }
 
+    public String getState() {
+        return this.state;
+    }
 
-    public Ground(){
-        this.area = 1.00;
-        this.type = getRandom(typesOfGround);
+    public Integer getArea() {
+        return area;
     }
 
     @Override
     public String toString() {
         return "\n\t~Pole: " +
-                "powierzchnia: " + area + "ha" +
-                ", typ: " + type +
-                ", status: '" + state;
+                "powierzchnia: " + area + "ha";
     }
 
-    public void changeState() {
-    }
-    public String getState() {
-        return this.state;
-    }
-
-    public static String getRandom(String[] array) {
-        int rnd = new Random().nextInt(array.length);
-        return array[rnd];
-    }
+    //    String[] typesOfGround = {"A", "B", "C"};
+//    getRandom(typesOfGround);
+//
+//    public static String getRandom(String[] array) {
+//        int rnd = new Random().nextInt(array.length);
+//        return array[rnd];
+//    }
 }
