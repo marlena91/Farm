@@ -17,7 +17,7 @@ public class Main {
         TimeManager time = new TimeManager();
         Action action = new Action(myFarmer, time);
 
-        action.start();
+        action.newWeek();
 
     }
 }

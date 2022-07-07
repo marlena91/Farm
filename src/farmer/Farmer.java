@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Farmer {
+
     private String name;
     private Double cash;
-    private List<Ground> field = new ArrayList<>();
+    private Integer additionalArea;
+
+    private List<Ground> fields = new ArrayList<>();
     private List<Outbuilding> buildings = new ArrayList<>();
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> crops = new ArrayList<>();
@@ -21,14 +24,7 @@ public class Farmer {
     public Farmer(String name) {
         this.name = name;
         this.cash = DEFAULT_CASH_FOR_START;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.additionalArea = 0;
     }
 
     public Double getCash() {
@@ -43,8 +39,12 @@ public class Farmer {
         this.cash -= cash;
     }
 
+    public Integer getAdditionalArea() {
+        return additionalArea;
+    }
+
     public List<Ground> getField() {
-        return field;
+        return fields;
     }
 
     public List<Outbuilding> getBuild() {
@@ -55,49 +55,58 @@ public class Farmer {
         return crops;
     }
 
-    public void getAnimals() {
-        for (Outbuilding building : this.getBuild()) {
-            if (!building.getClass().getSimpleName().equals("Barn")) {
-                System.out.println(building.getAnimals());
-            }
-        }
-    }
-
     public List<Animal> getAllAnimals() {
         for (Outbuilding building : this.getBuild()) {
             if (!building.getClass().getSimpleName().equals("Barn")) {
                 this.animals = building.getAnimals();
             }
         }
-
         return this.animals;
-
     }
 
-    public List<Animal> getAnimals(String farmBuilding) {
-        List<Animal> animals = null;
-        for (Outbuilding building : this.getBuild()) {
-            if (building.getClass().getSimpleName().equals(farmBuilding)) {
-                animals = building.getAnimals();
-                break;
-            }
+    public void addField(Ground field) {
+        this.fields.add(field);
+    }
+
+    public void addAdditionalFertileField() {
+        this.additionalArea += 1;
+    }
+
+    public void substractAdditionalFertileField(Integer area){
+        if(area <= this.getAdditionalArea()){
+            this.additionalArea -= area;
+        } else {
+            System.out.println("Zla wartosc. Nie udalo sie sprzedac ziemi");
         }
-        return animals;
     }
+
+
+
+//    public void getAnimals() {
+//        for (Outbuilding building : this.getBuild()) {
+//            if (!building.getClass().getSimpleName().equals("Barn")) {
+//                System.out.println(building.getAnimals());
+//            }
+//        }
+//    }
+//
+
+//
+//    public List<Animal> getAnimals(String farmBuilding) {
+//        List<Animal> animals = null;
+//        for (Outbuilding building : this.getBuild()) {
+//            if (building.getClass().getSimpleName().equals(farmBuilding)) {
+//                animals = building.getAnimals();
+//                break;
+//            }
+//        }
+//        return animals;
+//    }
 
     public Ground getSingleField(Integer nr) {
-        return this.field.get(nr);
+        return this.fields.get(nr);
     }
 
-    public void addField(Ground field, Double price) {
-        if (this.cash <= price) {
-            System.out.println("Za mało pieniędzy na zakup tej działki");
-        } else {
-            this.field.add(field);
-            this.cash -= price;
-            System.out.println("Pomyślnie zakupiono ziemię.");
-        }
-    }
 
 
     public void addBuilding(Outbuilding building, Double price) {
@@ -158,7 +167,7 @@ public class Farmer {
 
         return "\n\tFarmer " + name + ",\n\n" +
                 "\tDostępna gotówka: " + cash + " PLN" + "\n" +
-                "\tPosiadane pola: " + (long) field.size() + "\n" +
+                "\tPosiadane pola: " + (long) fields.size() + "\n" +
                 "\tPosiadane budynki: " + (long) buildings.size() + "\n" +
                 "\tPosiadane zwierzeta: " + (long) getAllAnimals().size() + "\n"+
                 "\tPosiadane uprawy: " + (long) crops.size() + "\n";

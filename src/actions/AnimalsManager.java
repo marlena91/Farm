@@ -12,10 +12,5 @@ public class AnimalsManager {
         this.myFarmer = myFarmer;
     }
 
-    public void start(){
-
-
-    }
-
 }
 
