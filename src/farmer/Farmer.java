@@ -19,7 +19,7 @@ public class Farmer {
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> crops = new ArrayList<>();
 
-    private static final Double DEFAULT_CASH_FOR_START = 600000.00;
+    private static final Double DEFAULT_CASH_FOR_START = 6000000.00;
 
     public Farmer(String name) {
         this.name = name;
@@ -75,9 +75,19 @@ public class Farmer {
     public void substractAdditionalFertileField(Integer area){
         if(area <= this.getAdditionalArea()){
             this.additionalArea -= area;
+            System.out.println("Pomyslnie sprzedano ziemie");
         } else {
             System.out.println("Zla wartosc. Nie udalo sie sprzedac ziemi");
         }
+    }
+
+    public Integer sumOfAllFields(){
+        Integer totalFarmArea = 0;
+        for(Ground field : this.getField()){
+            totalFarmArea += field.getArea();
+        }
+        totalFarmArea += this.additionalArea;
+        return totalFarmArea;
     }
 
 
@@ -167,7 +177,7 @@ public class Farmer {
 
         return "\n\tFarmer " + name + ",\n\n" +
                 "\tDostępna gotówka: " + cash + " PLN" + "\n" +
-                "\tPosiadane pola: " + (long) fields.size() + "\n" +
+                "\tPosiadane pola: " + sumOfAllFields() + "ha\n" +
                 "\tPosiadane budynki: " + (long) buildings.size() + "\n" +
                 "\tPosiadane zwierzeta: " + (long) getAllAnimals().size() + "\n"+
                 "\tPosiadane uprawy: " + (long) crops.size() + "\n";

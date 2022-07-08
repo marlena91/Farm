@@ -105,6 +105,7 @@ public class FieldsManager {
             if(this.myFarmer.getCash() >=600000.00){
                 this.myFarmer.addAdditionalFertileField();
                 this.myFarmer.subtractCash(600000.00);
+                System.out.println("Pomyslnie zakupiono ziemie");
             } else {
                 System.out.println("Za malo pieniedzy na zakup tej ziemi ");
             }
