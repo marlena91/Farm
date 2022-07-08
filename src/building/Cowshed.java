@@ -34,6 +34,10 @@ public class Cowshed extends Outbuilding {
 
     @Override
     public String toString() {
-        return "\n\t~Obora. W oborze znajduje się: " + animals;
+        if(animals.size() > 0){
+            return "\t~Obora. Zwierzeta w Oborze: "+animals +"\n";
+        } else {
+            return "\t~Obora,\n";
+        }
     }
 }

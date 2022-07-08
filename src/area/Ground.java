@@ -21,7 +21,7 @@ public class Ground {
     }
 
     public String getState() {
-        return this.state;
+        return state;
     }
 
     public Integer getArea() {
@@ -29,6 +29,13 @@ public class Ground {
     }
 
     public Double getValue() { return value;}
+
+    public Integer getNumberOfBuildings(){
+        return numberOfBuildings;
+    }
+    public void subtractNumberOfBuilding(){
+        this.numberOfBuildings -= 1;
+    }
 
     @Override
     public String toString() {

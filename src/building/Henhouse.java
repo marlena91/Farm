@@ -27,6 +27,10 @@ public class Henhouse extends Outbuilding{
 
     @Override
     public String toString() {
-        return "\n\t~Kurnik";
+        if(animals.size() > 0){
+            return "\t~Kurnik. Zwierzeta w kurniku: "+animals +"\n";
+        } else {
+            return "\t~Kurnik,\n";
+        }
     }
 }

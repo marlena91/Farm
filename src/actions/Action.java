@@ -61,7 +61,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "3")) {
-            System.out.println("Zakup nowych budynkow");
+            this.buyNewBuilding();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "4")) {
@@ -144,6 +144,17 @@ public class Action {
         this.fieldsManager.buyAdditionalFertileField();
     }
 
+    public void buyNewBuilding(){
+        System.out.println("");
+        System.out.println("TEST: "+ this.buildingsManager.avalaiblePlacesForBuildings());
+        if(this.buildingsManager.avalaiblePlacesForBuildings() == 0){
+            System.out.println("Nie masz dostepnego miejsca na nowe budynki. Udaj sie do punktu 1 i dokup farme z wolnym miejscem");
+            this.next();
+            this.mainChoices();
+        }
+        this.buildingsManager.getBuildings();
+    }
+
 
 //            Action.startText();
 //            int userSelection = Integer.parseInt(scanner.nextLine());
@@ -197,17 +208,7 @@ public class Action {
 //        System.out.println("3. Cofnij");
 //    }
 //
-//    public static void allAvailableBuildingsWithPrices(){
-//        System.out.println("");
-//        System.out.println("Wybierz budynek: ");
-//        System.out.println("1. Zagroda - 60.000,00 PLN");
-//        System.out.println("2. Pasieka - 30.000,00 PLN");
-//        System.out.println("3. Obora - 100.000,00 PLN");
-//        System.out.println("4. Stodoła - 200.000,00 PLN");
-//        System.out.println("5. Kurnik - 20.000,00 PLN");
-//        System.out.println("6. Chlew - 70.000,00 PLN");
-//        System.out.println("7. Cofnij");
-//    }
+
 //
 //
 //

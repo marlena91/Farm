@@ -26,6 +26,10 @@ public class Farm extends Outbuilding  {
 
     @Override
     public String toString() {
-        return "\n\t~Zagroda. W zagrodzie znajdują się: "+animals;
+        if(animals.size() > 0){
+            return "\t~Zagroda. Zwierzeta w zagrodzie: "+animals +"\n";
+        } else {
+            return "\t~Zagroda,\n";
+        }
     }
 }

@@ -38,6 +38,10 @@ public class BeeYard extends Outbuilding{
 
     @Override
     public String toString() {
-        return "\n\t~Pasieka W pasiece znajduje się: "+animals;
+        if(animals.size() > 0){
+            return "\t~Pasieka. Zwierzeta w Pasiece: "+animals +"\n";
+        } else {
+            return "\t~Pasieka,\n";
+        }
     }
 }

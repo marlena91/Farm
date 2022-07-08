@@ -55,15 +55,6 @@ public class Farmer {
         return crops;
     }
 
-    public List<Animal> getAllAnimals() {
-        for (Outbuilding building : this.getBuild()) {
-            if (!building.getClass().getSimpleName().equals("Barn")) {
-                this.animals = building.getAnimals();
-            }
-        }
-        return this.animals;
-    }
-
     public void addField(Ground field) {
         this.fields.add(field);
     }
@@ -89,6 +80,16 @@ public class Farmer {
         totalFarmArea += this.additionalArea;
         return totalFarmArea;
     }
+
+    public List<Animal> getAllAnimals() {
+        for (Outbuilding building : this.getBuild()) {
+            if (!building.getClass().getSimpleName().equals("Barn")) {
+                this.animals = building.getAnimals();
+            }
+        }
+        return this.animals;
+    }
+
 
 
 
