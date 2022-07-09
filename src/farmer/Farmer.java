@@ -18,6 +18,7 @@ public class Farmer {
     private List<Outbuilding> buildings = new ArrayList<>();
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> crops = new ArrayList<>();
+    private List<Plant> plants = new ArrayList<>();
 
     private static final Double DEFAULT_CASH_FOR_START = 6000000.00;
 
@@ -54,17 +55,29 @@ public class Farmer {
     public List<Plant> getCrops() {
         return crops;
     }
+    public List<Plant> getPlants() {
+        return plants;
+    }
 
     public void addField(Ground field) {
         this.fields.add(field);
+    }
+
+    public void addPlant(Plant plant) {
+        if(this.cash >= plant.getCost()){
+            this.plants.add(plant);
+            this.subtractCash(plant.getCost());
+        } else {
+            System.out.println("Brak pieniedzy na ten produkt");
+        }
     }
 
     public void addAdditionalFertileField() {
         this.additionalArea += 1;
     }
 
-    public void substractAdditionalFertileField(Integer area){
-        if(area <= this.getAdditionalArea()){
+    public void substractAdditionalFertileField(Integer area) {
+        if (area <= this.getAdditionalArea()) {
             this.additionalArea -= area;
             System.out.println("Pomyslnie sprzedano ziemie");
         } else {
@@ -72,9 +85,9 @@ public class Farmer {
         }
     }
 
-    public Integer sumOfAllFields(){
+    public Integer sumOfAllFields() {
         Integer totalFarmArea = 0;
-        for(Ground field : this.getField()){
+        for (Ground field : this.getField()) {
             totalFarmArea += field.getArea();
         }
         totalFarmArea += this.additionalArea;
@@ -89,8 +102,6 @@ public class Farmer {
         }
         return this.animals;
     }
-
-
 
 
 //    public void getAnimals() {
@@ -117,7 +128,6 @@ public class Farmer {
     public Ground getSingleField(Integer nr) {
         return this.fields.get(nr);
     }
-
 
 
     public void addBuilding(Outbuilding building, Double price) {
@@ -180,7 +190,7 @@ public class Farmer {
                 "\tDostępna gotówka: " + cash + " PLN" + "\n" +
                 "\tPosiadane pola: " + sumOfAllFields() + "ha\n" +
                 "\tPosiadane budynki: " + (long) buildings.size() + "\n" +
-                "\tPosiadane zwierzeta: " + (long) getAllAnimals().size() + "\n"+
+                "\tPosiadane zwierzeta: " + (long) getAllAnimals().size() + "\n" +
                 "\tPosiadane uprawy: " + (long) crops.size() + "\n";
 
     }

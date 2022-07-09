@@ -13,6 +13,7 @@ public class Action {
     private TimeManager time;
     private BuildingsManager buildingsManager;
     private FieldsManager fieldsManager;
+    private PlantsManager plantsManager;
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -21,6 +22,7 @@ public class Action {
         this.time = time;
         this.buildingsManager = new BuildingsManager(this.myFarmer);
         this.fieldsManager = new FieldsManager(this.myFarmer, this.time, this);
+        this.plantsManager = new PlantsManager(this.myFarmer, this.time, this);
     }
 
     public void newWeek() {
@@ -65,7 +67,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "4")) {
-            System.out.println("Zakup zwierzat lub roslin");
+            this.buyAnimalsOrPlants();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "5")) {
@@ -146,13 +148,30 @@ public class Action {
 
     public void buyNewBuilding(){
         System.out.println("");
-        System.out.println("TEST: "+ this.buildingsManager.avalaiblePlacesForBuildings());
         if(this.buildingsManager.avalaiblePlacesForBuildings() == 0){
             System.out.println("Nie masz dostepnego miejsca na nowe budynki. Udaj sie do punktu 1 i dokup farme z wolnym miejscem");
             this.next();
             this.mainChoices();
         }
         this.buildingsManager.getBuildings();
+    }
+
+    public void buyAnimalsOrPlants(){
+        System.out.println("");
+        System.out.println("1. Kup nasiona/sadzonki");
+        System.out.println("2. Kup male zwierze");
+        System.out.println("0. Cofnij");
+        String select = scanner.nextLine();
+        if(Objects.equals(select, "1")){
+            this.plantsManager.buySeeds();
+        } else if (Objects.equals(select, "2")){
+            System.out.println("Male zwierzeta");
+        } else if(Objects.equals(select, "0")){
+            this.mainChoices();
+        } else {
+            System.out.println("Wybierz 1-2");
+            this.buyAnimalsOrPlants();
+        }
     }
 
 
