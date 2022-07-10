@@ -334,19 +334,6 @@ public class BuildingsManager {
 
 
 //
-//    public Boolean checkBuildingInFarm(String className) {
-//        boolean found = false;
-//        for (Outbuilding building : myFarmer.getBuild()) {
-//            if (building.getClass().getSimpleName().equals(className)) {
-//                found = true;
-//                break;
-//            }
-//        }
-//        return found;
-//    }
-//
-//
-//
 //    public void buildingAction(Integer numberOfAction, Integer buildingType){
 //        if(numberOfAction == 1 & buildingType == 1){
 //            buySheepToFarm();

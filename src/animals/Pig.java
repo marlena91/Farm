@@ -2,10 +2,26 @@ package animals;
 
 public class Pig extends Animal implements Feedable {
 
-    private String name;
+    private static final Double COST = 1500.00;
 
-    public Pig(String name) {
+    private String name;
+    private Double cost;
+
+    public Pig() {
+        this.cost = COST;
+    }
+
+    public void setName(String name){
         this.name = name;
+    }
+
+    @Override
+    public void info() {
+//
+    }
+
+    public Double getCost(){
+        return this.cost;
     }
 
     @Override

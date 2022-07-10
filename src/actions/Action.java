@@ -14,6 +14,7 @@ public class Action {
     private BuildingsManager buildingsManager;
     private FieldsManager fieldsManager;
     private PlantsManager plantsManager;
+    private AnimalsManager animalsManager;
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -23,6 +24,7 @@ public class Action {
         this.buildingsManager = new BuildingsManager(this.myFarmer);
         this.fieldsManager = new FieldsManager(this.myFarmer, this.time, this);
         this.plantsManager = new PlantsManager(this.myFarmer, this.time, this);
+        this.animalsManager = new AnimalsManager(this.myFarmer, this.time, this, this.buildingsManager);
     }
 
     public void newWeek() {
@@ -165,7 +167,7 @@ public class Action {
         if(Objects.equals(select, "1")){
             this.plantsManager.buySeeds();
         } else if (Objects.equals(select, "2")){
-            System.out.println("Male zwierzeta");
+            this.animalsManager.buyAnimal();
         } else if(Objects.equals(select, "0")){
             this.mainChoices();
         } else {
@@ -174,102 +176,6 @@ public class Action {
         }
     }
 
-
-//            Action.startText();
-//            int userSelection = Integer.parseInt(scanner.nextLine());
-//            switch (userSelection) {
-//                case 1 -> {
-//                    FieldsManager fieldsManager = new FieldsManager(myFarmer);
-//                    fieldsManager.start();
-//                }
-//                case 2 -> {
-//                    BuildingsManager buildingsManager = new BuildingsManager(myFarmer);
-//                    buildingsManager.start();
-//                }
-//                case 3 -> {
-//                    System.out.println("Zwierzęta w Twoim gospodarstwie:");
-//                    myFarmer.getAnimals();
-//                    System.out.println("Poszczegolne akcje dotyczace zwierzat w odpowiadajacym ich budynkach.");
-//                }
-//                case 4 -> {
-//                    System.out.println(myFarmer);
-//                    Action.next();
-//                }
-//                case 5 -> System.exit(0);
-//                default -> System.out.println("Wybierz 1-6");
-//            }
-
-
-    //
-
-//
-//    public static void myFields() {
-//        System.out.println("");
-//        System.out.println("1. Kup nowe pole");
-//        System.out.println("2. Wysiej zboże");
-//        System.out.println("3. Sprzedaj zboże");
-//        System.out.println("4. Cofnij");
-//    }
-//
-
-//
-//    public static void yesNo() {
-//        System.out.println("");
-//        System.out.println("1. TAK");
-//        System.out.println("2. NIE");
-//    }
-//
-//    public static void myBuildings() {
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Wybierz budynek");
-//        System.out.println("2. Zburz budynek");
-//        System.out.println("3. Cofnij");
-//    }
-//
-
-//
-//
-//
-//    public static void farmAction(){
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Kup owce");
-//        System.out.println("2. Sprzedaj owce");
-//        System.out.println("3. Ostrzyż owce i sprzedaj wełnę");
-//        System.out.println("4. Cofnij");
-//    }
-//
-//    public static void beeYardAction(){
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Kup rój pszczół");
-//        System.out.println("2. Zbierz i sprzedaj miód");
-//        System.out.println("3. Cofnij");
-//    }
-//    public static void cowshedAction(){
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Kup krowę");
-//        System.out.println("2. Sprzedaj krowę");
-//        System.out.println("3. Zbierz i sprzedaj mleko od krów");
-//        System.out.println("4. Cofnij");
-//    }
-//
-//    public static void henhouseAction(){
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Kup kurę");
-//        System.out.println("2. Zbierz i sprzedaj jajka");
-//        System.out.println("3. Cofnij");
-//    }
-//    public static void pighouseAction(){
-//        System.out.println("");
-//        System.out.println("Dostępne akcje: ");
-//        System.out.println("1. Kup świnię");
-//        System.out.println("2. Sprzedaj świnię");
-//        System.out.println("4. Cofnij");
-//    }
 
 
 }

@@ -6,8 +6,8 @@ public class Sheep extends Animal implements Collectible, Feedable {
 
     private String name;
 
-    public Sheep(String name) {
-        this.name = name;
+    public Sheep() {
+
     }
 
     @Override
@@ -18,6 +18,11 @@ public class Sheep extends Animal implements Collectible, Feedable {
     @Override
     public void feed() {
         System.out.println("Karmię owce");
+    }
+
+    @Override
+    public void info() {
+//
     }
 
     @Override
@@ -37,5 +42,10 @@ public class Sheep extends Animal implements Collectible, Feedable {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public Double getCost() {
+        return null;
     }
 }

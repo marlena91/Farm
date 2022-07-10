@@ -3,7 +3,6 @@ package actions;
 import crops.*;
 import farmer.Farmer;
 
-import java.sql.Time;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,12 +11,13 @@ public class PlantsManager {
     private final Farmer myFarmer;
     private Scanner scanner;
     private Action action;
-    private Time time;
+    private TimeManager time;
 
     public PlantsManager(Farmer myFarmer, TimeManager time, Action action) {
         this.myFarmer = myFarmer;
         this.scanner = new Scanner(System.in);
         this.action = action;
+        this.time = time;
     }
 
     public void buySeeds() {
@@ -29,6 +29,7 @@ public class PlantsManager {
         System.out.println("4. Bulwy ziemniakow");
         System.out.println("5. Sadzonki jabloni");
         System.out.println("6. Ziarna pszenicy");
+        System.out.println("0. Cofnij");
 
         String select = scanner.nextLine();
 
@@ -65,10 +66,9 @@ public class PlantsManager {
         } else if (Objects.equals(select, "0")) {
             System.out.println("");
         } else {
-            System.out.println("Wybierz 1-2");
+            System.out.println("Wybierz 1-6");
             this.buySeeds();
         }
-        System.out.println("TEST: "+ myFarmer.getPlants());
     }
 
     public void buySeeds(Plant plant) {

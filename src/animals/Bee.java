@@ -11,4 +11,14 @@ public class Bee extends Animal implements Collectible{
     public String toString() {
             return "Rój pszczół ";
     }
+
+    @Override
+    public Double getCost() {
+        return null;
+    }
+
+    @Override
+    public void info() {
+//
+    }
 }

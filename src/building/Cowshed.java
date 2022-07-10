@@ -12,8 +12,8 @@ public class Cowshed extends Outbuilding {
         super(value);
     }
 
-    public void addCow(String name){
-        Cow cow = new Cow(name);
+    public void addCow(){
+        Cow cow = new Cow();
         animals.add(cow);
     }
 

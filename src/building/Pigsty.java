@@ -11,8 +11,8 @@ public class Pigsty extends Outbuilding {
         super(value);
     }
 
-    public void addPig(String name){
-        Pig pig = new Pig(name);
+    public void addPig(){
+        Pig pig = new Pig();
         animals.add(pig);
     }
     @Override
