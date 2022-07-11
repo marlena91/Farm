@@ -12,8 +12,6 @@ public class Hen extends Animal implements Collectible, Feedable {
     private static final Integer WEIGHT_OF_FOOD = 3;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
 
-
-
     private String name;
     private Double cost;
 
