@@ -1,9 +1,7 @@
 package actions;
 
-import animals.Animal;
+import area.FertileField;
 import area.Ground;
-import building.Barn;
-import building.Outbuilding;
 import farmer.Farmer;
 
 import java.sql.Time;
@@ -67,6 +65,7 @@ public class FieldsManager {
                 if (myFarmer.getCash() <= chosenFarm.getValue()) {
                     System.out.println("Za mało pieniędzy na zakup tej działki");
                 } else {
+                    myFarmer.addFarm(chosenFarm);
                     myFarmer.addField(chosenFarm);
                     this.randomFarms.remove(chosenFarm);
                     myFarmer.subtractCash(chosenFarm.getValue());
@@ -104,6 +103,7 @@ public class FieldsManager {
         if(Objects.equals(select, "1")){
             if(this.myFarmer.getCash() >=600000.00){
                 this.myFarmer.addAdditionalFertileField();
+                this.myFarmer.addField(new FertileField());
                 this.myFarmer.subtractCash(600000.00);
                 System.out.println("Pomyslnie zakupiono ziemie");
             } else {

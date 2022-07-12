@@ -14,7 +14,8 @@ public class Farmer {
     private Double cash;
     private Integer additionalArea;
 
-    private List<Ground> fields = new ArrayList<>();
+    private List<Ground> farms = new ArrayList<>();
+    private List<Object> fields = new ArrayList<>();
     private List<Outbuilding> buildings = new ArrayList<>();
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> crops = new ArrayList<>();
@@ -45,7 +46,7 @@ public class Farmer {
     }
 
     public List<Ground> getField() {
-        return fields;
+        return farms;
     }
 
     public List<Outbuilding> getBuild() {
@@ -59,8 +60,16 @@ public class Farmer {
         return plants;
     }
 
-    public void addField(Ground field) {
+    public void addFarm(Ground field) {
+        this.farms.add(field);
+    }
+
+    public void addField(Object field){
         this.fields.add(field);
+    }
+
+    public List<Object> getFields() {
+        return fields;
     }
 
     public void addPlant(Plant plant) {
@@ -126,7 +135,7 @@ public class Farmer {
 //    }
 
     public Ground getSingleField(Integer nr) {
-        return this.fields.get(nr);
+        return this.farms.get(nr);
     }
 
 

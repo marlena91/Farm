@@ -54,6 +54,7 @@ public class Action {
     public void mainChoices() {
         this.startText();
 
+        System.out.println(myFarmer.getFields());
         String selectAction = scanner.nextLine();
 
         if (Objects.equals(selectAction, "1")) {
@@ -73,7 +74,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "5")) {
-            System.out.println("Posadzenie roslin");
+            this.plantingPlants();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "6")) {
@@ -93,7 +94,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "10")) {
-            System.out.println("Przejrzenie informacji o posiadanych sadzonkach i asadzonych roslinach");
+            System.out.println("Przejrzenie informacji o posiadanych sadzonkach i zasadzonych roslinach");
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "11")) {
@@ -137,15 +138,19 @@ public class Action {
 
     public void buyOrSellNewField(){
         System.out.println("");
+        this.checkingIfFarmerHasFarm();
+        System.out.println("Aktualnie posiadasz "+ this.fieldsManager.getFarmArea()+ "ha pola uprawnego na swoich farmach " +
+                "oraz "+ this.myFarmer.getAdditionalArea() + "ha pola uprawnego, poza Twoimi farmami");
+        System.out.println("Czy chcesz dokupic pola uprawne?");
+        this.fieldsManager.buyAdditionalFertileField();
+    }
+
+    public void checkingIfFarmerHasFarm(){
         if(this.fieldsManager.getFarmArea() == 0){
             System.out.println("Nie masz jeszcze farmy. Udaj sie do punktu 1 i zakup swoja pierwsza farme");
             this.next();
             this.mainChoices();
         }
-        System.out.println("Aktualnie posiadasz "+ this.fieldsManager.getFarmArea()+ "ha pola uprawnego na swoich farmach " +
-                "oraz "+ this.myFarmer.getAdditionalArea() + "ha pola uprawnego, poza Twoimi farmami");
-        System.out.println("Czy chcesz dokupic pola uprawne?");
-        this.fieldsManager.buyAdditionalFertileField();
     }
 
     public void buyNewBuilding(){
@@ -176,6 +181,11 @@ public class Action {
         }
     }
 
+    public void plantingPlants(){
+        System.out.println("");
+        this.checkingIfFarmerHasFarm();
+        //
+    }
 
 
 }
