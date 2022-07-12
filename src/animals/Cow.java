@@ -3,9 +3,10 @@ package animals;
 public class Cow extends Animal implements Collectible, Feedable {
 
     private static final Double COST = 1500.00;
+    private static final Double PRICE = 800.00;
     private static final Double WEIGHT_GAIN_PER_WEEK = 5.5;
     private static final Integer TIME_TO_MATURITY = 84;
-    private static final Integer WEIGHT_OF_FOOD = 25;
+    private static final Integer WEIGHT_OF_FOOD = 140;
     private static final Integer CHANCE_OF_REPRODUCTION = 5;
 
     private String name;

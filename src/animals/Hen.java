@@ -7,6 +7,7 @@ import java.util.List;
 public class Hen extends Animal implements Collectible, Feedable {
 
     private static final Double COST = 5.00;
+    private static final Double PRICE = 1.00;
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.1;
     private static final Integer TIME_TO_MATURITY = 21;
     private static final Integer WEIGHT_OF_FOOD = 3;

@@ -3,9 +3,10 @@ package animals;
 public class Goat extends Animal{
 
     private static final Double COST = 150.00;
+    private static final Double PRICE = 100.00;
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.5;
     private static final Integer TIME_TO_MATURITY = 25;
-    private static final Integer WEIGHT_OF_FOOD = 3;
+    private static final Integer WEIGHT_OF_FOOD = 12;
     private static final Integer CHANCE_OF_REPRODUCTION = 5;
 
 

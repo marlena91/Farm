@@ -3,9 +3,10 @@ package animals;
 public class Horse extends Animal{
 
     private static final Double COST = 8500.00;
+    private static final Double PRICE = 7000.00;
     private static final Double WEIGHT_GAIN_PER_WEEK = 16.00;
     private static final Integer TIME_TO_MATURITY = 25;
-    private static final Integer WEIGHT_OF_FOOD = 8;
+    private static final Integer WEIGHT_OF_FOOD = 56;
     private static final Integer CHANCE_OF_REPRODUCTION = 5;
 
     private String name;
