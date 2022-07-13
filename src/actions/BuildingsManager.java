@@ -1,11 +1,9 @@
 package actions;
 
-import animals.*;
 import area.Ground;
 import building.*;
 import farmer.Farmer;
 
-import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -20,14 +18,14 @@ public class BuildingsManager {
 
     public Integer avalaiblePlacesForBuildings() {
         Integer avalaiblePlaces = 0;
-        for (Ground field : myFarmer.getField()) {
+        for (Ground field : myFarmer.getFarms()) {
             avalaiblePlaces += field.getNumberOfBuildings();
         }
         return avalaiblePlaces;
     }
 
     public void takePlaceForBuilding() {
-        for (Ground field : myFarmer.getField()) {
+        for (Ground field : myFarmer.getFarms()) {
             if (field.getNumberOfBuildings() > 0) {
                 field.subtractNumberOfBuilding();
                 break;

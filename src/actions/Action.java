@@ -54,7 +54,7 @@ public class Action {
     public void mainChoices() {
         this.startText();
 
-        System.out.println(myFarmer.getFields());
+        System.out.println("test: "+myFarmer.getFields());
         String selectAction = scanner.nextLine();
 
         if (Objects.equals(selectAction, "1")) {
@@ -184,7 +184,7 @@ public class Action {
     public void plantingPlants(){
         System.out.println("");
         this.checkingIfFarmerHasFarm();
-        //
+        this.fieldsManager.checkingIsFreeArea();
     }
 
 

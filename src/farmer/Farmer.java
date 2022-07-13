@@ -1,6 +1,7 @@
 package farmer;
 
 import animals.Animal;
+import area.Field;
 import area.Ground;
 import building.Outbuilding;
 import crops.Plant;
@@ -45,7 +46,7 @@ public class Farmer {
         return additionalArea;
     }
 
-    public List<Ground> getField() {
+    public List<Ground> getFarms() {
         return farms;
     }
 
@@ -62,9 +63,10 @@ public class Farmer {
 
     public void addFarm(Ground field) {
         this.farms.add(field);
+        this.addField(field);
     }
 
-    public void addField(Object field){
+    public void addField(Field field){
         this.fields.add(field);
     }
 
@@ -96,7 +98,7 @@ public class Farmer {
 
     public Integer sumOfAllFields() {
         Integer totalFarmArea = 0;
-        for (Ground field : this.getField()) {
+        for (Ground field : this.getFarms()) {
             totalFarmArea += field.getArea();
         }
         totalFarmArea += this.additionalArea;

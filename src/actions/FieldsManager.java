@@ -66,7 +66,6 @@ public class FieldsManager {
                     System.out.println("Za mało pieniędzy na zakup tej działki");
                 } else {
                     myFarmer.addFarm(chosenFarm);
-                    myFarmer.addField(chosenFarm);
                     this.randomFarms.remove(chosenFarm);
                     myFarmer.subtractCash(chosenFarm.getValue());
                     System.out.println("Pomyślnie zakupiono ziemię.");
@@ -85,7 +84,7 @@ public class FieldsManager {
 
     public Integer getFarmArea(){
         Integer totalFarmArea = 0;
-        for(Ground field : myFarmer.getField()){
+        for(Ground field : myFarmer.getFarms()){
             totalFarmArea += field.getArea();
         }
         return totalFarmArea;
@@ -120,6 +119,10 @@ public class FieldsManager {
         }
         this.action.next();
         this.action.mainChoices();
+    }
+
+    public void checkingIsFreeArea(){
+//        if()
     }
 
 
