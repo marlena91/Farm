@@ -1,6 +1,6 @@
 package crops;
 
-public class AppleTree extends Plant {
+public class AppleTree extends Plant implements Seedable{
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 5400.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 4600.00;
     private static final Double COST_OF_HARVEST = 11500.00;
@@ -37,5 +37,10 @@ public class AppleTree extends Plant {
     @Override
     public String toString() {
         return "Jablon";
+    }
+
+    @Override
+    public Double costOfPlanting() {
+            return COST_OF_PREPARATION_AND_PLANTING+COST_OF_PROTECTION_AGAINST_PESTS;
     }
 }

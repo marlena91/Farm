@@ -1,6 +1,6 @@
 package crops;
 
-public class Potato extends Plant {
+public class Potato extends Plant implements Seedable {
 
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 2600.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 800.00;
@@ -38,4 +38,10 @@ public class Potato extends Plant {
     public String toString() {
         return "Ziemniak";
     }
+
+    @Override
+    public Double costOfPlanting() {
+        return COST_OF_PREPARATION_AND_PLANTING+COST_OF_PROTECTION_AGAINST_PESTS;
+    }
+
 }

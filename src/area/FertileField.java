@@ -21,6 +21,11 @@ public class FertileField implements Field{
     }
 
     @Override
+    public void subtractFreeArea() {
+        this.freeArea -= area;
+    }
+
+    @Override
     public String toString() {
         return "FertileField, freearea: "+ getFreeArea();
     }

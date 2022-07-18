@@ -5,6 +5,7 @@ import area.Field;
 import area.Ground;
 import building.Outbuilding;
 import crops.Plant;
+import crops.Seedable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,10 @@ public class Farmer {
     private Integer additionalArea;
 
     private List<Ground> farms = new ArrayList<>();
-    private List<Object> fields = new ArrayList<>();
+    private List<Field> fields = new ArrayList<>();
     private List<Outbuilding> buildings = new ArrayList<>();
     private List<Animal> animals = new ArrayList<>();
-    private List<Plant> crops = new ArrayList<>();
+    private List<Seedable> crops = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
     private static final Double DEFAULT_CASH_FOR_START = 6000000.00;
@@ -54,11 +55,15 @@ public class Farmer {
         return buildings;
     }
 
-    public List<Plant> getCrops() {
+    public List<Seedable> getCrops() {
         return crops;
     }
     public List<Plant> getPlants() {
         return plants;
+    }
+
+    public void addCrop(Seedable crop){
+        this.crops.add(crop);
     }
 
     public void addFarm(Ground field) {
@@ -70,7 +75,7 @@ public class Farmer {
         this.fields.add(field);
     }
 
-    public List<Object> getFields() {
+    public List<Field> getFields() {
         return fields;
     }
 
@@ -94,6 +99,10 @@ public class Farmer {
         } else {
             System.out.println("Zla wartosc. Nie udalo sie sprzedac ziemi");
         }
+    }
+
+    public void substractPlant(Plant plant){
+        this.plants.remove(plant);
     }
 
     public Integer sumOfAllFields() {

@@ -1,8 +1,6 @@
 package crops;
 
-import java.time.LocalDate;
-
-public class Beetroot extends Plant {
+public class Beetroot extends Plant implements Seedable {
 
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 6000.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 400.00;
@@ -36,8 +34,15 @@ public class Beetroot extends Plant {
         return cost;
     }
 
+
+
     @Override
     public String toString() {
         return "Burak";
+    }
+
+    @Override
+    public Double costOfPlanting() {
+        return COST_OF_PREPARATION_AND_PLANTING+COST_OF_PROTECTION_AGAINST_PESTS;
     }
 }

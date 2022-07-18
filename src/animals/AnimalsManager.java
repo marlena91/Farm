@@ -1,6 +1,8 @@
-package actions;
+package animals;
 
-import animals.*;
+import actions.Action;
+import building.BuildingsManager;
+import actions.TimeManager;
 import farmer.Farmer;
 
 import java.util.Objects;

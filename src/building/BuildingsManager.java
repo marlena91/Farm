@@ -1,4 +1,4 @@
-package actions;
+package building;
 
 import area.Ground;
 import building.*;

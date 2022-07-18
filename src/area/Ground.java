@@ -1,10 +1,5 @@
 package area;
 
-import actions.RandomInteger;
-
-import java.util.List;
-import java.util.Random;
-
 public class Ground implements Field{
 
     private Integer area;
@@ -28,6 +23,11 @@ public class Ground implements Field{
 
     public Integer getFreeArea() {
         return freeArea;
+    }
+
+    @Override
+    public void subtractFreeArea() {
+        this.freeArea -= 1;
     }
 
     public Double getValue() { return value;}

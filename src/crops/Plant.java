@@ -1,6 +1,6 @@
 package crops;
 
-public abstract class Plant {
+public abstract class Plant implements Seedable{
 
     public abstract Double getCost();
 }

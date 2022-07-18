@@ -1,5 +1,7 @@
-package actions;
+package crops;
 
+import actions.Action;
+import actions.TimeManager;
 import crops.*;
 import farmer.Farmer;
 

@@ -1,9 +1,12 @@
 package actions;
 
+import animals.AnimalsManager;
+import area.FieldsManager;
 import area.Ground;
+import building.BuildingsManager;
+import crops.PlantsManager;
 import farmer.Farmer;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -184,7 +187,18 @@ public class Action {
     public void plantingPlants(){
         System.out.println("");
         this.checkingIfFarmerHasFarm();
-        this.fieldsManager.checkingIsFreeArea();
+        if(this.fieldsManager.checkingIsFreeArea() > 0){
+            if(this.myFarmer.getPlants() == null){
+                System.out.println("Nie masz roslin. Wroc i zakup jakies rosliny.");
+                this.next();
+            } else {
+                this.fieldsManager.choosePlant();
+
+            }
+
+        } else {
+            System.out.println("Nie masz wolnych hektarów do zasadzenia roślin. W celu zakupienia nowej ziemi idź do punktu 1 lub 2.");
+        }
     }
 
 
