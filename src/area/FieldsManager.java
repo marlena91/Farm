@@ -1,10 +1,7 @@
 package area;
 
 import actions.Action;
-import actions.RandomInteger;
 import actions.TimeManager;
-import area.FertileField;
-import area.Field;
 import crops.Plant;
 import crops.Seedable;
 import farmer.Farmer;
@@ -33,15 +30,14 @@ public class FieldsManager {
     public void generateRandomFarms() {
         this.randomFarms = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            randomFarms.add(new RandomFarm().generateRandomFarms());
+            randomFarms.add(new RandomFarm().generateRandomFarm());
         }
     }
-
     public List<Ground> getRandomFarms() {
         return randomFarms;
     }
 
-        public void buyFarm() {
+    public void buyFarm() {
         System.out.println("");
         System.out.println("Wybierz nr farmy do zakupu. Jesli chcesz zrezygnowac wcisnij '0'");
         System.out.println("Twoja dostepna gotowka: " + myFarmer.getCash() + " PLN");
@@ -53,37 +49,39 @@ public class FieldsManager {
             this.action.mainChoices();
         } else {
             int farmIntNumber = Integer.parseInt(farmNumber);
+            this.checkingChosenFarm(farmIntNumber);
+        }
+    }
+    public void checkingChosenFarm(Integer farmIntNumber){
+        if (!checkFarmNumberForSell(farmIntNumber)) {
+            System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
+            this.buyFarm();
+        } else {
+            Ground chosenFarm = this.getSingleFarm(farmIntNumber - 1);
+            this.finalPurchaseFarm(chosenFarm);
+        }
+    }
 
-            if (!checkFarmNumberForSell(farmIntNumber)) {
-                System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
-                this.buyFarm();
-            } else {
-                Ground chosenFarm = this.getSingleFarm(farmIntNumber - 1);
-                if (myFarmer.getCash() <= chosenFarm.getValue()) {
-                    System.out.println("Za mało pieniędzy na zakup tej działki");
-                } else {
-                    myFarmer.addFarm(chosenFarm);
-                    this.randomFarms.remove(chosenFarm);
-                    myFarmer.subtractCash(chosenFarm.getValue());
-                    System.out.println("Pomyślnie zakupiono ziemię.");
-                }
-            }
+    public void finalPurchaseFarm(Ground chosenFarm){
+        if (myFarmer.getCash() <= chosenFarm.getValue()) {
+            System.out.println("Za mało pieniędzy na zakup tej działki");
+        } else {
+            myFarmer.addFarm(chosenFarm);
+            this.randomFarms.remove(chosenFarm);
+            myFarmer.subtractCash(chosenFarm.getValue());
+            System.out.println("Pomyślnie zakupiono ziemię.");
         }
     }
 
     public Boolean checkFarmNumberForSell(Integer farmNumber) {
         return farmNumber <= this.randomFarms.size();
     }
-    public Boolean checkPlantNumberForSell(Integer plantNumber) {
-        return plantNumber <= myFarmer.getPlants().size();
-    }
+
 
     public Ground getSingleFarm(Integer nr) {
         return this.randomFarms.get(nr);
     }
-    public Plant getSinglePlant(Integer nr) {
-        return myFarmer.getPlants().get(nr);
-    }
+
 
     public Integer getFarmArea(){
         Integer totalFarmArea = 0;
@@ -103,15 +101,7 @@ public class FieldsManager {
         String select = scanner.nextLine();
 
         if(Objects.equals(select, "1")){
-            if(this.myFarmer.getCash() >=600000.00){
-                this.myFarmer.addAdditionalFertileField();
-                this.myFarmer.addField(new FertileField());
-                this.myFarmer.subtractCash(600000.00);
-                System.out.println("Pomyslnie zakupiono ziemie");
-            } else {
-                System.out.println("Za malo pieniedzy na zakup tej ziemi ");
-            }
-
+            this.finalPurchaseAddField();
         } else if(this.myFarmer.getAdditionalArea()>=1 & Objects.equals(select, "2")){
             System.out.println("Ile hektarow chcesz sprzedac z dostepnych "+this.myFarmer.getAdditionalArea() +"ha?");
             System.out.println("Na 1ha zarobisz 400tys");
@@ -124,6 +114,17 @@ public class FieldsManager {
         this.action.mainChoices();
     }
 
+    public void finalPurchaseAddField(){
+        if(this.myFarmer.getCash() >=600000.00){
+            this.myFarmer.addAdditionalFertileField();
+            this.myFarmer.addField(new FertileField());
+            this.myFarmer.subtractCash(600000.00);
+            System.out.println("Pomyslnie zakupiono ziemie");
+        } else {
+            System.out.println("Za malo pieniedzy na zakup tej ziemi ");
+        }
+    }
+
     public Integer checkingIsFreeArea(){
         Integer freeArea = 0;
         for(Field field : myFarmer.getFields()){
@@ -131,60 +132,6 @@ public class FieldsManager {
         }
         return freeArea;
     }
-
-    public void choosePlant(){
-        if (myFarmer.getPlants().isEmpty()){
-            System.out.println("Brak zakupionych nasion lub sadzonek. Wróc do punktu 4");
-            this.action.mainChoices();
-        }
-        System.out.println("Wybierz rosline z dostepnych zakupionych jaka chcesz zasadzic: ");
-        int i = 1;
-        for(Plant plant : myFarmer.getPlants()) {
-            System.out.println(i + ". " + plant + " - " + plant.costOfPlanting()+"PLN");
-            i++;
-        }
-        System.out.println("Twoja dostepna gotowka: " + myFarmer.getCash() + " PLN");
-
-        String plantNumber = scanner.nextLine();
-        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-
-        if (Objects.equals(plantNumber, "0") || !pattern.matcher(plantNumber).matches()) {
-            this.action.mainChoices();
-        } else {
-            int plantIntNumber = Integer.parseInt(plantNumber);
-
-            if (!checkPlantNumberForSell(plantIntNumber)) {
-                System.out.println("Nie ma rosliny o tym numerze. Wybierz jeszcze raz.");
-                this.choosePlant();
-            } else {
-                Seedable chosenPlant = (Seedable) this.getSinglePlant(plantIntNumber - 1);
-                if (myFarmer.getCash() >= chosenPlant.costOfPlanting()) {
-
-                    myFarmer.subtractCash(chosenPlant.costOfPlanting());
-
-                    this.subtractFreeArea();
-
-                    myFarmer.addCrop(chosenPlant);
-
-                    this.myFarmer.substractPlant((Plant) chosenPlant);
-
-                    System.out.println("Pomyślnie zakupiono ziemię.");
-                } else {
-                    System.out.println("Za mało pieniędzy na zasadzenie tej rosliny");
-                }
-            }
-        }
-    }
-
-    public void subtractFreeArea(){
-        for(Field field : this.myFarmer.getFields()){
-            if(field.getFreeArea() >0){
-                field.subtractFreeArea();
-                break;
-            }
-        }
-    }
-
 
 //    public void start() {
 //        Action.myFields();

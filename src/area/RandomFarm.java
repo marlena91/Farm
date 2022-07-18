@@ -10,7 +10,7 @@ public class RandomFarm {
     private Integer maxBuilding = 2;
 
 
-    public Ground generateRandomFarms() {
+    public Ground generateRandomFarm() {
         RandomInteger size = new RandomInteger(minArea, maxArea);
         RandomInteger numberOfBuildings = new RandomInteger(minBuilding, maxBuilding);
         return new Ground(size.getRandom(), numberOfBuildings.getRandom());

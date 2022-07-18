@@ -188,18 +188,19 @@ public class Action {
         System.out.println("");
         this.checkingIfFarmerHasFarm();
         if(this.fieldsManager.checkingIsFreeArea() > 0){
-            if(this.myFarmer.getPlants() == null){
-                System.out.println("Nie masz roslin. Wroc i zakup jakies rosliny.");
-                this.next();
-            } else {
-                this.fieldsManager.choosePlant();
-
-            }
-
+            this.checkingHasFarmerSeeds();
         } else {
             System.out.println("Nie masz wolnych hektarów do zasadzenia roślin. W celu zakupienia nowej ziemi idź do punktu 1 lub 2.");
         }
     }
 
+    public void checkingHasFarmerSeeds(){
+        if(this.myFarmer.getPlants() == null){
+            System.out.println("Nie masz roslin. Wroc i zakup jakies rosliny.");
+            this.next();
+        } else {
+            this.plantsManager.choosePlantList();
+        }
+    }
 
 }
