@@ -2,8 +2,6 @@ package area;
 
 import actions.Action;
 import actions.TimeManager;
-import crops.Plant;
-import crops.Seedable;
 import farmer.Farmer;
 
 import java.sql.Time;
@@ -106,7 +104,7 @@ public class FieldsManager {
             System.out.println("Ile hektarow chcesz sprzedac z dostepnych "+this.myFarmer.getAdditionalArea() +"ha?");
             System.out.println("Na 1ha zarobisz 400tys");
             String areaField = scanner.nextLine();
-            this.myFarmer.substractAdditionalFertileField(Integer.parseInt(areaField));
+            this.myFarmer.subtractAdditionalFertileField(Integer.parseInt(areaField));
         } else if (Objects.equals(select, "0")){
             this.action.mainChoices();
         }

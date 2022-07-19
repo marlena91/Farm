@@ -35,10 +35,6 @@ public abstract class Outbuilding {
         return Objects.hash(value);
     }
 
-    public abstract List<Animal> getAnimals();
 
-    public abstract void addAnimal(Animal animal);
-
-    public abstract void deleteAnimal(Animal animal);
 }
 

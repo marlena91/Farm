@@ -68,6 +68,7 @@ public class PlantsManager {
             this.buySeeds(wheat);
         } else if (Objects.equals(select, "0")) {
             System.out.println("");
+            this.action.buyAnimalsOrPlants();
         } else {
             System.out.println("Wybierz 1-6");
             this.buySeeds();
@@ -128,7 +129,7 @@ public class PlantsManager {
             myFarmer.subtractCash(chosenPlant.costOfPlanting());
             this.subtractFreeArea();
             myFarmer.addCrop(chosenPlant);
-            this.myFarmer.substractPlant(chosenPlant);
+            this.myFarmer.subtractPlant(chosenPlant);
             System.out.println("Pomyślnie zakupiono ziemię.");
         } else {
             System.out.println("Za mało pieniędzy na zasadzenie tej rosliny");

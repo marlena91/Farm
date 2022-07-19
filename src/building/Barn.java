@@ -14,20 +14,6 @@ public class Barn extends Outbuilding{
         super(value);
         this.tractor = new Tractor("Ursus", "C360", 1980, 3.2, 52);
     }
-    @Override
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    @Override
-    public void addAnimal(Animal animal) {
-        System.out.println("Dochodzą kolejne pająki");
-    }
-
-    @Override
-    public void deleteAnimal(Animal animal) {
-        System.out.println("Wyganiasz pająki miotłą");
-    }
 
     public Seeder getSeeder() {
         return this.seeder;

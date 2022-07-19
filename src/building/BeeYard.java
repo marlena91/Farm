@@ -5,7 +5,7 @@ import animals.Bee;
 
 import java.util.List;
 
-public class BeeYard extends Outbuilding{
+public class BeeYard extends Outbuilding implements HouseForPets{
 
     private Bee bees;
 

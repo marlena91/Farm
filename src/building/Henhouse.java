@@ -4,7 +4,7 @@ import animals.Animal;
 
 import java.util.List;
 
-public class Henhouse extends Outbuilding{
+public class Henhouse extends Outbuilding implements HouseForPets{
 
     public Henhouse(Double value){
         super(value);

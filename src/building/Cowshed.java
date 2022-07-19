@@ -5,7 +5,7 @@ import animals.Cow;
 
 import java.util.List;
 
-public class Cowshed extends Outbuilding {
+public class Cowshed extends Outbuilding implements HouseForPets{
 
 
     public Cowshed(Double value){

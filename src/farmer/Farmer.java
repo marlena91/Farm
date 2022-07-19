@@ -3,6 +3,7 @@ package farmer;
 import animals.Animal;
 import area.Field;
 import area.Ground;
+import building.HouseForPets;
 import building.Outbuilding;
 import crops.Plant;
 import crops.Seedable;
@@ -55,6 +56,16 @@ public class Farmer {
         return buildings;
     }
 
+    public List<HouseForPets> getHousesForPets() {
+        List<HouseForPets> buildings = new ArrayList<>();
+        for (Outbuilding building : this.getBuild()) {
+            if (!building.getClass().getSimpleName().equals("Barn")) {
+                buildings.add((HouseForPets) building);
+            }
+        }
+        return buildings;
+    }
+
     public List<Seedable> getCrops() {
         return crops;
     }
@@ -92,7 +103,7 @@ public class Farmer {
         this.additionalArea += 1;
     }
 
-    public void substractAdditionalFertileField(Integer area) {
+    public void subtractAdditionalFertileField(Integer area) {
         if (area <= this.getAdditionalArea()) {
             this.additionalArea -= area;
             System.out.println("Pomyslnie sprzedano ziemie");
@@ -101,7 +112,7 @@ public class Farmer {
         }
     }
 
-    public void substractPlant(Plant plant){
+    public void subtractPlant(Plant plant){
         this.plants.remove(plant);
     }
 
@@ -114,24 +125,16 @@ public class Farmer {
         return totalFarmArea;
     }
 
-    public List<Animal> getAllAnimals() {
-        for (Outbuilding building : this.getBuild()) {
-            if (!building.getClass().getSimpleName().equals("Barn")) {
-                this.animals = building.getAnimals();
-            }
+
+
+    public List<Animal> getAllAnimals(){
+        this.animals.clear();
+        for(HouseForPets building : this.getHousesForPets()){
+            this.animals.addAll(building.getAnimals());
         }
         return this.animals;
     }
 
-
-//    public void getAnimals() {
-//        for (Outbuilding building : this.getBuild()) {
-//            if (!building.getClass().getSimpleName().equals("Barn")) {
-//                System.out.println(building.getAnimals());
-//            }
-//        }
-//    }
-//
 
 //
 //    public List<Animal> getAnimals(String farmBuilding) {
@@ -174,7 +177,7 @@ public class Farmer {
         if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tego zwierzęcia");
         } else {
-            for (Outbuilding building : getBuild()) {
+            for (HouseForPets building : getHousesForPets()) {
                 if (building.getClass().getSimpleName().equals(className)) {
                     building.addAnimal(animal);
                 }
@@ -185,7 +188,7 @@ public class Farmer {
     }
 
     public void deleteAnimal(Animal animal, String className) {
-        for (Outbuilding building : getBuild()) {
+        for (HouseForPets building : getHousesForPets()) {
             if (building.getClass().getSimpleName().equals(className)) {
                 building.deleteAnimal(animal);
             }
@@ -193,7 +196,7 @@ public class Farmer {
     }
 
     public void sellGoods(String className) {
-        for (Outbuilding building : getBuild()) {
+        for (HouseForPets building : getHousesForPets()) {
             if (building.getClass().getSimpleName().equals(className)) {
                 Double profit = 1000.00 * (building.getAnimals().size());
                 addCash(profit);
