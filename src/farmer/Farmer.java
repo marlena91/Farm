@@ -1,6 +1,7 @@
 package farmer;
 
 import animals.Animal;
+import area.FertileField;
 import area.Field;
 import area.Ground;
 import building.HouseForPets;
@@ -10,12 +11,12 @@ import crops.Seedable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoubleToIntFunction;
 
 public class Farmer {
 
     private String name;
     private Double cash;
-    private Integer additionalArea;
 
     private List<Ground> farms = new ArrayList<>();
     private List<Field> fields = new ArrayList<>();
@@ -29,7 +30,6 @@ public class Farmer {
     public Farmer(String name) {
         this.name = name;
         this.cash = DEFAULT_CASH_FOR_START;
-        this.additionalArea = 0;
     }
 
     public Double getCash() {
@@ -44,13 +44,46 @@ public class Farmer {
         this.cash -= cash;
     }
 
-    public Integer getAdditionalArea() {
-        return additionalArea;
+    public List<FertileField> getAdditionalArea() {
+        List<FertileField> farms = new ArrayList<>();
+        for(Field field : this.fields){
+            if(field.getClass().getSimpleName().equals("FertileField")){
+                farms.add((FertileField) field);
+            }
+        }
+        return farms;
     }
 
     public List<Ground> getFarms() {
+        List<Ground> farms = new ArrayList<>();
+        for(Field field : this.fields){
+            if(field.getClass().getSimpleName().equals("Ground")){
+                farms.add((Ground)field);
+            }
+        }
         return farms;
     }
+    public List<Field> getFields() {
+        return fields;
+    }
+
+    public void addFarm(Ground field) {
+        this.farms.add(field);
+        this.addField(field);
+    }
+
+    public void addField(Field field){
+        this.fields.add(field);
+    }
+
+    public Integer sumOfAllFields() {
+        Integer totalFarmArea = 0;
+        for (Field field : this.getFields()) {
+            totalFarmArea += field.getArea();
+        }
+        return totalFarmArea;
+    }
+
 
     public List<Outbuilding> getBuild() {
         return buildings;
@@ -77,18 +110,7 @@ public class Farmer {
         this.crops.add(crop);
     }
 
-    public void addFarm(Ground field) {
-        this.farms.add(field);
-        this.addField(field);
-    }
 
-    public void addField(Field field){
-        this.fields.add(field);
-    }
-
-    public List<Field> getFields() {
-        return fields;
-    }
 
     public void addPlant(Plant plant) {
         if(this.cash >= plant.getCost()){
@@ -99,30 +121,16 @@ public class Farmer {
         }
     }
 
-    public void addAdditionalFertileField() {
-        this.additionalArea += 1;
-    }
-
-    public void subtractAdditionalFertileField(Integer area) {
-        if (area <= this.getAdditionalArea()) {
-            this.additionalArea -= area;
-            System.out.println("Pomyslnie sprzedano ziemie");
-        } else {
-            System.out.println("Zla wartosc. Nie udalo sie sprzedac ziemi");
+    public void subtractAdditionalFertileField() {
+        for(Field field : this.getAdditionalArea()){
+            this.fields.remove(field);
+            break;
         }
+        System.out.println("Pomyslnie sprzedano ziemie");
     }
 
     public void subtractPlant(Plant plant){
         this.plants.remove(plant);
-    }
-
-    public Integer sumOfAllFields() {
-        Integer totalFarmArea = 0;
-        for (Ground field : this.getFarms()) {
-            totalFarmArea += field.getArea();
-        }
-        totalFarmArea += this.additionalArea;
-        return totalFarmArea;
     }
 
 

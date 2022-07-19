@@ -143,7 +143,7 @@ public class Action {
         System.out.println("");
         this.checkingIfFarmerHasFarm();
         System.out.println("Aktualnie posiadasz "+ this.fieldsManager.getFarmArea()+ "ha pola uprawnego na swoich farmach " +
-                "oraz "+ this.myFarmer.getAdditionalArea() + "ha pola uprawnego, poza Twoimi farmami");
+                "oraz "+ this.myFarmer.getAdditionalArea().size() + "ha pola uprawnego, poza Twoimi farmami");
         System.out.println("Czy chcesz dokupic pola uprawne?");
         this.fieldsManager.buyAdditionalFertileField();
     }

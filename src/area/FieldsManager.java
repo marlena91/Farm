@@ -92,7 +92,7 @@ public class FieldsManager {
     public void buyAdditionalFertileField(){
         System.out.println("");
         System.out.println("1. Tak, chce dokupic 1ha pola za 600tys");
-        if(this.myFarmer.getAdditionalArea()>=1){
+        if(this.myFarmer.getAdditionalArea().size()>=1){
             System.out.println("2. Chce sprzedac moje pola uprawne");
         }
         System.out.println("0. Nie, dziekuje. Wroc do menu glownego");
@@ -100,21 +100,36 @@ public class FieldsManager {
 
         if(Objects.equals(select, "1")){
             this.finalPurchaseAddField();
-        } else if(this.myFarmer.getAdditionalArea()>=1 & Objects.equals(select, "2")){
-            System.out.println("Ile hektarow chcesz sprzedac z dostepnych "+this.myFarmer.getAdditionalArea() +"ha?");
-            System.out.println("Na 1ha zarobisz 400tys");
-            String areaField = scanner.nextLine();
-            this.myFarmer.subtractAdditionalFertileField(Integer.parseInt(areaField));
+        } else if(this.myFarmer.getAdditionalArea().size()>=1 & Objects.equals(select, "2")){
+           this.finalyBuyOrNo();
         } else if (Objects.equals(select, "0")){
             this.action.mainChoices();
+        } else {
+            System.out.println("Zly wybor");
+            this.buyAdditionalFertileField();
         }
         this.action.next();
         this.action.mainChoices();
     }
 
+    public void finalyBuyOrNo(){
+        System.out.println("Sprzedasz 1ha swojej dodatkowej ziemi uprawnej, stracisz uprawy, jeśli jakies na niej są");
+        System.out.println("Na 1ha zarobisz 400tys");
+        System.out.println("1.TAK");
+        System.out.println("0.NIE");
+        String select2 = scanner.nextLine();
+        if (Objects.equals(select2, "1")) {
+            this.myFarmer.subtractAdditionalFertileField();
+        } else if (Objects.equals(select2, "0")) {
+            this.buyAdditionalFertileField();
+        } else {
+            System.out.println("Zly wybor");
+            this.finalyBuyOrNo();
+        }
+    }
+
     public void finalPurchaseAddField(){
         if(this.myFarmer.getCash() >=600000.00){
-            this.myFarmer.addAdditionalFertileField();
             this.myFarmer.addField(new FertileField());
             this.myFarmer.subtractCash(600000.00);
             System.out.println("Pomyslnie zakupiono ziemie");
