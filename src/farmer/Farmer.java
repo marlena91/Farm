@@ -108,9 +108,8 @@ public class Farmer {
 
     public void addCrop(Seedable crop){
         this.crops.add(crop);
+
     }
-
-
 
     public void addPlant(Plant plant) {
         if(this.cash >= plant.getCost()){

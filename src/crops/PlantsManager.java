@@ -120,17 +120,23 @@ public class PlantsManager {
             this.choosePlantList();
         } else {
             Plant chosenPlant = this.getSinglePlant(plantNumber - 1);
-            this.finalSeedPurchase(chosenPlant);
+            Boolean seedTime = new SowingTime(this.time.getToday(), chosenPlant.getSeedingStart(), chosenPlant.getSeedingEnd()).checkSowingPeriod();
+            this.finalSeedPurchase(chosenPlant, seedTime);
         }
     }
 
-    public void finalSeedPurchase(Plant chosenPlant){
-        if (myFarmer.getCash() >= chosenPlant.costOfPlanting()) {
+    public void finalSeedPurchase(Plant chosenPlant, Boolean seedTime){
+        if (myFarmer.getCash() >= chosenPlant.costOfPlanting() && seedTime) {
             myFarmer.subtractCash(chosenPlant.costOfPlanting());
             this.subtractFreeArea();
             myFarmer.addCrop(chosenPlant);
             this.myFarmer.subtractPlant(chosenPlant);
-            System.out.println("Pomyślnie zakupiono ziemię.");
+            chosenPlant.setDateOfSeed(this.time.getToday());
+            System.out.println("Pomyślnie zasiano.");
+        } else if (myFarmer.getCash() >= chosenPlant.costOfPlanting() && !seedTime) {
+            System.out.println("To nie jest czas na zasadzenie "+chosenPlant);
+            System.out.println("Aktualna data to: "+this.time.getToday());
+            System.out.println("Okres sadzenia " +chosenPlant+" : "+chosenPlant.getSeedingPeriod());
         } else {
             System.out.println("Za mało pieniędzy na zasadzenie tej rosliny");
         }

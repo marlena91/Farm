@@ -101,7 +101,7 @@ public class FieldsManager {
         if(Objects.equals(select, "1")){
             this.finalPurchaseAddField();
         } else if(this.myFarmer.getAdditionalArea().size()>=1 & Objects.equals(select, "2")){
-           this.finalyBuyOrNo();
+           this.finallyBuyOrNo();
         } else if (Objects.equals(select, "0")){
             this.action.mainChoices();
         } else {
@@ -112,7 +112,7 @@ public class FieldsManager {
         this.action.mainChoices();
     }
 
-    public void finalyBuyOrNo(){
+    public void finallyBuyOrNo(){
         System.out.println("Sprzedasz 1ha swojej dodatkowej ziemi uprawnej, stracisz uprawy, jeśli jakies na niej są");
         System.out.println("Na 1ha zarobisz 400tys");
         System.out.println("1.TAK");
@@ -124,7 +124,7 @@ public class FieldsManager {
             this.buyAdditionalFertileField();
         } else {
             System.out.println("Zly wybor");
-            this.finalyBuyOrNo();
+            this.finallyBuyOrNo();
         }
     }
 
