@@ -5,6 +5,7 @@ import area.FieldsManager;
 import area.Ground;
 import building.BuildingsManager;
 import crops.PlantsManager;
+import crops.Seedable;
 import farmer.Farmer;
 
 import java.util.Objects;
@@ -81,7 +82,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "6")) {
-            System.out.println("Zbiory roslin");
+            this.plantHarvesting();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "7")) {
@@ -201,6 +202,16 @@ public class Action {
         } else {
             this.plantsManager.choosePlantList();
         }
+    }
+
+    public void plantHarvesting(){
+
+        int i = 1;
+        for(Seedable crop : this.myFarmer.getCrops()){
+            System.out.println(i+". "+crop+ ", status: \"" + crop.getStatus(this.time.getToday()) + "\"");
+            i++;
+        }
+        System.out.println(this.myFarmer.getCrops());
     }
 
 }

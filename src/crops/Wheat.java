@@ -1,6 +1,8 @@
 package crops;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class Wheat extends Plant implements Seedable {
 
@@ -71,6 +73,16 @@ public class Wheat extends Plant implements Seedable {
 
     public void setDateOfSeed(LocalDate dateOfSeed) {
         this.dateOfSeed = dateOfSeed;
+    }
+    public String getStatus(LocalDate today){
+        long weeks = this.dateOfSeed.until(today, ChronoUnit.WEEKS);
+
+        if(weeks >= NUMBER_OF_WEEKS_TO_HARVEST){
+            return "GOTOWE DO ZBIORU";
+        }
+        else{
+            return "ROŚNIE";
+        }
     }
 
 }

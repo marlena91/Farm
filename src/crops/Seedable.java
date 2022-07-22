@@ -10,4 +10,5 @@ public interface Seedable {
     String getSeedingPeriod();
     LocalDate getDateOfSeed();
     void setDateOfSeed(LocalDate dateOfSeed);
+    String getStatus(LocalDate today);
 }

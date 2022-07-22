@@ -1,6 +1,7 @@
 package crops;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class AppleTree extends Plant implements Seedable{
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 5400.00;
@@ -70,5 +71,16 @@ public class AppleTree extends Plant implements Seedable{
 
     public void setDateOfSeed(LocalDate dateOfSeed) {
         this.dateOfSeed = dateOfSeed;
+    }
+
+    public String getStatus(LocalDate today){
+        long weeks = this.dateOfSeed.until(today, ChronoUnit.WEEKS);
+
+        if(weeks >= NUMBER_OF_WEEKS_TO_HARVEST){
+            return "GOTOWE DO ZBIORU";
+        }
+         {
+            return "ROŚNIE";
+        }
     }
 }

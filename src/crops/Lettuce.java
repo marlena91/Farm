@@ -1,6 +1,7 @@
 package crops;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Lettuce extends Plant implements Seedable{
 
@@ -71,5 +72,14 @@ public class Lettuce extends Plant implements Seedable{
         this.dateOfSeed = dateOfSeed;
     }
 
+    public String getStatus(LocalDate today){
+        long weeks = this.dateOfSeed.until(today, ChronoUnit.WEEKS);
 
+        if(weeks >= NUMBER_OF_WEEKS_TO_HARVEST){
+            return "GOTOWE DO ZBIORU";
+        }
+        else{
+            return "ROŚNIE";
+        }
+    }
 }
