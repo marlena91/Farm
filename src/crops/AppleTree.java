@@ -3,7 +3,7 @@ package crops;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class AppleTree extends Plant implements Seedable{
+public class AppleTree extends Plant implements Seedable,Harvestable{
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 5400.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 4600.00;
     private static final Double COST_OF_HARVEST = 11500.00;
@@ -29,7 +29,7 @@ public class AppleTree extends Plant implements Seedable{
         System.out.println("Koszt ochrony przed szkodnikami: " + COST_OF_PROTECTION_AGAINST_PESTS + "PLN/ha");
         System.out.println("Wydajnosc upraw: " + CROP_YIELDS + "t/ha");
         System.out.println("Dlugosc okresu od posadzenia do zbiorow: " + NUMBER_OF_WEEKS_TO_HARVEST + " tygodni");
-        System.out.println("Jabonie sadzi sie: "+SEEDING_TIME);
+        System.out.println("Jabonie sadzi sie: " + SEEDING_TIME);
         System.out.println("Koszt zbioru: " + COST_OF_HARVEST + "PLN/ha");
         System.out.println("Cena skupu kilograma: " + PRICE_OF_A_KILOGRAM + "PLN");
     }
@@ -47,16 +47,21 @@ public class AppleTree extends Plant implements Seedable{
 
     @Override
     public Double costOfPlanting() {
-            return COST_OF_PREPARATION_AND_PLANTING+COST_OF_PROTECTION_AGAINST_PESTS;
+        return COST_OF_PREPARATION_AND_PLANTING + COST_OF_PROTECTION_AGAINST_PESTS;
     }
 
     @Override
-    public Integer getSeedingStart(){
+    public Double getCostOfHarvest() {
+        return COST_OF_HARVEST;
+    }
+
+    @Override
+    public Integer getSeedingStart() {
         return SEEDING_START;
     }
 
     @Override
-    public Integer getSeedingEnd(){
+    public Integer getSeedingEnd() {
         return SEEDING_END;
     }
 
@@ -69,17 +74,27 @@ public class AppleTree extends Plant implements Seedable{
         return dateOfSeed;
     }
 
+    @Override
+    public Integer getNumberOfWeekToHarvest() {
+        return NUMBER_OF_WEEKS_TO_HARVEST;
+    }
+
+    @Override
+    public long howManyWeeksAfterPlanting(LocalDate today) {
+        return this.dateOfSeed.until(today, ChronoUnit.WEEKS);
+    }
+
     public void setDateOfSeed(LocalDate dateOfSeed) {
         this.dateOfSeed = dateOfSeed;
     }
 
-    public String getStatus(LocalDate today){
+    public String getStatus(LocalDate today) {
         long weeks = this.dateOfSeed.until(today, ChronoUnit.WEEKS);
 
-        if(weeks >= NUMBER_OF_WEEKS_TO_HARVEST){
+        if (weeks >= NUMBER_OF_WEEKS_TO_HARVEST) {
             return "GOTOWE DO ZBIORU";
         }
-         {
+        {
             return "ROŚNIE";
         }
     }

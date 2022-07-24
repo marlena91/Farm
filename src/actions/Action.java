@@ -27,7 +27,7 @@ public class Action {
         this.time = time;
         this.buildingsManager = new BuildingsManager(this.myFarmer);
         this.fieldsManager = new FieldsManager(this.myFarmer, this.time, this);
-        this.plantsManager = new PlantsManager(this.myFarmer, this.time, this);
+        this.plantsManager = new PlantsManager(this.myFarmer, this.time, this, this.buildingsManager);
         this.animalsManager = new AnimalsManager(this.myFarmer, this.time, this, this.buildingsManager);
     }
 
@@ -58,7 +58,7 @@ public class Action {
     public void mainChoices() {
         this.startText();
 
-        System.out.println("test: "+myFarmer.getFields());
+        System.out.println("test: " + myFarmer.getFields());
         String selectAction = scanner.nextLine();
 
         if (Objects.equals(selectAction, "1")) {
@@ -127,12 +127,12 @@ public class Action {
         scanner.nextLine();
     }
 
-    public void buyNewFarm(){
+    public void buyNewFarm() {
         System.out.println("");
         System.out.println("Farmy dostepne w tym tygodniu: ");
         int i = 1;
-        for(Ground field : fieldsManager.getRandomFarms()){
-            System.out.println(i+". "+field);
+        for (Ground field : fieldsManager.getRandomFarms()) {
+            System.out.println(i + ". " + field);
             i++;
         }
         this.fieldsManager.buyFarm();
@@ -140,26 +140,26 @@ public class Action {
         this.mainChoices();
     }
 
-    public void buyOrSellNewField(){
+    public void buyOrSellNewField() {
         System.out.println("");
         this.checkingIfFarmerHasFarm();
-        System.out.println("Aktualnie posiadasz "+ this.fieldsManager.getFarmArea()+ "ha pola uprawnego na swoich farmach " +
-                "oraz "+ this.myFarmer.getAdditionalArea().size() + "ha pola uprawnego, poza Twoimi farmami");
+        System.out.println("Aktualnie posiadasz " + this.fieldsManager.getFarmArea() + "ha pola uprawnego na swoich farmach " +
+                "oraz " + this.myFarmer.getAdditionalArea().size() + "ha pola uprawnego, poza Twoimi farmami");
         System.out.println("Czy chcesz dokupic pola uprawne?");
         this.fieldsManager.buyAdditionalFertileField();
     }
 
-    public void checkingIfFarmerHasFarm(){
-        if(this.fieldsManager.getFarmArea() == 0){
+    public void checkingIfFarmerHasFarm() {
+        if (this.fieldsManager.getFarmArea() == 0) {
             System.out.println("Nie masz jeszcze farmy. Udaj sie do punktu 1 i zakup swoja pierwsza farme");
             this.next();
             this.mainChoices();
         }
     }
 
-    public void buyNewBuilding(){
+    public void buyNewBuilding() {
         System.out.println("");
-        if(this.buildingsManager.avalaiblePlacesForBuildings() == 0){
+        if (this.buildingsManager.avalaiblePlacesForBuildings() == 0) {
             System.out.println("Nie masz dostepnego miejsca na nowe budynki. Udaj sie do punktu 1 i dokup farme z wolnym miejscem");
             this.next();
             this.mainChoices();
@@ -167,17 +167,17 @@ public class Action {
         this.buildingsManager.getBuildings();
     }
 
-    public void buyAnimalsOrPlants(){
+    public void buyAnimalsOrPlants() {
         System.out.println("");
         System.out.println("1. Kup nasiona/sadzonki");
         System.out.println("2. Kup male zwierze");
         System.out.println("0. Cofnij");
         String select = scanner.nextLine();
-        if(Objects.equals(select, "1")){
+        if (Objects.equals(select, "1")) {
             this.plantsManager.buySeeds();
-        } else if (Objects.equals(select, "2")){
+        } else if (Objects.equals(select, "2")) {
             this.animalsManager.buyAnimal();
-        } else if(Objects.equals(select, "0")){
+        } else if (Objects.equals(select, "0")) {
             this.mainChoices();
         } else {
             System.out.println("Wybierz 1-2");
@@ -185,18 +185,18 @@ public class Action {
         }
     }
 
-    public void plantingPlants(){
+    public void plantingPlants() {
         System.out.println("");
         this.checkingIfFarmerHasFarm();
-        if(this.fieldsManager.checkingIsFreeArea() > 0){
+        if (this.fieldsManager.checkingIsFreeArea() > 0) {
             this.checkingHasFarmerSeeds();
         } else {
             System.out.println("Nie masz wolnych hektarów do zasadzenia roślin. W celu zakupienia nowej ziemi idź do punktu 1 lub 2.");
         }
     }
 
-    public void checkingHasFarmerSeeds(){
-        if(this.myFarmer.getPlants() == null){
+    public void checkingHasFarmerSeeds() {
+        if (this.myFarmer.getPlants() == null) {
             System.out.println("Nie masz roslin. Wroc i zakup jakies rosliny.");
             this.next();
         } else {
@@ -204,14 +204,15 @@ public class Action {
         }
     }
 
-    public void plantHarvesting(){
-
+    public void plantHarvesting() {
+        System.out.println("Wybierz:");
         int i = 1;
-        for(Seedable crop : this.myFarmer.getCrops()){
-            System.out.println(i+". "+crop+ ", status: \"" + crop.getStatus(this.time.getToday()) + "\"");
+        for (Seedable crop : this.myFarmer.getCrops()) {
+            System.out.println(i + ". " + crop + ", status: \"" + crop.getStatus(this.time.getToday()) + "\"");
             i++;
         }
-        System.out.println(this.myFarmer.getCrops());
+        this.plantsManager.harvestCrop();
+        System.out.println("test: " + this.myFarmer.getCrops());
     }
 
 }

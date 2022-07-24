@@ -23,6 +23,7 @@ public class Farmer {
     private List<Outbuilding> buildings = new ArrayList<>();
     private List<Animal> animals = new ArrayList<>();
     private List<Seedable> crops = new ArrayList<>();
+    private List<Plant> plantStock = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
     private static final Double DEFAULT_CASH_FOR_START = 6000000.00;
@@ -106,6 +107,10 @@ public class Farmer {
         return plants;
     }
 
+    public List<Plant> getPlantStock() {
+        return plantStock;
+    }
+
     public void addCrop(Seedable crop){
         this.crops.add(crop);
 
@@ -131,6 +136,9 @@ public class Farmer {
     public void subtractPlant(Plant plant){
         this.plants.remove(plant);
     }
+    public void subtractCrop(Seedable crop){
+        this.crops.remove(crop);
+    }
 
 
 
@@ -141,6 +149,7 @@ public class Farmer {
         }
         return this.animals;
     }
+
 
 
 //
@@ -178,6 +187,10 @@ public class Farmer {
         } else {
             System.out.println("Nie mozna zburzyc stodoły ");
         }
+    }
+
+    public void addPlantToStock(Plant plant){
+        plantStock.add(plant);
     }
 
     public void addAnimal(Animal animal, Double price, String className) {

@@ -3,6 +3,7 @@ package crops;
 import actions.Action;
 import actions.TimeManager;
 import area.Field;
+import building.BuildingsManager;
 import farmer.Farmer;
 
 import java.util.Objects;
@@ -15,12 +16,14 @@ public class PlantsManager {
     private Scanner scanner;
     private Action action;
     private TimeManager time;
+    private BuildingsManager buildingsManager;
 
-    public PlantsManager(Farmer myFarmer, TimeManager time, Action action) {
+    public PlantsManager(Farmer myFarmer, TimeManager time, Action action, BuildingsManager buildingsManager) {
         this.myFarmer = myFarmer;
         this.scanner = new Scanner(System.in);
         this.action = action;
         this.time = time;
+        this.buildingsManager = buildingsManager;
     }
 
     public void buySeeds() {
@@ -91,15 +94,15 @@ public class PlantsManager {
         }
     }
 
-    public void choosePlantList(){
-        if (myFarmer.getPlants().isEmpty()){
+    public void choosePlantList() {
+        if (myFarmer.getPlants().isEmpty()) {
             System.out.println("Brak zakupionych nasion lub sadzonek. Wróc do punktu 4");
             this.action.mainChoices();
         }
         System.out.println("Wybierz rosline z dostepnych zakupionych jaka chcesz zasadzic: ");
         int i = 1;
-        for(Plant plant : myFarmer.getPlants()) {
-            System.out.println(i + ". " + plant + " - " + plant.costOfPlanting()+"PLN");
+        for (Plant plant : myFarmer.getPlants()) {
+            System.out.println(i + ". " + plant + " - " + plant.costOfPlanting() + "PLN");
             i++;
         }
         System.out.println("Twoja dostepna gotowka: " + myFarmer.getCash() + " PLN");
@@ -114,7 +117,7 @@ public class PlantsManager {
         }
     }
 
-    public void choosePlant(Integer plantNumber){
+    public void choosePlant(Integer plantNumber) {
         if (!checkPlantNumberForSell(plantNumber)) {
             System.out.println("Nie ma rosliny o tym numerze. Wybierz jeszcze raz.");
             this.choosePlantList();
@@ -125,7 +128,7 @@ public class PlantsManager {
         }
     }
 
-    public void finalSeedPurchase(Plant chosenPlant, Boolean seedTime){
+    public void finalSeedPurchase(Plant chosenPlant, Boolean seedTime) {
         if (myFarmer.getCash() >= chosenPlant.costOfPlanting() && seedTime) {
             myFarmer.subtractCash(chosenPlant.costOfPlanting());
             this.subtractFreeArea();
@@ -134,13 +137,14 @@ public class PlantsManager {
             chosenPlant.setDateOfSeed(this.time.getToday());
             System.out.println("Pomyślnie zasiano.");
         } else if (myFarmer.getCash() >= chosenPlant.costOfPlanting() && !seedTime) {
-            System.out.println("To nie jest czas na zasadzenie "+chosenPlant);
-            System.out.println("Aktualna data to: "+this.time.getToday());
-            System.out.println("Okres sadzenia " +chosenPlant+" : "+chosenPlant.getSeedingPeriod());
+            System.out.println("To nie jest czas na zasadzenie " + chosenPlant);
+            System.out.println("Aktualna data to: " + this.time.getToday());
+            System.out.println("Okres sadzenia " + chosenPlant + " : " + chosenPlant.getSeedingPeriod());
         } else {
             System.out.println("Za mało pieniędzy na zasadzenie tej rosliny");
         }
     }
+
     public Boolean checkPlantNumberForSell(Integer plantNumber) {
         return plantNumber <= myFarmer.getPlants().size();
     }
@@ -149,13 +153,105 @@ public class PlantsManager {
         return myFarmer.getPlants().get(nr);
     }
 
-    public void subtractFreeArea(){
-        for(Field field : this.myFarmer.getFields()){
-            if(field.getFreeArea() >0){
+    public void subtractFreeArea() {
+        for (Field field : this.myFarmer.getFields()) {
+            if (field.getFreeArea() > 0) {
                 field.subtractFreeArea();
                 break;
             }
         }
     }
+
+    public void harvestCrop() {
+        System.out.println("");
+        if (this.buildingsManager.checkBuildingInFarm("Barn")) {
+            this.chooseCropToHarvest();
+        } else {
+            System.out.println("Zebrane uprawy musisz przechowywac w Stodole");
+            System.out.println("Wroc do punktu 3 i kup Stodole");
+            this.action.next();
+            this.action.mainChoices();
+        }
+    }
+
+    public void chooseCropToHarvest() {
+        System.out.println("Wybierz uprawe. Jesli chcesz zrezygnowac wcisnij '0'");
+        System.out.println("Twoja dostepna gotowka: " + myFarmer.getCash() + " PLN");
+
+        String cropNumber = scanner.nextLine();
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+        if (Objects.equals(cropNumber, "0") || !pattern.matcher(cropNumber).matches()) {
+            this.action.mainChoices();
+        } else {
+            int cropIntNumber = Integer.parseInt(cropNumber);
+            this.checkingChosenCrop(cropIntNumber);
+        }
+    }
+
+    public void harvestCrop(Harvestable crop) {
+        System.out.println("");
+        System.out.println("Chcesz zebrac " + crop);
+        System.out.println("Koszt zbioru to: " + crop.getCostOfHarvest() + "PLN");
+        System.out.println("1.Zbierz");
+        System.out.println("0.Cofnij");
+        String select = scanner.nextLine();
+        if (Objects.equals(select, "1")) {
+            this.finallyHarvestCrop(crop);
+        } else if (Objects.equals(select, "0")) {
+            this.harvestCrop();
+        } else {
+            System.out.println("Zly wybor");
+        }
+    }
+
+    public void finallyHarvestCrop(Harvestable crop) {
+        if (this.myFarmer.getCash() >= crop.getCostOfHarvest()) {
+
+            System.out.println("test: crop przed: "+myFarmer.getCrops());
+            this.myFarmer.subtractCrop((Seedable) crop);
+            System.out.println("test: crop po: "+myFarmer.getCrops());
+
+            System.out.println("test: kasa przed: "+myFarmer.getCash());
+            this.myFarmer.subtractCash(crop.getCostOfHarvest());
+            System.out.println("test: kasas po: "+myFarmer.getCash());
+
+            System.out.println("test: stock przed: "+myFarmer.getPlantStock());
+            this.myFarmer.addPlantToStock((Plant) crop);
+            System.out.println("test: stock po: "+myFarmer.getPlantStock());
+        } else {
+            System.out.println("nie stac mnie");
+        }
+    }
+
+    public void checkingChosenCrop(Integer cropIntNumber) {
+        if (!checkCropNumberForSell(cropIntNumber)) {
+            System.out.println("Zly numer uprawy. Wybierz jeszcze raz.");
+            this.harvestCrop();
+        } else {
+            Seedable chosenCrop = this.getSingleCrop(cropIntNumber - 1);
+            this.infoAboutCrop(chosenCrop);
+        }
+    }
+
+    public Boolean checkCropNumberForSell(Integer cropNumber) {
+        return cropNumber <= this.myFarmer.getCrops().size();
+    }
+
+
+    public Seedable getSingleCrop(Integer nr) {
+        return this.myFarmer.getCrops().get(nr);
+    }
+
+    public void infoAboutCrop(Seedable crop) {
+        if (Objects.equals(crop.getStatus(this.time.getToday()), "ROŚNIE")) {
+            int weeks = Math.toIntExact(crop.getNumberOfWeekToHarvest() - crop.howManyWeeksAfterPlanting(this.time.getToday()));
+            System.out.println("Musisz zaczekac jeszcze " + weeks + " tygodni");
+        } else {
+            this.harvestCrop((Harvestable) crop);
+        }
+    }
+
+
 }
 

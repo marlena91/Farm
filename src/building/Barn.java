@@ -1,42 +1,35 @@
 package building;
 
 import animals.Animal;
-import equipment.Seeder;
-import equipment.Tractor;
+import crops.Seedable;
 
 import java.util.List;
 
-public class Barn extends Outbuilding{
-    private Tractor tractor;
-    private Seeder seeder;
+public class Barn extends Outbuilding implements PlantStorage{
+
+    private List<Seedable> plants;
 
     public Barn(Double value) {
         super(value);
-        this.tractor = new Tractor("Ursus", "C360", 1980, 3.2, 52);
-    }
-
-    public Seeder getSeeder() {
-        return this.seeder;
-    }
-
-    public void addSeeder() {
-        this.seeder = new Seeder(3, 250);
-    }
-
-    public Tractor getTractor() {
-        return this.tractor;
     }
 
     @Override
     public String toString() {
-        if(seeder!=null){
-            return "\n\t~Stodoła. " +
-                    "W stodole znajduje się: " + "\n" +
-                    tractor + "\n" +
-                    seeder;
-        } else return "\n\t~Stodoła. " +
-                "W stodole znajduje się: " + "\n" +
-                tractor;
+        return "\t~Stodola,\n";
+    }
 
+    @Override
+    public List<Seedable> getPlants() {
+        return plants;
+    }
+
+    @Override
+    public void addPlant(Seedable plant) {
+        plants.add(plant);
+    }
+
+    @Override
+    public void deletePlant(Seedable plant) {
+        plants.remove(plant);
     }
 }

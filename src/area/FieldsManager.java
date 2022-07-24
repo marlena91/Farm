@@ -25,12 +25,14 @@ public class FieldsManager {
         this.scanner = new Scanner(System.in);
         this.action = action;
     }
+
     public void generateRandomFarms() {
         this.randomFarms = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
             randomFarms.add(new RandomFarm().generateRandomFarm());
         }
     }
+
     public List<Ground> getRandomFarms() {
         return randomFarms;
     }
@@ -50,7 +52,8 @@ public class FieldsManager {
             this.checkingChosenFarm(farmIntNumber);
         }
     }
-    public void checkingChosenFarm(Integer farmIntNumber){
+
+    public void checkingChosenFarm(Integer farmIntNumber) {
         if (!checkFarmNumberForSell(farmIntNumber)) {
             System.out.println("Nie ma takiego pola. Wybierz jeszcze raz.");
             this.buyFarm();
@@ -60,7 +63,7 @@ public class FieldsManager {
         }
     }
 
-    public void finalPurchaseFarm(Ground chosenFarm){
+    public void finalPurchaseFarm(Ground chosenFarm) {
         if (myFarmer.getCash() <= chosenFarm.getValue()) {
             System.out.println("Za mało pieniędzy na zakup tej działki");
         } else {
@@ -81,28 +84,28 @@ public class FieldsManager {
     }
 
 
-    public Integer getFarmArea(){
+    public Integer getFarmArea() {
         Integer totalFarmArea = 0;
-        for(Ground field : myFarmer.getFarms()){
+        for (Ground field : myFarmer.getFarms()) {
             totalFarmArea += field.getArea();
         }
         return totalFarmArea;
     }
 
-    public void buyAdditionalFertileField(){
+    public void buyAdditionalFertileField() {
         System.out.println("");
         System.out.println("1. Tak, chce dokupic 1ha pola za 600tys");
-        if(this.myFarmer.getAdditionalArea().size()>=1){
+        if (this.myFarmer.getAdditionalArea().size() >= 1) {
             System.out.println("2. Chce sprzedac moje pola uprawne");
         }
         System.out.println("0. Nie, dziekuje. Wroc do menu glownego");
         String select = scanner.nextLine();
 
-        if(Objects.equals(select, "1")){
+        if (Objects.equals(select, "1")) {
             this.finalPurchaseAddField();
-        } else if(this.myFarmer.getAdditionalArea().size()>=1 & Objects.equals(select, "2")){
-           this.finallyBuyOrNo();
-        } else if (Objects.equals(select, "0")){
+        } else if (this.myFarmer.getAdditionalArea().size() >= 1 & Objects.equals(select, "2")) {
+            this.finallyBuyOrNo();
+        } else if (Objects.equals(select, "0")) {
             this.action.mainChoices();
         } else {
             System.out.println("Zly wybor");
@@ -112,7 +115,7 @@ public class FieldsManager {
         this.action.mainChoices();
     }
 
-    public void finallyBuyOrNo(){
+    public void finallyBuyOrNo() {
         System.out.println("Sprzedasz 1ha swojej dodatkowej ziemi uprawnej, stracisz uprawy, jeśli jakies na niej są");
         System.out.println("Na 1ha zarobisz 400tys");
         System.out.println("1.TAK");
@@ -128,8 +131,8 @@ public class FieldsManager {
         }
     }
 
-    public void finalPurchaseAddField(){
-        if(this.myFarmer.getCash() >=600000.00){
+    public void finalPurchaseAddField() {
+        if (this.myFarmer.getCash() >= 600000.00) {
             this.myFarmer.addField(new FertileField());
             this.myFarmer.subtractCash(600000.00);
             System.out.println("Pomyslnie zakupiono ziemie");
@@ -138,9 +141,9 @@ public class FieldsManager {
         }
     }
 
-    public Integer checkingIsFreeArea(){
+    public Integer checkingIsFreeArea() {
         Integer freeArea = 0;
-        for(Field field : myFarmer.getFields()){
+        for (Field field : myFarmer.getFields()) {
             freeArea += field.getFreeArea();
         }
         return freeArea;
