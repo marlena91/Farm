@@ -1,12 +1,14 @@
 package animals;
 
 import actions.Action;
+import area.Ground;
 import building.BuildingsManager;
 import actions.TimeManager;
 import farmer.Farmer;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class AnimalsManager {
 
@@ -105,6 +107,33 @@ public class AnimalsManager {
             this.buyAnimal(animal, className);
         }
     }
+
+    public void chooseItemForSale(){
+        String number = scanner.nextLine();
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+        if (Objects.equals(number, "0") || !pattern.matcher(number).matches()) {
+            this.action.sale();
+        } else {
+            int intNumber = Integer.parseInt(number);
+            this.checkingChosenItem(intNumber);
+        }
+    }
+
+    public void checkingChosenItem(Integer number){
+//        if (!checkAnimalNumberForSell(number)) {
+//            System.out.println("Zly numer zwierzecia. Wybierz jeszcze raz.");
+//            this.action.saleAnimals();
+//        } else {
+//            Animal chosenAnimal = this.getSingleAnimal(number - 1);
+//            this.finalPurchaseFarm(chosenFarm);
+//        }
+    }
+
+    public Boolean checkAnimalNumberForSell(Integer farmNumber) {
+        return farmNumber <= this.myFarmer.getAllAnimals().size();
+    }
+
 
 }
 

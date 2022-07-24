@@ -47,8 +47,8 @@ public class Farmer {
 
     public List<FertileField> getAdditionalArea() {
         List<FertileField> farms = new ArrayList<>();
-        for(Field field : this.fields){
-            if(field.getClass().getSimpleName().equals("FertileField")){
+        for (Field field : this.fields) {
+            if (field.getClass().getSimpleName().equals("FertileField")) {
                 farms.add((FertileField) field);
             }
         }
@@ -57,13 +57,14 @@ public class Farmer {
 
     public List<Ground> getFarms() {
         List<Ground> farms = new ArrayList<>();
-        for(Field field : this.fields){
-            if(field.getClass().getSimpleName().equals("Ground")){
-                farms.add((Ground)field);
+        for (Field field : this.fields) {
+            if (field.getClass().getSimpleName().equals("Ground")) {
+                farms.add((Ground) field);
             }
         }
         return farms;
     }
+
     public List<Field> getFields() {
         return fields;
     }
@@ -73,7 +74,7 @@ public class Farmer {
         this.addField(field);
     }
 
-    public void addField(Field field){
+    public void addField(Field field) {
         this.fields.add(field);
     }
 
@@ -103,6 +104,7 @@ public class Farmer {
     public List<Seedable> getCrops() {
         return crops;
     }
+
     public List<Plant> getPlants() {
         return plants;
     }
@@ -111,13 +113,13 @@ public class Farmer {
         return plantStock;
     }
 
-    public void addCrop(Seedable crop){
+    public void addCrop(Seedable crop) {
         this.crops.add(crop);
 
     }
 
     public void addPlant(Plant plant) {
-        if(this.cash >= plant.getCost()){
+        if (this.cash >= plant.getCost()) {
             this.plants.add(plant);
             this.subtractCash(plant.getCost());
         } else {
@@ -126,43 +128,29 @@ public class Farmer {
     }
 
     public void subtractAdditionalFertileField() {
-        for(Field field : this.getAdditionalArea()){
+        for (Field field : this.getAdditionalArea()) {
             this.fields.remove(field);
             break;
         }
         System.out.println("Pomyslnie sprzedano ziemie");
     }
 
-    public void subtractPlant(Plant plant){
+    public void subtractPlant(Plant plant) {
         this.plants.remove(plant);
     }
-    public void subtractCrop(Seedable crop){
+
+    public void subtractCrop(Seedable crop) {
         this.crops.remove(crop);
     }
 
 
-
-    public List<Animal> getAllAnimals(){
+    public List<Animal> getAllAnimals() {
         this.animals.clear();
-        for(HouseForPets building : this.getHousesForPets()){
+        for (HouseForPets building : this.getHousesForPets()) {
             this.animals.addAll(building.getAnimals());
         }
         return this.animals;
     }
-
-
-
-//
-//    public List<Animal> getAnimals(String farmBuilding) {
-//        List<Animal> animals = null;
-//        for (Outbuilding building : this.getBuild()) {
-//            if (building.getClass().getSimpleName().equals(farmBuilding)) {
-//                animals = building.getAnimals();
-//                break;
-//            }
-//        }
-//        return animals;
-//    }
 
     public Ground getSingleField(Integer nr) {
         return this.farms.get(nr);
@@ -189,7 +177,7 @@ public class Farmer {
         }
     }
 
-    public void addPlantToStock(Plant plant){
+    public void addPlantToStock(Plant plant) {
         plantStock.add(plant);
     }
 

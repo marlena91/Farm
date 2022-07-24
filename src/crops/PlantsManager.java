@@ -208,19 +208,13 @@ public class PlantsManager {
     public void finallyHarvestCrop(Harvestable crop) {
         if (this.myFarmer.getCash() >= crop.getCostOfHarvest()) {
 
-            System.out.println("test: crop przed: "+myFarmer.getCrops());
             this.myFarmer.subtractCrop((Seedable) crop);
-            System.out.println("test: crop po: "+myFarmer.getCrops());
 
-            System.out.println("test: kasa przed: "+myFarmer.getCash());
             this.myFarmer.subtractCash(crop.getCostOfHarvest());
-            System.out.println("test: kasas po: "+myFarmer.getCash());
 
-            System.out.println("test: stock przed: "+myFarmer.getPlantStock());
             this.myFarmer.addPlantToStock((Plant) crop);
-            System.out.println("test: stock po: "+myFarmer.getPlantStock());
         } else {
-            System.out.println("nie stac mnie");
+            System.out.println("Nie stac Cie na zbior roslin");
         }
     }
 
@@ -252,6 +246,21 @@ public class PlantsManager {
         }
     }
 
+    public void chooseItemForSale(){
+        String number = scanner.nextLine();
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+        if (Objects.equals(number, "0") || !pattern.matcher(number).matches()) {
+            this.action.sale();
+        } else {
+            int intNumber = Integer.parseInt(number);
+            this.checkingChosenItem(intNumber);
+        }
+    }
+
+    public void checkingChosenItem(Integer number){
+
+    }
 
 }
 

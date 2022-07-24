@@ -1,15 +1,20 @@
 package actions;
 
+import animals.Animal;
 import animals.AnimalsManager;
 import area.FieldsManager;
 import area.Ground;
 import building.BuildingsManager;
+import crops.Plant;
 import crops.PlantsManager;
 import crops.Seedable;
 import farmer.Farmer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Action {
 
@@ -86,7 +91,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "7")) {
-            System.out.println("Sprzedaz roslin lub zwierzat");
+            this.sale();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "8")) {
@@ -214,5 +219,57 @@ public class Action {
         this.plantsManager.harvestCrop();
         System.out.println("test: " + this.myFarmer.getCrops());
     }
+
+    public void sale(){
+        System.out.println("");
+        System.out.println("1. Sprzedaz roslin");
+        System.out.println("2. Sprzedaz zwierzat");
+        System.out.println("0. Cofnij");
+        String select = scanner.nextLine();
+
+        if (Objects.equals(select, "1")) {
+            this.salePlants();
+        } else if(Objects.equals(select, "2")) {
+            this.saleAnimals();
+        } else if(Objects.equals(select, "0")) {
+            System.out.println("");
+        } else {
+            System.out.println("Wybierz 1 lub 2");
+            this.sale();
+        }
+
+        //wypisac wszystkie rosliny z barnu i zwierzeta z dopiskiem za
+        //po wybraniu
+        //usun rosline/zwierze
+        //dodaj kase
+    }
+
+    public void salePlants(){
+        if(this.myFarmer.getPlantStock().size()>0){
+            for(Plant plant : this.myFarmer.getPlantStock()){
+                System.out.println(plant);
+            }
+            this.plantsManager.chooseItemForSale();
+        } else {
+            System.out.println("BRAK");
+            this.next();
+        }
+    }
+
+    public void saleAnimals(){
+        if(this.myFarmer.getAllAnimals().size()>0){
+            for(Animal animal : this.myFarmer.getAllAnimals()){
+                System.out.println(animal);
+            }
+            this.animalsManager.chooseItemForSale();
+        } else {
+            System.out.println("BRAK");
+            this.next();
+        }
+    }
+
+
+
+
 
 }
