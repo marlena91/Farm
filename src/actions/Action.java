@@ -2,6 +2,7 @@ package actions;
 
 import animals.Animal;
 import animals.AnimalsManager;
+import animals.Salable;
 import area.FieldsManager;
 import area.Ground;
 import building.BuildingsManager;
@@ -238,16 +239,14 @@ public class Action {
             this.sale();
         }
 
-        //wypisac wszystkie rosliny z barnu i zwierzeta z dopiskiem za
-        //po wybraniu
-        //usun rosline/zwierze
-        //dodaj kase
     }
 
     public void salePlants(){
         if(this.myFarmer.getPlantStock().size()>0){
+            int i =1;
             for(Plant plant : this.myFarmer.getPlantStock()){
-                System.out.println(plant);
+                System.out.println(i+". "+plant);
+                i++;
             }
             this.plantsManager.chooseItemForSale();
         } else {
@@ -258,8 +257,11 @@ public class Action {
 
     public void saleAnimals(){
         if(this.myFarmer.getAllAnimals().size()>0){
+            int i =1;
             for(Animal animal : this.myFarmer.getAllAnimals()){
-                System.out.println(animal);
+                Salable animalToSell = (Salable) animal;
+                System.out.println(i+". "+animal+ " - sprzedaj za "+ animalToSell.getPrice()+"PLN");
+                i++;
             }
             this.animalsManager.chooseItemForSale();
         } else {
@@ -267,6 +269,7 @@ public class Action {
             this.next();
         }
     }
+
 
 
 

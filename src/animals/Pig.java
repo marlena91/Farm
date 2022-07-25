@@ -1,9 +1,11 @@
 package animals;
 
-public class Pig extends Animal implements Feedable {
+public class Pig extends Animal implements Feedable, Salable {
 
     private static final Double COST = 800.00;
     private static final Double PRICE = 700.00;
+    private static final String HOUSE = "Pighouse";
+
     private static final Double WEIGHT_GAIN_PER_WEEK = 2.00;
     private static final Integer TIME_TO_MATURITY = 8;
     private static final Integer WEIGHT_OF_FOOD = 28;
@@ -46,4 +48,13 @@ public class Pig extends Animal implements Feedable {
         System.out.println("Karmie świnie");
     }
 
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
+
+    @Override
+    public Double getPrice() {
+        return PRICE;
+    }
 }

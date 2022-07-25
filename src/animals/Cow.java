@@ -1,9 +1,11 @@
 package animals;
 
-public class Cow extends Animal implements Collectible, Feedable {
+public class Cow extends Animal implements Collectible, Feedable , Salable{
 
     private static final Double COST = 1500.00;
     private static final Double PRICE = 800.00;
+    private static final String HOUSE = "Cowshed";
+
     private static final Double WEIGHT_GAIN_PER_WEEK = 5.5;
     private static final Integer TIME_TO_MATURITY = 84;
     private static final Integer WEIGHT_OF_FOOD = 140;
@@ -50,5 +52,15 @@ public class Cow extends Animal implements Collectible, Feedable {
     @Override
     public String toString() {
         return "Krowa";
+    }
+
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
+
+    @Override
+    public Double getPrice() {
+        return PRICE;
     }
 }

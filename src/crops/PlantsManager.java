@@ -118,7 +118,7 @@ public class PlantsManager {
     }
 
     public void choosePlant(Integer plantNumber) {
-        if (!checkPlantNumberForSell(plantNumber)) {
+        if (!checkPlantNumberForSow(plantNumber)) {
             System.out.println("Nie ma rosliny o tym numerze. Wybierz jeszcze raz.");
             this.choosePlantList();
         } else {
@@ -145,7 +145,7 @@ public class PlantsManager {
         }
     }
 
-    public Boolean checkPlantNumberForSell(Integer plantNumber) {
+    public Boolean checkPlantNumberForSow(Integer plantNumber) {
         return plantNumber <= myFarmer.getPlants().size();
     }
 
@@ -219,7 +219,7 @@ public class PlantsManager {
     }
 
     public void checkingChosenCrop(Integer cropIntNumber) {
-        if (!checkCropNumberForSell(cropIntNumber)) {
+        if (!checkCropNumberForHarvest(cropIntNumber)) {
             System.out.println("Zly numer uprawy. Wybierz jeszcze raz.");
             this.harvestCrop();
         } else {
@@ -228,7 +228,7 @@ public class PlantsManager {
         }
     }
 
-    public Boolean checkCropNumberForSell(Integer cropNumber) {
+    public Boolean checkCropNumberForHarvest(Integer cropNumber) {
         return cropNumber <= this.myFarmer.getCrops().size();
     }
 
@@ -259,7 +259,23 @@ public class PlantsManager {
     }
 
     public void checkingChosenItem(Integer number){
+        if (!checkCropNumberForSell(number)) {
+            System.out.println("Zly numer. Wybierz jeszcze raz.");
+            this.action.salePlants();
+        } else {
+            Harvestable chosenAnimal = this.getSinglePlantStock(number - 1);
+//            this.myFarmer.deleteAnimal((Animal) chosenAnimal, chosenAnimal.getHouse());
+//            this.myFarmer.addCash(chosenAnimal.getPrice());
+//            System.out.println("Pomyślnie sprzedano zwierzę");
+        }
+    }
 
+    public Boolean checkCropNumberForSell(Integer number){
+        return number <= this.myFarmer.getPlantStock().size();
+    }
+
+    public Harvestable getSinglePlantStock(Integer nr) {
+        return (Harvestable) this.myFarmer.getPlantStock().get(nr);
     }
 
 }

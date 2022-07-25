@@ -2,10 +2,12 @@ package animals;
 
 import java.util.Objects;
 
-public class Sheep extends Animal implements Collectible, Feedable {
+public class Sheep extends Animal implements Collectible, Feedable, Salable {
 
     private static final Double COST = 250.00;
     private static final Double PRICE = 200.00;
+    private static final String HOUSE = "Farm";
+
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.50;
     private static final Integer TIME_TO_MATURITY = 4;
     private static final Integer WEIGHT_OF_FOOD = 28;
@@ -67,4 +69,13 @@ public class Sheep extends Animal implements Collectible, Feedable {
         return Objects.hash(name);
     }
 
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
+
+    @Override
+    public Double getPrice() {
+        return PRICE;
+    }
 }

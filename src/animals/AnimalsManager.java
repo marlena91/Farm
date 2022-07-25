@@ -5,6 +5,7 @@ import area.Ground;
 import building.BuildingsManager;
 import actions.TimeManager;
 import farmer.Farmer;
+import animals.Salable;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -121,17 +122,23 @@ public class AnimalsManager {
     }
 
     public void checkingChosenItem(Integer number){
-//        if (!checkAnimalNumberForSell(number)) {
-//            System.out.println("Zly numer zwierzecia. Wybierz jeszcze raz.");
-//            this.action.saleAnimals();
-//        } else {
-//            Animal chosenAnimal = this.getSingleAnimal(number - 1);
-//            this.finalPurchaseFarm(chosenFarm);
-//        }
+        if (!checkAnimalNumberForSell(number)) {
+            System.out.println("Zly numer zwierzecia. Wybierz jeszcze raz.");
+            this.action.saleAnimals();
+        } else {
+            Salable chosenAnimal = (Salable) this.getSingleAnimal(number - 1);
+            this.myFarmer.deleteAnimal((Animal) chosenAnimal, chosenAnimal.getHouse());
+            this.myFarmer.addCash(chosenAnimal.getPrice());
+            System.out.println("Pomyślnie sprzedano zwierzę");
+        }
     }
 
-    public Boolean checkAnimalNumberForSell(Integer farmNumber) {
-        return farmNumber <= this.myFarmer.getAllAnimals().size();
+    public Boolean checkAnimalNumberForSell(Integer number) {
+        return number <= this.myFarmer.getAllAnimals().size();
+    }
+
+    public Animal getSingleAnimal(Integer nr) {
+        return this.myFarmer.getAllAnimals().get(nr);
     }
 
 

@@ -1,8 +1,11 @@
 package animals;
 
-public class Bee extends Animal implements Collectible{
+public class Bee extends Animal implements Collectible,Salable{
 
     private static final Double COST = 300.00;
+    private static final Double PRICE = 300.00;
+
+    private static final String HOUSE = "BeeYard";
 
     private String name;
     private Double cost;
@@ -36,5 +39,13 @@ public class Bee extends Animal implements Collectible{
         System.out.println("Zbieram miód");
     }
 
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
 
+    @Override
+    public Double getPrice() {
+        return PRICE;
+    }
 }

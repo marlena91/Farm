@@ -4,10 +4,12 @@ import building.Outbuilding;
 
 import java.util.List;
 
-public class Hen extends Animal implements Collectible, Feedable {
+public class Hen extends Animal implements Collectible, Feedable, Salable {
 
     private static final Double COST = 5.00;
     private static final Double PRICE = 1.00;
+    private static final String HOUSE = "Henhouse";
+
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.1;
     private static final Integer TIME_TO_MATURITY = 21;
     private static final Integer WEIGHT_OF_FOOD = 3;
@@ -53,6 +55,16 @@ public class Hen extends Animal implements Collectible, Feedable {
     @Override
     public void feed() {
         System.out.println("Karmie kury");
+    }
+
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
+
+    @Override
+    public Double getPrice() {
+        return PRICE;
     }
 
 }

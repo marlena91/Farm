@@ -1,9 +1,11 @@
 package animals;
 
-public class Goat extends Animal{
+public class Goat extends Animal implements Salable{
 
     private static final Double COST = 150.00;
     private static final Double PRICE = 100.00;
+    private static final String HOUSE = "Farm";
+
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.5;
     private static final Integer TIME_TO_MATURITY = 25;
     private static final Integer WEIGHT_OF_FOOD = 12;
@@ -41,5 +43,15 @@ public class Goat extends Animal{
     @Override
     public String toString() {
         return "Koza";
+    }
+
+    @Override
+    public String getHouse() {
+        return HOUSE;
+    }
+
+    @Override
+    public Double getPrice() {
+        return PRICE;
     }
 }
