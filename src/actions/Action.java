@@ -6,6 +6,7 @@ import animals.Salable;
 import area.FieldsManager;
 import area.Ground;
 import building.BuildingsManager;
+import crops.Harvestable;
 import crops.Plant;
 import crops.PlantsManager;
 import crops.Seedable;
@@ -245,7 +246,8 @@ public class Action {
         if(this.myFarmer.getPlantStock().size()>0){
             int i =1;
             for(Plant plant : this.myFarmer.getPlantStock()){
-                System.out.println(i+". "+plant);
+                Harvestable plantToSell = (Harvestable) plant;
+                System.out.println(i+". "+plant + " dostępne " + plantToSell.getCurrentAmount() + " ton, cena za 1kg to "+plantToSell.getPricePerKilo() + "PLN");
                 i++;
             }
             this.plantsManager.chooseItemForSale();

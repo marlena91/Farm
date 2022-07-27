@@ -207,12 +207,11 @@ public class PlantsManager {
 
     public void finallyHarvestCrop(Harvestable crop) {
         if (this.myFarmer.getCash() >= crop.getCostOfHarvest()) {
-
             this.myFarmer.subtractCrop((Seedable) crop);
-
             this.myFarmer.subtractCash(crop.getCostOfHarvest());
-
             this.myFarmer.addPlantToStock((Plant) crop);
+            crop.setCurrentAmount(crop.getCropYields());
+            System.out.println("Pomyślnie zebrano "+crop + " - " + crop.getCropYields() + " ton");
         } else {
             System.out.println("Nie stac Cie na zbior roslin");
         }
@@ -263,7 +262,11 @@ public class PlantsManager {
             System.out.println("Zly numer. Wybierz jeszcze raz.");
             this.action.salePlants();
         } else {
-            Harvestable chosenAnimal = this.getSinglePlantStock(number - 1);
+            Harvestable chosenPlant = this.getSinglePlantStock(number - 1);
+            System.out.println("Ile ton chcesz sprzedac z dostępnych "+ chosenPlant.getCurrentAmount());
+            String amountOf = scanner.nextLine();
+
+
 //            this.myFarmer.deleteAnimal((Animal) chosenAnimal, chosenAnimal.getHouse());
 //            this.myFarmer.addCash(chosenAnimal.getPrice());
 //            System.out.println("Pomyślnie sprzedano zwierzę");

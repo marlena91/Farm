@@ -17,10 +17,12 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
 
 
     private Double cost;
+    private Double currentAmount;
     private LocalDate dateOfSeed;
 
     public AppleTree() {
         this.cost = COST;
+        this.currentAmount = 0.00;
     }
 
     public void info() {
@@ -56,6 +58,11 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
     }
 
     @Override
+    public Double getCropYields() {
+        return CROP_YIELDS;
+    }
+
+    @Override
     public Integer getSeedingStart() {
         return SEEDING_START;
     }
@@ -86,6 +93,20 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
 
     public void setDateOfSeed(LocalDate dateOfSeed) {
         this.dateOfSeed = dateOfSeed;
+    }
+
+    @Override
+    public void setCurrentAmount(Double amount) {
+        this.currentAmount = amount;
+    }
+
+    @Override
+    public Double getCurrentAmount() {
+        return currentAmount;
+    }
+    @Override
+    public Double getPricePerKilo() {
+        return PRICE_OF_A_KILOGRAM;
     }
 
     public String getStatus(LocalDate today) {

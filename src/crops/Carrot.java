@@ -19,6 +19,9 @@ public class Carrot extends Plant implements Seedable, Harvestable {
     private Double cost;
     private LocalDate dateOfSeed;
 
+    private Double currentAmount;
+
+
     public Carrot() {
         this.cost = COST;
     }
@@ -85,6 +88,26 @@ public class Carrot extends Plant implements Seedable, Harvestable {
 
     public void setDateOfSeed(LocalDate dateOfSeed) {
         this.dateOfSeed = dateOfSeed;
+    }
+
+    @Override
+    public void setCurrentAmount(Double amount) {
+        this.currentAmount = amount;
+    }
+
+    @Override
+    public Double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    @Override
+    public Double getPricePerKilo() {
+        return PRICE_OF_A_KILOGRAM;
+    }
+
+    @Override
+    public Double getCropYields() {
+        return CROP_YIELDS;
     }
 
     public String getStatus(LocalDate today) {

@@ -20,6 +20,9 @@ public class Beetroot extends Plant implements Seedable, Harvestable {
     private Double cost;
     private LocalDate dateOfSeed;
 
+    private Double currentAmount;
+
+
     public Beetroot() {
         this.cost = COST;
     }
@@ -56,6 +59,21 @@ public class Beetroot extends Plant implements Seedable, Harvestable {
     }
 
     @Override
+    public Double getCropYields() {
+        return CROP_YIELDS;
+    }
+
+    @Override
+    public void setCurrentAmount(Double amount) {
+        this.currentAmount = amount;
+    }
+
+    @Override
+    public Double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    @Override
     public Integer getSeedingStart() {
         return SEEDING_START;
     }
@@ -78,6 +96,11 @@ public class Beetroot extends Plant implements Seedable, Harvestable {
     @Override
     public String getSeedingPeriod() {
         return SEEDING_TIME;
+    }
+
+    @Override
+    public Double getPricePerKilo() {
+        return PRICE_OF_A_KILOGRAM;
     }
 
     public LocalDate getDateOfSeed() {
