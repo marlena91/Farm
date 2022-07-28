@@ -31,7 +31,7 @@ public class AppleTree extends Plant implements Seedable, Harvestable {
         System.out.println("Koszt ochrony przed szkodnikami: " + COST_OF_PROTECTION_AGAINST_PESTS + "PLN/ha");
         System.out.println("Wydajnosc upraw: " + CROP_YIELDS + "t/ha");
         System.out.println("Dlugosc okresu od posadzenia do zbiorow: " + NUMBER_OF_WEEKS_TO_HARVEST + " tygodni");
-        System.out.println("Jabonie sadzi sie: " + SEEDING_TIME);
+        System.out.println("Jablonie sadzi sie: " + SEEDING_TIME);
         System.out.println("Koszt zbioru: " + COST_OF_HARVEST + "PLN/ha");
         System.out.println("Cena skupu kilograma: " + PRICE_OF_A_KILOGRAM + "PLN");
     }

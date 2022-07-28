@@ -101,6 +101,7 @@ public class AnimalsManager {
         String select = scanner.nextLine();
         if (Objects.equals(select, "1")) {
             myFarmer.addAnimal(animal, animal.getCost(), className);
+            animal.setDateOfBuy(this.time.getToday());
         } else if (Objects.equals(select, "0")) {
             System.out.println("");
         } else {

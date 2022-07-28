@@ -97,11 +97,11 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "8")) {
-            System.out.println("Sprawdzenie stanu zapasow");
+            this.stockCheck();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "9")) {
-            System.out.println("Przejrzenie informacji o posiadanych zwierzetach");
+            this.animalInfo();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "10")) {
@@ -271,6 +271,35 @@ public class Action {
         } else {
             System.out.println("BRAK");
             this.next();
+        }
+    }
+
+    public void stockCheck(){
+        System.out.println("");
+        if(myFarmer.getPlantStock().size()>0){
+            System.out.println("Twoje zapasy: ");
+            int i = 1;
+            for(Plant plant : myFarmer.getPlantStock()){
+                Harvestable plantTons = (Harvestable) plant;
+                System.out.println(i+". "+plant + " "+ plantTons.getCurrentAmount()+ "ton");
+            }
+        } else {
+            System.out.println("Brak zapasow");
+        }
+    }
+
+    public void animalInfo(){
+        System.out.println("");
+        if(myFarmer.getAllAnimals().size()>0){
+            System.out.println("Twoje zwierzeta - przeglad: ");
+            int i = 1;
+            for(Animal animal : myFarmer.getAllAnimals()){
+                System.out.println(i+". " + animal);
+                animal.animalInfoDetailed(this.time.getToday());
+                i++;
+            }
+        } else {
+            System.out.println("Brak zwierzat");
         }
     }
 }

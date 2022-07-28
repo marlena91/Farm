@@ -1,5 +1,7 @@
 package animals;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Sheep extends Animal implements Collectible, Feedable, Salable {
@@ -9,15 +11,18 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
     private static final String HOUSE = "Farm";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.50;
-    private static final Integer TIME_TO_MATURITY = 4;
+    private static final Integer TIME_TO_MATURITY = 10;
     private static final Integer WEIGHT_OF_FOOD = 28;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
-
+    private static final Integer AGE_IN_WEEKS = 5;
+    private LocalDate dateOfBuy;
     private String name;
     private Double cost;
+    private Double weight;
 
     public Sheep(){
         this.cost = COST;
+        this.setWeight(AGE_IN_WEEKS*WEIGHT_GAIN_PER_WEEK);
     }
 
     public void setName(String name){
@@ -78,4 +83,57 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
     public Double getPrice() {
         return PRICE;
     }
+
+    @Override
+    public void animalInfoDetailed(LocalDate today) {
+        System.out.println("\t wiek: "+ this.getAgeInWeeks(today)+ " tygodni" );
+        if(getWeeksToMaturity(today)>=0){
+            System.out.println("\t do osiagniecia dojrzalosci pozostalo: "+ this.getWeeksToMaturity(today)+" tygodni");
+        } else {
+            System.out.println("\t dorosle zwierze gotowe do rozmnazania");
+        }
+        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie buraki, marchew i zboze");
+        System.out.println("\t aktualna waga: "+ getWeight() +"kg");
+    }
+
+    @Override
+    public long howManyWeeksAfterBuying(LocalDate today) {
+        return this.dateOfBuy.until(today, ChronoUnit.WEEKS);
+    }
+
+    @Override
+    public Integer getAgeInWeeks(LocalDate today) {
+        return Math.toIntExact(AGE_IN_WEEKS + howManyWeeksAfterBuying(today));
+    }
+
+    @Override
+    public void setDateOfBuy(LocalDate date) {
+        this.dateOfBuy = date;
+    }
+
+    @Override
+    public Integer getWeeksToMaturity(LocalDate today) {
+        return Math.toIntExact(TIME_TO_MATURITY - howManyWeeksAfterBuying(today));
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    @Override
+    public void addWeight(Double weight) {
+        this.weight += weight;
+    }
+
+    @Override
+    public void subtractWeight(Double weight) {
+        this.weight -= weight;
+    }
+
+    public void setWeight(Double weight){
+        this.weight = weight;
+    }
+
+
 }
