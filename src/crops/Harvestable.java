@@ -6,4 +6,6 @@ public interface Harvestable {
     void setCurrentAmount(Double amount);
     Double getCurrentAmount();
     Double getPricePerKilo();
+
+    void removingKilos(Double amount);
 }

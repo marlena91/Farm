@@ -106,6 +106,17 @@ public class Carrot extends Plant implements Seedable, Harvestable {
     }
 
     @Override
+    public void removingKilos(Double amount) {
+        if(this.currentAmount >= amount){
+            double newAmount = this.currentAmount - amount;
+            this.setCurrentAmount(newAmount);
+        } else {
+            System.out.println("Za dużo, nie masz tyle "+this);
+        }
+    }
+
+
+    @Override
     public Double getCropYields() {
         return CROP_YIELDS;
     }

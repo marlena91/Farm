@@ -181,6 +181,10 @@ public class Farmer {
         plantStock.add(plant);
     }
 
+    public void removePlantFromStock(Plant plant) {
+        plantStock.remove(plant);
+    }
+
     public void addAnimal(Animal animal, Double price, String className) {
         if (this.cash <= price) {
             System.out.println("Za mało pieniędzy na zakup tego zwierzęcia");
