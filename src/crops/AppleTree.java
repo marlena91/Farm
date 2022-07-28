@@ -3,7 +3,7 @@ package crops;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class AppleTree extends Plant implements Seedable,Harvestable{
+public class AppleTree extends Plant implements Seedable, Harvestable {
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 5400.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 4600.00;
     private static final Double COST_OF_HARVEST = 11500.00;
@@ -77,9 +77,12 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
         return SEEDING_TIME;
     }
 
+    @Override
     public LocalDate getDateOfSeed() {
         return dateOfSeed;
     }
+
+
 
     @Override
     public Integer getNumberOfWeekToHarvest() {
@@ -104,9 +107,20 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
     public Double getCurrentAmount() {
         return currentAmount;
     }
+
     @Override
     public Double getPricePerKilo() {
         return PRICE_OF_A_KILOGRAM;
+    }
+
+    @Override
+    public void removingKilos(Double amount) {
+        if (this.currentAmount >= amount) {
+            double newAmount = this.currentAmount - amount;
+            this.setCurrentAmount(newAmount);
+        } else {
+            System.out.println("Za dużo, nie masz tyle " + this);
+        }
     }
 
     public String getStatus(LocalDate today) {
@@ -117,16 +131,6 @@ public class AppleTree extends Plant implements Seedable,Harvestable{
         }
         {
             return "ROŚNIE";
-        }
-    }
-
-    @Override
-    public void removingKilos(Double amount) {
-        if(this.currentAmount >= amount){
-            double newAmount = this.currentAmount - amount;
-            this.setCurrentAmount(newAmount);
-        } else {
-            System.out.println("Za dużo, nie masz tyle "+this);
         }
     }
 }

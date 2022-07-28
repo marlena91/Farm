@@ -11,17 +11,17 @@ public class Doghouse extends Outbuilding implements HouseForPets{
 
     @Override
     public List<Animal> getAnimals() {
-        return null;
+        return animals;
     }
 
     @Override
     public void addAnimal(Animal animal) {
-
+        animals.add(animal);
     }
 
     @Override
     public void deleteAnimal(Animal animal) {
-
+        animals.remove(animal);
     }
 
     @Override

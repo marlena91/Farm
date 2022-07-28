@@ -26,6 +26,7 @@ public class PlantsManager {
         this.buildingsManager = buildingsManager;
     }
 
+
     public void buySeeds() {
         System.out.println("");
         System.out.println("W naszej ofercie mamy dostepne nastepujace produkty: ");
@@ -211,7 +212,7 @@ public class PlantsManager {
             this.myFarmer.subtractCash(crop.getCostOfHarvest());
             this.myFarmer.addPlantToStock((Plant) crop);
             crop.setCurrentAmount(crop.getCropYields());
-            System.out.println("Pomyślnie zebrano "+crop + " - " + crop.getCropYields() + " ton");
+            System.out.println("Pomyślnie zebrano " + crop + " - " + crop.getCropYields() + " ton");
         } else {
             System.out.println("Nie stac Cie na zbior roslin");
         }
@@ -245,7 +246,7 @@ public class PlantsManager {
         }
     }
 
-    public void chooseItemForSale(){
+    public void chooseItemForSale() {
         String number = scanner.nextLine();
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
@@ -257,34 +258,33 @@ public class PlantsManager {
         }
     }
 
-    public void checkingChosenItem(Integer number){
+    public void checkingChosenItem(Integer number) {
         if (!checkCropNumberForSell(number)) {
             System.out.println("Zly numer. Wybierz jeszcze raz.");
             this.action.salePlants();
         } else {
             Harvestable chosenPlant = this.getSinglePlantStock(number - 1);
-            System.out.println("Ile ton chcesz sprzedac z dostępnych "+ chosenPlant.getCurrentAmount());
+            System.out.println("Ile ton chcesz sprzedac z dostępnych " + chosenPlant.getCurrentAmount());
             String amount = scanner.nextLine();
             double amountOfTons = Double.parseDouble(amount);
 
             chosenPlant.removingKilos(amountOfTons);
-            if(chosenPlant.getCurrentAmount() == 0){
+            if (chosenPlant.getCurrentAmount() == 0) {
                 this.myFarmer.removePlantFromStock((Plant) chosenPlant);
             }
-            Double price = amountOfTons * (chosenPlant.getPricePerKilo()*1000);
+            Double price = amountOfTons * (chosenPlant.getPricePerKilo() * 1000);
             this.myFarmer.addCash(price);
             System.out.println("Pomyślnie sprzedano");
         }
     }
 
-    public Boolean checkCropNumberForSell(Integer number){
+    public Boolean checkCropNumberForSell(Integer number) {
         return number <= this.myFarmer.getPlantStock().size();
     }
 
     public Harvestable getSinglePlantStock(Integer nr) {
         return (Harvestable) this.myFarmer.getPlantStock().get(nr);
     }
-
 
 
 }

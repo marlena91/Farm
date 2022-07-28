@@ -171,7 +171,7 @@ public class BuildingsManager {
     }
 
     public void buyStable() {
-        if (this.checkBuildingInFarm("Stajnia")) {
+        if (this.checkBuildingInFarm("Stable")) {
             System.out.println("Posiadasz juz Stajnie");
             this.getBuildings();
         } else {
@@ -226,6 +226,10 @@ public class BuildingsManager {
             myFarmer.addBuilding(new Henhouse(price), price);
         } else if (type == 6) {
             myFarmer.addBuilding(new Pigsty(price), price);
+        } else if (type == 7) {
+            myFarmer.addBuilding(new Stable(price), price);
+        } else if (type == 8) {
+            myFarmer.addBuilding(new Doghouse(price), price);
         }
         System.out.println("Pomyslnie zakupiono budynek");
     }
