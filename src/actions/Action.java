@@ -243,6 +243,8 @@ public class Action {
     }
 
     public void salePlants(){
+        System.out.println("");
+        System.out.println("Wybierz: ");
         if(this.myFarmer.getPlantStock().size()>0){
             int i =1;
             for(Plant plant : this.myFarmer.getPlantStock()){
@@ -271,10 +273,4 @@ public class Action {
             this.next();
         }
     }
-
-
-
-
-
-
 }

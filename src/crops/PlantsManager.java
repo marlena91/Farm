@@ -264,16 +264,16 @@ public class PlantsManager {
         } else {
             Harvestable chosenPlant = this.getSinglePlantStock(number - 1);
             System.out.println("Ile ton chcesz sprzedac z dostępnych "+ chosenPlant.getCurrentAmount());
-            String amountOfKilos = scanner.nextLine();
+            String amount = scanner.nextLine();
+            double amountOfTons = Double.parseDouble(amount);
 
-            chosenPlant.removingKilos(Double.valueOf(amountOfKilos));
+            chosenPlant.removingKilos(amountOfTons);
             if(chosenPlant.getCurrentAmount() == 0){
                 this.myFarmer.removePlantFromStock((Plant) chosenPlant);
             }
-
-//            this.myFarmer.deleteAnimal((Animal) chosenAnimal, chosenAnimal.getHouse());
-//            this.myFarmer.addCash(chosenAnimal.getPrice());
-//            System.out.println("Pomyślnie sprzedano zwierzę");
+            Double price = amountOfTons * (chosenPlant.getPricePerKilo()*1000);
+            this.myFarmer.addCash(price);
+            System.out.println("Pomyślnie sprzedano");
         }
     }
 

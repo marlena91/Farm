@@ -103,6 +103,16 @@ public class Beetroot extends Plant implements Seedable, Harvestable {
         return PRICE_OF_A_KILOGRAM;
     }
 
+    @Override
+    public void removingKilos(Double amount) {
+        if(this.currentAmount >= amount){
+            double newAmount = this.currentAmount - amount;
+            this.setCurrentAmount(newAmount);
+        } else {
+            System.out.println("Za dużo, nie masz tyle "+this);
+        }
+    }
+
     public LocalDate getDateOfSeed() {
         return dateOfSeed;
     }
