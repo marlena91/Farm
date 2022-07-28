@@ -105,7 +105,7 @@ public class Action {
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "10")) {
-            System.out.println("Przejrzenie informacji o posiadanych sadzonkach i zasadzonych roslinach");
+            this.plantsInfo();
             this.next();
             this.mainChoices();
         } else if (Objects.equals(selectAction, "11")) {
@@ -301,5 +301,9 @@ public class Action {
         } else {
             System.out.println("Brak zwierzat");
         }
+    }
+
+    public void plantsInfo(){
+
     }
 }
