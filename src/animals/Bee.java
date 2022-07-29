@@ -9,6 +9,8 @@ public class Bee extends Animal implements Collectible, Salable {
     private static final Double PRICE = 300.00;
 
     private static final String HOUSE = "BeeYard";
+    private static final String FOOD = "";
+
     private static final Integer AGE_IN_WEEKS = 5;
     private LocalDate dateOfBuy;
     private String name;
@@ -91,5 +93,10 @@ public class Bee extends Animal implements Collectible, Salable {
     @Override
     public void subtractWeight(Double weight) {
 
+    }
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

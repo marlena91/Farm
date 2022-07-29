@@ -8,6 +8,8 @@ public class Pig extends Animal implements Feedable, Salable {
     private static final Double COST = 800.00;
     private static final Double PRICE = 700.00;
     private static final String HOUSE = "Pighouse";
+    private static final String FOOD = "Beetroot";
+
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 2.00;
     private static final Integer TIME_TO_MATURITY = 8;
@@ -72,7 +74,7 @@ public class Pig extends Animal implements Feedable, Salable {
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada " + WEIGHT_OF_FOOD + "kg na tydzien, z zapasow glownie buraki, jablka i zboze");
+        System.out.println("\t zjada " + WEIGHT_OF_FOOD + "kg na tydzien, z zapasow glownie buraki");
         System.out.println("\t aktualna waga: " + getWeight() + "kg");
     }
 
@@ -113,5 +115,10 @@ public class Pig extends Animal implements Feedable, Salable {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

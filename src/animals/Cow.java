@@ -9,6 +9,7 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
     private static final Double COST = 1500.00;
     private static final Double PRICE = 800.00;
     private static final String HOUSE = "Cowshed";
+    private static final String FOOD = "Carrot";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 5.5;
     private static final Integer TIME_TO_MATURITY = 84;
@@ -52,7 +53,7 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie buraki i zboze");
+        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow buraki");
         System.out.println("\t aktualna waga: "+ getWeight() +"kg");
 
     }
@@ -121,6 +122,11 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
     @Override
     public void subtractWeight(Double weight) {
         this.weight -= weight;
+    }
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 
     public void setWeight(Double weight){

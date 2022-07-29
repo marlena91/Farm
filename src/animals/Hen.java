@@ -11,6 +11,8 @@ public class Hen extends Animal implements Collectible, Feedable, Salable {
     private static final Double COST = 5.00;
     private static final Double PRICE = 1.00;
     private static final String HOUSE = "Henhouse";
+    private static final String FOOD = "Potato";
+
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.1;
     private static final Integer TIME_TO_MATURITY = 21;
@@ -81,7 +83,7 @@ public class Hen extends Animal implements Collectible, Feedable, Salable {
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie marchew, poza tym trawa i ziola");
+        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie ziemniaki, poza tym trawa i ziola");
         System.out.println("\t aktualna waga: "+ getWeight() +"kg");
 
     }
@@ -123,5 +125,10 @@ public class Hen extends Animal implements Collectible, Feedable, Salable {
 
     public void setWeight(Double weight){
         this.weight = weight;
+    }
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

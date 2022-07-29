@@ -118,11 +118,33 @@ public class Action {
     }
 
     public void endWeek() {
-        System.out.println("Dzieja sie rozne rzeczy");
-        System.out.println("Robaki zjadaja plony");
+        System.out.println("");
+        if(this.myFarmer.getAllAnimals().size()>0){
+            System.out.println("Karmienie zwierzat");
+            for(Animal animal : this.myFarmer.getAllAnimals()){
+                System.out.println(animal);
+                String food = animal.getTypeOfFood();
+                System.out.println(food);
+                for(Plant plant : this.myFarmer.getPlantStock()){
+                    if (plant.getClass().getSimpleName().equals(food)) {
+                        System.out.println(plant + "TAK");
+                    } else {
+                        System.out.println(plant+ "Nie");
+                    }
+                }
+            }
+        }
         if (myFarmer.getCash() <= 0) {
             System.out.println("Zwierzeta chudna ");
         }
+        System.out.println("Dzieja sie rozne rzeczy");
+
+        //rozmonazanie zwierzat
+
+
+        //uprawy
+        System.out.println("Robaki zjadaja plony");
+
         this.time.addWeek();
         this.next();
         this.newWeek();
@@ -213,13 +235,20 @@ public class Action {
 
     public void plantHarvesting() {
         System.out.println("Wybierz:");
-        int i = 1;
-        for (Seedable crop : this.myFarmer.getCrops()) {
-            System.out.println(i + ". " + crop + ", status: \"" + crop.getStatus(this.time.getToday()) + "\"");
-            i++;
-        }
+        this.listCrops();
         this.plantsManager.harvestCrop();
-        System.out.println("test: " + this.myFarmer.getCrops());
+    }
+
+    public void listCrops(){
+        if(this.myFarmer.getCrops().size()<=0){
+            System.out.println("Brak upraw");
+        } else {
+            int i = 1;
+            for (Seedable crop : this.myFarmer.getCrops()) {
+                System.out.println(i + ". " + crop + ", status: \"" + crop.getStatus(this.time.getToday()) + "\"");
+                i++;
+            }
+        }
     }
 
     public void sale(){
@@ -239,7 +268,6 @@ public class Action {
             System.out.println("Wybierz 1 lub 2");
             this.sale();
         }
-
     }
 
     public void salePlants(){
@@ -304,6 +332,20 @@ public class Action {
     }
 
     public void plantsInfo(){
+        System.out.println("");
+        System.out.println("Twoje aktualne uprawy: ");
+        listCrops();
 
+        System.out.println("");
+        if(this.myFarmer.getPlants().size() <= 0 ){
+            System.out.println("Brak nasion i sadzonek");
+        } else {
+            int i=1;
+            System.out.println("Twoje nasiona i sadzonki:");
+            for(Plant plant : this.myFarmer.getPlants()){
+                System.out.println(i+" ."+plant);
+                i++;
+            }
+        }
     }
 }

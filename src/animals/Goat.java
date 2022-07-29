@@ -8,6 +8,8 @@ public class Goat extends Animal implements Salable {
     private static final Double COST = 150.00;
     private static final Double PRICE = 100.00;
     private static final String HOUSE = "Farm";
+    private static final String FOOD = "Carrot";
+
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.5;
     private static final Integer TIME_TO_MATURITY = 15;
@@ -70,7 +72,7 @@ public class Goat extends Animal implements Salable {
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada " + WEIGHT_OF_FOOD + "kg na tydzien, z zapasow glownie jablka, marchew i buraki");
+        System.out.println("\t zjada " + WEIGHT_OF_FOOD + "kg na tydzien, z zapasow glownie marchew");
         System.out.println("\t aktualna waga: " + getWeight() + "kg");
     }
 
@@ -111,5 +113,11 @@ public class Goat extends Animal implements Salable {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

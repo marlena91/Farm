@@ -8,6 +8,8 @@ public class Dog extends Animal implements Salable{
     private static final Double COST = 6500.00;
     private static final Double PRICE = 5000.00;
     private static final String HOUSE = "Doghouse";
+    private static final String FOOD = "";
+
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.60;
     private static final Integer TIME_TO_MATURITY = 32;
@@ -111,5 +113,11 @@ public class Dog extends Animal implements Salable{
 
     public void setWeight(Double weight){
         this.weight = weight;
+    }
+
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

@@ -9,6 +9,7 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
     private static final Double COST = 250.00;
     private static final Double PRICE = 200.00;
     private static final String HOUSE = "Farm";
+    private static final String FOOD = "Carrot";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.50;
     private static final Integer TIME_TO_MATURITY = 10;
@@ -92,7 +93,7 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie buraki, marchew i zboze");
+        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie marchew");
         System.out.println("\t aktualna waga: "+ getWeight() +"kg");
     }
 
@@ -135,5 +136,8 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
         this.weight = weight;
     }
 
-
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
+    }
 }

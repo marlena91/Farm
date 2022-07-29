@@ -62,9 +62,9 @@ public class PlantsManager {
             this.buySeeds(potato);
         } else if (Objects.equals(select, "5")) {
             System.out.println("");
-            AppleTree appleTree = new AppleTree();
-            appleTree.info();
-            this.buySeeds(appleTree);
+            Apple apple = new Apple();
+            apple.info();
+            this.buySeeds(apple);
         } else if (Objects.equals(select, "6")) {
             System.out.println("");
             Wheat wheat = new Wheat();
@@ -285,7 +285,5 @@ public class PlantsManager {
     public Harvestable getSinglePlantStock(Integer nr) {
         return (Harvestable) this.myFarmer.getPlantStock().get(nr);
     }
-
-
 }
 

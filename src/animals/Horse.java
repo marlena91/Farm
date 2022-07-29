@@ -8,6 +8,8 @@ public class Horse extends Animal implements Salable{
     private static final Double COST = 8500.00;
     private static final Double PRICE = 7000.00;
     private static final String HOUSE = "Stable";
+    private static final String FOOD = "Apple";
+
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 16.00;
     private static final Integer TIME_TO_MATURITY = 25;
@@ -22,7 +24,6 @@ public class Horse extends Animal implements Salable{
     public Horse(){
         this.cost = COST;
         this.setWeight(AGE_IN_WEEKS*WEIGHT_GAIN_PER_WEEK);
-
     }
 
     public void setName(String name){
@@ -68,9 +69,8 @@ public class Horse extends Animal implements Salable{
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie buraki, jablka i zboze");
+        System.out.println("\t zjada "+ WEIGHT_OF_FOOD+"kg na tydzien, z zapasow glownie jablka ");
         System.out.println("\t aktualna waga: "+ getWeight() +"kg");
-
     }
 
     @Override
@@ -110,5 +110,10 @@ public class Horse extends Animal implements Salable{
 
     public void setWeight(Double weight){
         this.weight = weight;
+    }
+
+    @Override
+    public String getTypeOfFood() {
+        return FOOD;
     }
 }

@@ -3,7 +3,7 @@ package crops;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class AppleTree extends Plant implements Seedable, Harvestable {
+public class Apple extends Plant implements Seedable, Harvestable {
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 5400.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 4600.00;
     private static final Double COST_OF_HARVEST = 11500.00;
@@ -20,7 +20,7 @@ public class AppleTree extends Plant implements Seedable, Harvestable {
     private Double currentAmount;
     private LocalDate dateOfSeed;
 
-    public AppleTree() {
+    public Apple() {
         this.cost = COST;
         this.currentAmount = 0.00;
     }
