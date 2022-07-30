@@ -1,10 +1,7 @@
 package animals;
 
-import building.Outbuilding;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 public class Hen extends Animal implements Collectible, Feedable, Salable {
 
@@ -16,7 +13,7 @@ public class Hen extends Animal implements Collectible, Feedable, Salable {
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.1;
     private static final Integer TIME_TO_MATURITY = 21;
-    private static final Integer WEIGHT_OF_FOOD = 3;
+    private static final Double WEIGHT_OF_FOOD = 3.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 2;
     private LocalDate dateOfBuy;
@@ -130,5 +127,26 @@ public class Hen extends Animal implements Collectible, Feedable, Salable {
     @Override
     public String getTypeOfFood() {
         return FOOD;
+    }
+
+    @Override
+    public Double getKilosOfFood() {
+        return WEIGHT_OF_FOOD;
+    }
+
+    @Override
+    public void gainingWeight(LocalDate today) {
+        System.out.println("TEST zwierze wazy "+getWeight() +" a powinno: "+ getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK);
+        boolean maxWeight = this.weight >= getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK;
+        if(!maxWeight){
+            this.weight += WEIGHT_GAIN_PER_WEEK;
+            System.out.println("TEST ZWIERZE TYJE"+WEIGHT_OF_FOOD);
+            System.out.println("TEST aktualna waga"+this.getWeight());
+        }
+    }
+
+    @Override
+    public void losingWeight() {
+        this.weight -= WEIGHT_GAIN_PER_WEEK;
     }
 }

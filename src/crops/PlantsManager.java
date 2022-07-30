@@ -250,12 +250,18 @@ public class PlantsManager {
         String number = scanner.nextLine();
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-        if (Objects.equals(number, "0") || !pattern.matcher(number).matches()) {
-            this.action.sale();
-        } else {
-            int intNumber = Integer.parseInt(number);
-            this.checkingChosenItem(intNumber);
+        try {
+            if (Objects.equals(number, "0") || !pattern.matcher(number).matches()) {
+                this.action.sale();
+            } else {
+                int intNumber = Integer.parseInt(number);
+                this.checkingChosenItem(intNumber);
+            }
+        } catch(NumberFormatException e) {
+            System.err.println("Zla liczba");
         }
+
+
     }
 
     public void checkingChosenItem(Integer number) {
@@ -266,15 +272,18 @@ public class PlantsManager {
             Harvestable chosenPlant = this.getSinglePlantStock(number - 1);
             System.out.println("Ile ton chcesz sprzedac z dostępnych " + chosenPlant.getCurrentAmount());
             String amount = scanner.nextLine();
-            double amountOfTons = Double.parseDouble(amount);
-
-            chosenPlant.removingKilos(amountOfTons);
-            if (chosenPlant.getCurrentAmount() == 0) {
-                this.myFarmer.removePlantFromStock((Plant) chosenPlant);
+            try {
+                double amountOfTons = Double.parseDouble(amount);
+                chosenPlant.removingKilos(amountOfTons);
+                if (chosenPlant.getCurrentAmount() == 0) {
+                    this.myFarmer.removePlantFromStock((Plant) chosenPlant);
+                }
+                Double price = amountOfTons * (chosenPlant.getPricePerKilo() * 1000);
+                this.myFarmer.addCash(price);
+                System.out.println("Pomyślnie sprzedano");
+            } catch(NumberFormatException e) {
+                System.err.println("Wybierz liczbe calkowita");
             }
-            Double price = amountOfTons * (chosenPlant.getPricePerKilo() * 1000);
-            this.myFarmer.addCash(price);
-            System.out.println("Pomyślnie sprzedano");
         }
     }
 

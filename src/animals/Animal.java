@@ -22,5 +22,8 @@ public abstract class Animal {
     public abstract void addWeight(Double weight);
     public abstract void subtractWeight(Double weight);
     public abstract String getTypeOfFood();
+    public abstract Double getKilosOfFood();
+    public abstract void gainingWeight(LocalDate today);
+    public abstract void losingWeight();
 
 }

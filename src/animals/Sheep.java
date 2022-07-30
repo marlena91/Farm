@@ -13,7 +13,7 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.50;
     private static final Integer TIME_TO_MATURITY = 10;
-    private static final Integer WEIGHT_OF_FOOD = 28;
+    private static final Double WEIGHT_OF_FOOD = 28.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 5;
     private LocalDate dateOfBuy;
@@ -139,5 +139,26 @@ public class Sheep extends Animal implements Collectible, Feedable, Salable {
     @Override
     public String getTypeOfFood() {
         return FOOD;
+    }
+
+    @Override
+    public Double getKilosOfFood() {
+        return WEIGHT_OF_FOOD;
+    }
+
+    @Override
+    public void gainingWeight(LocalDate today) {
+        System.out.println("TEST zwierze wazy "+getWeight() +" a powinno: "+ getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK);
+        boolean maxWeight = this.weight >= getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK;
+        if(!maxWeight){
+            this.weight += WEIGHT_GAIN_PER_WEEK;
+            System.out.println("TEST ZWIERZE TYJE"+WEIGHT_OF_FOOD);
+            System.out.println("TEST aktualna waga"+this.getWeight());
+        }
+    }
+
+    @Override
+    public void losingWeight() {
+        this.weight -= WEIGHT_GAIN_PER_WEEK;
     }
 }

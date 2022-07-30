@@ -1,6 +1,5 @@
 package animals;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -9,11 +8,11 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
     private static final Double COST = 1500.00;
     private static final Double PRICE = 800.00;
     private static final String HOUSE = "Cowshed";
-    private static final String FOOD = "Carrot";
+    private static final String FOOD = "Beetroot";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 5.5;
     private static final Integer TIME_TO_MATURITY = 84;
-    private static final Integer WEIGHT_OF_FOOD = 140;
+    private static final Double WEIGHT_OF_FOOD = 140.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 5;
     private static final Integer AGE_IN_WEEKS = 5;
     private LocalDate dateOfBuy;
@@ -21,8 +20,6 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
     private String name;
     private Double cost;
     private Double weight;
-
-
 
     public Cow() {
         this.cost = COST;
@@ -127,6 +124,27 @@ public class Cow extends Animal implements Collectible, Feedable , Salable{
     @Override
     public String getTypeOfFood() {
         return FOOD;
+    }
+
+    @Override
+    public Double getKilosOfFood() {
+        return WEIGHT_OF_FOOD;
+    }
+
+    @Override
+    public void gainingWeight(LocalDate today) {
+        System.out.println("TEST zwierze wazy "+getWeight() +" a powinno: "+ getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK);
+        boolean maxWeight = this.weight >= getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK;
+        if(!maxWeight){
+            this.weight += WEIGHT_GAIN_PER_WEEK;
+            System.out.println("TEST ZWIERZE TYJE"+WEIGHT_OF_FOOD);
+            System.out.println("TEST aktualna waga"+this.getWeight());
+        }
+    }
+
+    @Override
+    public void losingWeight() {
+        this.weight -= WEIGHT_GAIN_PER_WEEK;
     }
 
     public void setWeight(Double weight){

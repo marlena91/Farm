@@ -7,6 +7,8 @@ public class Bee extends Animal implements Collectible, Salable {
 
     private static final Double COST = 300.00;
     private static final Double PRICE = 300.00;
+    private static final Double WEIGHT_OF_FOOD = 0.00;
+
 
     private static final String HOUSE = "BeeYard";
     private static final String FOOD = "";
@@ -98,5 +100,20 @@ public class Bee extends Animal implements Collectible, Salable {
     @Override
     public String getTypeOfFood() {
         return FOOD;
+    }
+
+    @Override
+    public Double getKilosOfFood() {
+        return WEIGHT_OF_FOOD;
+    }
+
+    @Override
+    public void gainingWeight(LocalDate today) {
+//
+    }
+
+    @Override
+    public void losingWeight() {
+        //
     }
 }

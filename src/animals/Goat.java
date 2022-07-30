@@ -13,7 +13,7 @@ public class Goat extends Animal implements Salable {
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.5;
     private static final Integer TIME_TO_MATURITY = 15;
-    private static final Integer WEIGHT_OF_FOOD = 12;
+    private static final Double WEIGHT_OF_FOOD = 12.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 5;
 
     private static final Integer AGE_IN_WEEKS = 5;
@@ -119,5 +119,26 @@ public class Goat extends Animal implements Salable {
     @Override
     public String getTypeOfFood() {
         return FOOD;
+    }
+
+    @Override
+    public Double getKilosOfFood() {
+        return WEIGHT_OF_FOOD;
+    }
+
+    @Override
+    public void gainingWeight(LocalDate today) {
+        System.out.println("TEST zwierze wazy "+getWeight() +" a powinno: "+ getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK);
+        boolean maxWeight = this.weight >= getAgeInWeeks(today)*WEIGHT_GAIN_PER_WEEK;
+        if(!maxWeight){
+            this.weight += WEIGHT_GAIN_PER_WEEK;
+            System.out.println("TEST ZWIERZE TYJE"+WEIGHT_OF_FOOD);
+            System.out.println("TEST aktualna waga"+this.getWeight());
+        }
+    }
+
+    @Override
+    public void losingWeight() {
+        this.weight -= WEIGHT_GAIN_PER_WEEK;
     }
 }

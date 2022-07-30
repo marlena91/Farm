@@ -119,24 +119,14 @@ public class Action {
 
     public void endWeek() {
         System.out.println("");
-        if(this.myFarmer.getAllAnimals().size()>0){
-            System.out.println("Karmienie zwierzat");
-            for(Animal animal : this.myFarmer.getAllAnimals()){
-                System.out.println(animal);
-                String food = animal.getTypeOfFood();
-                System.out.println(food);
-                for(Plant plant : this.myFarmer.getPlantStock()){
-                    if (plant.getClass().getSimpleName().equals(food)) {
-                        System.out.println(plant + "TAK");
-                    } else {
-                        System.out.println(plant+ "Nie");
-                    }
-                }
+        if (this.myFarmer.getAllAnimals().size() > 0) {
+            System.out.println("Karmienie zwierzat ...");
+            AnimalFeeder animalFeeder = new AnimalFeeder(this.myFarmer, this.time);
+            animalFeeder.feedingAnimals();
             }
-        }
-        if (myFarmer.getCash() <= 0) {
-            System.out.println("Zwierzeta chudna ");
-        }
+
+
+
         System.out.println("Dzieja sie rozne rzeczy");
 
         //rozmonazanie zwierzat
@@ -149,6 +139,8 @@ public class Action {
         this.next();
         this.newWeek();
     }
+
+
 
     public void next() {
         System.out.println("");
@@ -239,8 +231,8 @@ public class Action {
         this.plantsManager.harvestCrop();
     }
 
-    public void listCrops(){
-        if(this.myFarmer.getCrops().size()<=0){
+    public void listCrops() {
+        if (this.myFarmer.getCrops().size() <= 0) {
             System.out.println("Brak upraw");
         } else {
             int i = 1;
@@ -251,7 +243,7 @@ public class Action {
         }
     }
 
-    public void sale(){
+    public void sale() {
         System.out.println("");
         System.out.println("1. Sprzedaz roslin");
         System.out.println("2. Sprzedaz zwierzat");
@@ -260,9 +252,9 @@ public class Action {
 
         if (Objects.equals(select, "1")) {
             this.salePlants();
-        } else if(Objects.equals(select, "2")) {
+        } else if (Objects.equals(select, "2")) {
             this.saleAnimals();
-        } else if(Objects.equals(select, "0")) {
+        } else if (Objects.equals(select, "0")) {
             System.out.println("");
         } else {
             System.out.println("Wybierz 1 lub 2");
@@ -270,14 +262,14 @@ public class Action {
         }
     }
 
-    public void salePlants(){
+    public void salePlants() {
         System.out.println("");
         System.out.println("Wybierz: ");
-        if(this.myFarmer.getPlantStock().size()>0){
-            int i =1;
-            for(Plant plant : this.myFarmer.getPlantStock()){
+        if (this.myFarmer.getPlantStock().size() > 0) {
+            int i = 1;
+            for (Plant plant : this.myFarmer.getPlantStock()) {
                 Harvestable plantToSell = (Harvestable) plant;
-                System.out.println(i+". "+plant + " dostępne " + plantToSell.getCurrentAmount() + " ton, cena za 1kg to "+plantToSell.getPricePerKilo() + "PLN");
+                System.out.format(i + ". " + plant + " cena za 1kg to " + plantToSell.getPricePerKilo() + "PLN dostępne tony: %.1f%n", plantToSell.getCurrentAmount());
                 i++;
             }
             this.plantsManager.chooseItemForSale();
@@ -287,12 +279,12 @@ public class Action {
         }
     }
 
-    public void saleAnimals(){
-        if(this.myFarmer.getAllAnimals().size()>0){
-            int i =1;
-            for(Animal animal : this.myFarmer.getAllAnimals()){
+    public void saleAnimals() {
+        if (this.myFarmer.getAllAnimals().size() > 0) {
+            int i = 1;
+            for (Animal animal : this.myFarmer.getAllAnimals()) {
                 Salable animalToSell = (Salable) animal;
-                System.out.println(i+". "+animal+ " - sprzedaj za "+ animalToSell.getPrice()+"PLN");
+                System.out.println(i + ". " + animal + " - sprzedaj za " + animalToSell.getPrice() + "PLN");
                 i++;
             }
             this.animalsManager.chooseItemForSale();
@@ -302,27 +294,27 @@ public class Action {
         }
     }
 
-    public void stockCheck(){
+    public void stockCheck() {
         System.out.println("");
-        if(myFarmer.getPlantStock().size()>0){
-            System.out.println("Twoje zapasy: ");
+        if (myFarmer.getPlantStock().size() > 0) {
+            System.out.println("Twoje zapasy (w tonach): ");
             int i = 1;
-            for(Plant plant : myFarmer.getPlantStock()){
+            for (Plant plant : myFarmer.getPlantStock()) {
                 Harvestable plantTons = (Harvestable) plant;
-                System.out.println(i+". "+plant + " "+ plantTons.getCurrentAmount()+ "ton");
+                System.out.format(i + ". " + plant + " " + "%.1f%n", plantTons.getCurrentAmount());
             }
         } else {
             System.out.println("Brak zapasow");
         }
     }
 
-    public void animalInfo(){
+    public void animalInfo() {
         System.out.println("");
-        if(myFarmer.getAllAnimals().size()>0){
+        if (myFarmer.getAllAnimals().size() > 0) {
             System.out.println("Twoje zwierzeta - przeglad: ");
             int i = 1;
-            for(Animal animal : myFarmer.getAllAnimals()){
-                System.out.println(i+". " + animal);
+            for (Animal animal : myFarmer.getAllAnimals()) {
+                System.out.println(i + ". " + animal);
                 animal.animalInfoDetailed(this.time.getToday());
                 i++;
             }
@@ -331,19 +323,19 @@ public class Action {
         }
     }
 
-    public void plantsInfo(){
+    public void plantsInfo() {
         System.out.println("");
         System.out.println("Twoje aktualne uprawy: ");
         listCrops();
 
         System.out.println("");
-        if(this.myFarmer.getPlants().size() <= 0 ){
+        if (this.myFarmer.getPlants().size() <= 0) {
             System.out.println("Brak nasion i sadzonek");
         } else {
-            int i=1;
+            int i = 1;
             System.out.println("Twoje nasiona i sadzonki:");
-            for(Plant plant : this.myFarmer.getPlants()){
-                System.out.println(i+" ."+plant);
+            for (Plant plant : this.myFarmer.getPlants()) {
+                System.out.println(i + " ." + plant);
                 i++;
             }
         }
