@@ -4,6 +4,9 @@ import actions.TimeManager;
 import animals.Animal;
 import farmer.Farmer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GoodsCollector {
 
     private final Farmer myFarmer;
@@ -16,15 +19,24 @@ public class GoodsCollector {
 
     public void collect(){
         System.out.println("");
-        System.out.println("Za sprzedane dobra: ");
+        int i = 0;
+        List<String> goods = new ArrayList<>();
         for(Animal animal : this.myFarmer.getAllAnimals()){
             if (animal.isAdult(this.time.getToday())){
-                System.out.println("\t"+animal.collect());
+
+                goods.add(animal.collect());
+                i ++;
             }
         }
-        Double profit = this.myFarmer.getAllAnimals().size() *300.00;
 
-        System.out.println(" zarabiasz: "+profit);
-        this.myFarmer.addCash(profit);
+        if(i>0){
+            System.out.println("Codziennie robiles obchod swojej farmy, zbierajac dobra od swoich zwierzat");
+            System.out.println("Za zebrane: "+goods);
+            Double profit = i *300.00;
+            System.out.println(" zarabiasz: "+profit);
+            this.myFarmer.addCash(profit);
+        }
+
+
     }
 }

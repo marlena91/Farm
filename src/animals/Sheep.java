@@ -47,6 +47,6 @@ public class Sheep extends Animal implements Collectible {
 
     @Override
     public String collect() {
-        return "welne, ";
+        return "welne";
     }
 }

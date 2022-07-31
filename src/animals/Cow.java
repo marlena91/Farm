@@ -14,7 +14,7 @@ public class Cow extends Animal{
     private static final String EDIBLES = "Krowa zywi sie np sruta zbozowa, sianem, burakami, kiszonka traw";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 5.5;
-    private static final Integer TIME_TO_MATURITY = 84;
+    private static final Integer TIME_TO_MATURITY = 20;
     private static final Double WEIGHT_OF_FOOD = 140.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 5;
@@ -46,7 +46,7 @@ public class Cow extends Animal{
 
     @Override
     public String collect() {
-        return "mleko, ";
+        return "mleko";
     }
 
 

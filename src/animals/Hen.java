@@ -13,7 +13,7 @@ public class Hen extends Animal {
     private static final String EDIBLES = "Kura zywi sie np pokrzywa, koniczyna, mniszkiem lekarskim, ziemniakami, marchewka";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.1;
-    private static final Integer TIME_TO_MATURITY = 21;
+    private static final Integer TIME_TO_MATURITY = 14;
     private static final Double WEIGHT_OF_FOOD = 3.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 2;
@@ -45,6 +45,6 @@ public class Hen extends Animal {
 
     @Override
     public String collect() {
-        return "jajka, ";
+        return "jajka";
     }
 }

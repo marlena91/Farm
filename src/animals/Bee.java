@@ -70,6 +70,6 @@ public class Bee extends Animal {
 
     @Override
     public String collect() {
-        return "miod, ";
+        return "miod";
     }
 }

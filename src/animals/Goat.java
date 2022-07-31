@@ -12,7 +12,7 @@ public class Goat extends Animal {
     private static final String EDIBLES = "Koza zywi sie np sianem, jablkami, marchewka, burakami";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 0.5;
-    private static final Integer TIME_TO_MATURITY = 15;
+    private static final Integer TIME_TO_MATURITY = 10;
     private static final Double WEIGHT_OF_FOOD = 12.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 5;
@@ -45,6 +45,6 @@ public class Goat extends Animal {
 
     @Override
     public String collect() {
-        return "mleko, ";
+        return "mleko";
     }
 }

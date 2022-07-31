@@ -14,7 +14,7 @@ public class Dog extends Animal {
     private static final String EDIBLES = "Pies zywi sie np specjalistyczna karma, miesem, zbozem, jajkami, nabialem czy rosolem";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 1.60;
-    private static final Integer TIME_TO_MATURITY = 32;
+    private static final Integer TIME_TO_MATURITY = 19;
     private static final Double WEIGHT_OF_FOOD = 10.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 12;

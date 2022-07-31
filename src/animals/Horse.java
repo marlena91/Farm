@@ -13,7 +13,7 @@ public class Horse extends Animal{
     private static final String EDIBLES = "Kon zywi sie np sianem, zbozem, jablkami, burakami";
 
     private static final Double WEIGHT_GAIN_PER_WEEK = 16.00;
-    private static final Integer TIME_TO_MATURITY = 25;
+    private static final Integer TIME_TO_MATURITY = 15;
     private static final Double WEIGHT_OF_FOOD = 56.00;
     private static final Integer CHANCE_OF_REPRODUCTION = 10;
     private static final Integer AGE_IN_WEEKS = 5;
