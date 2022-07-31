@@ -9,6 +9,7 @@ public class Hen extends Animal {
     private static final Double PRICE = 1.00;
     private static final String HOUSE = "Henhouse";
     private static final String FOOD = "Potato";
+    private static final String FOOD_PL = "Ziemniaki";
     private static final String NAME = "Kura";
     private static final String EDIBLES = "Kura zywi sie np pokrzywa, koniczyna, mniszkiem lekarskim, ziemniakami, marchewka";
 
@@ -41,6 +42,7 @@ public class Hen extends Animal {
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

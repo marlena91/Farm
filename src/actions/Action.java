@@ -1,10 +1,7 @@
 package actions;
 
 import animals.*;
-import animals.actions.AnimalFeeder;
-import animals.actions.AnimalMultiplicationer;
 import animals.actions.AnimalsManager;
-import animals.interfaces.Salable;
 import area.actions.FieldsManager;
 import area.Ground;
 import building.actions.BuildingsManager;
@@ -19,12 +16,12 @@ import java.util.Scanner;
 
 public class Action {
 
-    private Farmer myFarmer;
-    private TimeManager time;
-    private BuildingsManager buildingsManager;
-    private FieldsManager fieldsManager;
-    private PlantsManager plantsManager;
-    private AnimalsManager animalsManager;
+    private final Farmer myFarmer;
+    private final TimeManager time;
+    private final BuildingsManager buildingsManager;
+    private final FieldsManager fieldsManager;
+    private final PlantsManager plantsManager;
+    private final AnimalsManager animalsManager;
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -32,13 +29,32 @@ public class Action {
         this.myFarmer = myFarmer;
         this.time = time;
         this.buildingsManager = new BuildingsManager(this.myFarmer);
-        this.fieldsManager = new FieldsManager(this.myFarmer, this.time, this);
+        this.fieldsManager = new FieldsManager(this.myFarmer, this);
         this.plantsManager = new PlantsManager(this.myFarmer, this.time, this, this.buildingsManager);
         this.animalsManager = new AnimalsManager(this.myFarmer, this.time, this, this.buildingsManager);
     }
 
+    public void firstDay(){
+        System.out.println("\n");
+        System.out.println("Witaj, "+this.myFarmer.getName()+"!");
+        System.out.println("\n");
+        System.out.println("Dzisiaj otrzymales odpowiedz na swoje podanie dotyczace dotacji z Unii Europejskiej");
+        System.out.println("Przydzielono Ci 2 miliony zlotych. Zarzadzaj nimi odpowiednio i uzyskaj status rolnika doskonalego. Powodzenia!");
+        System.out.println("\n");
+        System.out.println("Gre wygrywasz w momencie:");
+        System.out.println("\t~ posiadania minimum 20 hektarow ziemi,");
+        System.out.println("\t~ minimum 5 roznych gatunkow upraw przechowywanych w Twojej stodole");
+        System.out.println("\t~ oraz minimum 5 roznych gatunkow zwierzat.");
+        System.out.println("Powodzenia!");
+        System.out.println("\n");
+        System.out.println("P.S. W pierwszej kolejnosci pomysl o stodole, bez niej nie bedziesz mial gdzie przechowywac swoich upraw.");
+        System.out.println("\n");
+        this.next();
+        this.newWeek();
+    }
+
     public void newWeek() {
-        System.out.println("");
+        System.out.println("\n");
         this.time.start();
         System.out.println(this.myFarmer);
         this.fieldsManager.generateRandomFarms();
@@ -46,7 +62,7 @@ public class Action {
     }
 
     public void startText() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Wybierz akcję: ");
         System.out.println("1. Zakup farmy");
         System.out.println("2. Zakup/sprzedaz ziemi uprawnej");
@@ -58,13 +74,13 @@ public class Action {
         System.out.println("8. Sprawdzenie stanu zapasow");
         System.out.println("9. Przejrzenie informacji o posiadanych zwierzetach");
         System.out.println("10. Przejrzenie informacji o posiadanych sadzonkach i asadzonych roslinach");
-        System.out.println("11. Podsumowanie tygodnia - przejdz do nastepnej rundy");
+        System.out.println("11. Przejrzenie informacji o posiadanej ziemi");
+        System.out.println("12. Data, gotowka");
+        System.out.println("13. Podsumowanie tygodnia - przejdz do nastepnej rundy");
     }
 
     public void mainChoices() {
         this.startText();
-
-        System.out.println("test: " + myFarmer.getFields());
         String selectAction = scanner.nextLine();
 
         if (Objects.equals(selectAction, "1")) {
@@ -107,7 +123,16 @@ public class Action {
             this.plantsInfo();
             this.next();
             this.mainChoices();
-        } else if (Objects.equals(selectAction, "11")) {
+        }else if (Objects.equals(selectAction, "11")) {
+            this.fieldsInfo();
+            this.next();
+            this.mainChoices();
+        } else if (Objects.equals(selectAction, "12")) {
+            System.out.println("Dzisiejsza data: "+this.time.getToday());
+            System.out.println("Twoja dostepna gotowka: "+this.myFarmer.getCash());
+            this.next();
+            this.mainChoices();
+        } else if (Objects.equals(selectAction, "13")) {
             System.out.println("Koniec tygodnia");
             this.endWeek();
         } else {
@@ -124,21 +149,21 @@ public class Action {
         endWeek.collectGoods();
         endWeek.protectionAgainstPests();
 
+        endWeek.checkIfWon();
+
         this.time.addWeek();
         this.next();
         this.newWeek();
     }
 
-
-
     public void next() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Dalej? Wciśnij enter.");
         scanner.nextLine();
     }
 
     public void buyNewFarm() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Farmy dostepne w tym tygodniu: ");
         int i = 1;
         for (Ground field : fieldsManager.getRandomFarms()) {
@@ -151,7 +176,7 @@ public class Action {
     }
 
     public void buyOrSellNewField() {
-        System.out.println("");
+        System.out.println("\n");
         this.checkingIfFarmerHasFarm();
         System.out.println("Aktualnie posiadasz " + this.fieldsManager.getFarmArea() + "ha pola uprawnego na swoich farmach " +
                 "oraz " + this.myFarmer.getAdditionalArea().size() + "ha pola uprawnego, poza Twoimi farmami");
@@ -168,8 +193,8 @@ public class Action {
     }
 
     public void buyNewBuilding() {
-        System.out.println("");
-        if (this.buildingsManager.avalaiblePlacesForBuildings() == 0) {
+        System.out.println("\n");
+        if (this.buildingsManager.availablePlacesForBuildings() == 0) {
             System.out.println("Nie masz dostepnego miejsca na nowe budynki. Udaj sie do punktu 1 i dokup farme z wolnym miejscem");
             this.next();
             this.mainChoices();
@@ -178,7 +203,7 @@ public class Action {
     }
 
     public void buyAnimalsOrPlants() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("1. Kup nasiona/sadzonki");
         System.out.println("2. Kup male zwierze");
         System.out.println("0. Cofnij");
@@ -196,7 +221,7 @@ public class Action {
     }
 
     public void plantingPlants() {
-        System.out.println("");
+        System.out.println("\n");
         this.checkingIfFarmerHasFarm();
         if (this.fieldsManager.checkingIsFreeArea() > 0) {
             this.checkingHasFarmerSeeds();
@@ -233,7 +258,7 @@ public class Action {
     }
 
     public void sale() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("1. Sprzedaz roslin");
         System.out.println("2. Sprzedaz zwierzat");
         System.out.println("0. Cofnij");
@@ -244,7 +269,7 @@ public class Action {
         } else if (Objects.equals(select, "2")) {
             this.saleAnimals();
         } else if (Objects.equals(select, "0")) {
-            System.out.println("");
+            System.out.println("\n");
         } else {
             System.out.println("Wybierz 1 lub 2");
             this.sale();
@@ -252,7 +277,7 @@ public class Action {
     }
 
     public void salePlants() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Wybierz: ");
         if (this.myFarmer.getPlantStock().size() > 0) {
             int i = 1;
@@ -272,8 +297,7 @@ public class Action {
         if (this.myFarmer.getAllAnimals().size() > 0) {
             int i = 1;
             for (Animal animal : this.myFarmer.getAllAnimals()) {
-                Salable animalToSell = (Salable) animal;
-                System.out.println(i + ". " + animal + " - sprzedaj za " + animalToSell.getPrice() + "PLN");
+                System.out.println(i + ". " + animal + " - sprzedaj za " + animal.getPrice() + "PLN");
                 i++;
             }
             this.animalsManager.chooseItemForSale();
@@ -284,13 +308,14 @@ public class Action {
     }
 
     public void stockCheck() {
-        System.out.println("");
+        System.out.println("\n");
         if (myFarmer.getPlantStock().size() > 0) {
             System.out.println("Twoje zapasy (w tonach): ");
             int i = 1;
             for (Plant plant : myFarmer.getPlantStock()) {
                 Harvestable plantTons = (Harvestable) plant;
                 System.out.format(i + ". " + plant + " " + "%.1f%n", plantTons.getCurrentAmount());
+                i++;
             }
         } else {
             System.out.println("Brak zapasow");
@@ -298,7 +323,7 @@ public class Action {
     }
 
     public void animalInfo() {
-        System.out.println("");
+        System.out.println("\n");
         if (myFarmer.getAllAnimals().size() > 0) {
             System.out.println("Twoje zwierzeta - przeglad: ");
             int i = 1;
@@ -313,11 +338,11 @@ public class Action {
     }
 
     public void plantsInfo() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Twoje aktualne uprawy: ");
         listCrops();
 
-        System.out.println("");
+        System.out.println("\n");
         if (this.myFarmer.getPlants().size() <= 0) {
             System.out.println("Brak nasion i sadzonek");
         } else {
@@ -328,5 +353,11 @@ public class Action {
                 i++;
             }
         }
+    }
+
+    public void fieldsInfo(){
+        System.out.println("\n");
+        System.out.println("Twoja ziemia: ");
+        System.out.println(this.myFarmer.getFields());
     }
 }

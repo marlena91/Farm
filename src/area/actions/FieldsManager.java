@@ -1,13 +1,11 @@
 package area.actions;
 
 import actions.Action;
-import actions.TimeManager;
 import area.FertileField;
 import area.Ground;
 import area.interfaces.Field;
 import farmer.Farmer;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,13 +15,12 @@ import java.util.regex.Pattern;
 public class FieldsManager {
 
     private final Farmer myFarmer;
-    private Scanner scanner;
-    private Action action;
-    private Time time;
+    private final Scanner scanner;
+    private final Action action;
     private List<Ground> randomFarms;
 
 
-    public FieldsManager(Farmer myFarmer, TimeManager time, Action action) {
+    public FieldsManager(Farmer myFarmer, Action action) {
         this.myFarmer = myFarmer;
         this.scanner = new Scanner(System.in);
         this.action = action;
@@ -41,7 +38,7 @@ public class FieldsManager {
     }
 
     public void buyFarm() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Wybierz nr farmy do zakupu. Jesli chcesz zrezygnowac wcisnij '0'");
         System.out.println("Twoja dostepna gotowka: " + myFarmer.getCash() + " PLN");
 
@@ -97,7 +94,7 @@ public class FieldsManager {
 
     public void buyAdditionalFertileField() {
         System.out.println("");
-        System.out.println("1. Tak, chce dokupic 1ha pola za 600tys");
+        System.out.println("1. Tak, chce dokupic 1ha pola za 300tys");
         if (this.myFarmer.getAdditionalArea().size() >= 1) {
             System.out.println("2. Chce sprzedac moje pola uprawne");
         }
@@ -135,9 +132,9 @@ public class FieldsManager {
     }
 
     public void finalPurchaseAddField() {
-        if (this.myFarmer.getCash() >= 600000.00) {
+        if (this.myFarmer.getCash() >= 300000.00) {
             this.myFarmer.addField(new FertileField());
-            this.myFarmer.subtractCash(600000.00);
+            this.myFarmer.subtractCash(300000.00);
             System.out.println("Pomyslnie zakupiono ziemie");
         } else {
             System.out.println("Za malo pieniedzy na zakup tej ziemi ");

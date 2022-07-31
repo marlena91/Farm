@@ -10,6 +10,7 @@ public class Cow extends Animal{
     private static final Double PRICE = 800.00;
     private static final String HOUSE = "Cowshed";
     private static final String FOOD = "Beetroot";
+    private static final String FOOD_PL = "Buraki";
     private static final String NAME = "Krowa";
     private static final String EDIBLES = "Krowa zywi sie np sruta zbozowa, sianem, burakami, kiszonka traw";
 
@@ -42,6 +43,7 @@ public class Cow extends Animal{
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

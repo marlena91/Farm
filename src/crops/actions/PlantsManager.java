@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 public class PlantsManager {
 
     private final Farmer myFarmer;
-    private Scanner scanner;
-    private Action action;
-    private TimeManager time;
-    private BuildingsManager buildingsManager;
+    private final Scanner scanner;
+    private final Action action;
+    private final TimeManager time;
+    private final BuildingsManager buildingsManager;
 
     public PlantsManager(Farmer myFarmer, TimeManager time, Action action, BuildingsManager buildingsManager) {
         this.myFarmer = myFarmer;
@@ -31,7 +31,7 @@ public class PlantsManager {
 
 
     public void buySeeds() {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("W naszej ofercie mamy dostepne nastepujace produkty: ");
         System.out.println("1. Nasiona buraka");
         System.out.println("2. Nasiona marchewki");
@@ -42,39 +42,33 @@ public class PlantsManager {
         System.out.println("0. Cofnij");
 
         String select = scanner.nextLine();
+        System.out.println("\n");
 
         if (Objects.equals(select, "1")) {
-            System.out.println("");
             Beetroot beetroot = new Beetroot();
             beetroot.info();
             this.buySeeds(beetroot);
         } else if (Objects.equals(select, "2")) {
-            System.out.println("");
             Carrot carrot = new Carrot();
             carrot.info();
             this.buySeeds(carrot);
         } else if (Objects.equals(select, "3")) {
-            System.out.println("");
             Lettuce lettuce = new Lettuce();
             lettuce.info();
             this.buySeeds(lettuce);
         } else if (Objects.equals(select, "4")) {
-            System.out.println("");
             Potato potato = new Potato();
             potato.info();
             this.buySeeds(potato);
         } else if (Objects.equals(select, "5")) {
-            System.out.println("");
             Apple apple = new Apple();
             apple.info();
             this.buySeeds(apple);
         } else if (Objects.equals(select, "6")) {
-            System.out.println("");
             Wheat wheat = new Wheat();
             wheat.info();
             this.buySeeds(wheat);
         } else if (Objects.equals(select, "0")) {
-            System.out.println("");
             this.action.buyAnimalsOrPlants();
         } else {
             System.out.println("Wybierz 1-6");
@@ -83,7 +77,7 @@ public class PlantsManager {
     }
 
     public void buySeeds(Plant plant) {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Kupic za " + plant.getCost() + "PLN?");
         System.out.println("Aktualny stan konta: " + myFarmer.getCash() + " PLN");
         System.out.println("1.TAK");
@@ -92,7 +86,7 @@ public class PlantsManager {
         if (Objects.equals(select, "1")) {
             myFarmer.addPlant(plant);
         } else if (Objects.equals(select, "0")) {
-            System.out.println("");
+            System.out.println("\n");
         } else {
             System.out.println("Zly wybor");
         }
@@ -176,7 +170,7 @@ public class PlantsManager {
     }
 
     public void harvestCrop() {
-        System.out.println("");
+        System.out.println("\n");
         if (this.buildingsManager.checkBuildingInFarm("Barn")) {
             this.chooseCropToHarvest();
         } else {
@@ -203,7 +197,7 @@ public class PlantsManager {
     }
 
     public void harvestCrop(Harvestable crop) {
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Chcesz zebrac " + crop);
         System.out.println("Koszt zbioru to: " + crop.getCostOfHarvest() + "PLN");
         System.out.println("1.Zbierz");

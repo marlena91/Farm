@@ -72,7 +72,7 @@ public class AnimalFeeder {
     }
 
     private void feedingWithMoney(Animal animal, Double foodWeight) {
-        Double priceForFood = foodWeight * 25.00;
+        Double priceForFood = foodWeight * 5.00;
         if (myFarmer.getCash() >= priceForFood) {
             this.myFarmer.subtractCash(priceForFood);
             animal.gainingWeight(this.time.getToday());

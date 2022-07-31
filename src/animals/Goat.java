@@ -8,6 +8,7 @@ public class Goat extends Animal {
     private static final Double PRICE = 100.00;
     private static final String HOUSE = "Farm";
     private static final String FOOD = "Carrot";
+    private static final String FOOD_PL = "Marchew";
     private static final String NAME = "Koza";
     private static final String EDIBLES = "Koza zywi sie np sianem, jablkami, marchewka, burakami";
 
@@ -41,6 +42,7 @@ public class Goat extends Animal {
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

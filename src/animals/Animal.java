@@ -22,6 +22,7 @@ public abstract class Animal implements Salable, Collectible {
     protected String food;
     protected String name;
     protected String edibles;
+    protected String foodPl;
 
     protected LocalDate dateOfBuy;
 
@@ -56,8 +57,9 @@ public abstract class Animal implements Salable, Collectible {
         } else {
             System.out.println("\t dorosle zwierze gotowe do rozmnazania");
         }
-        System.out.println("\t zjada "+ weightOfFood+"kg na tydzien");
-        System.out.println("\t aktualna waga: "+ getWeight() +"kg");
+        System.out.println("\t rodzaj jedzenia: "+foodPl);
+        System.out.println("\t ilosc jedzenia na tydzien: " + weightOfFood + "kg = "+ weightOfFood*5.00 + "PLN na tydzien");
+        System.out.format("\t aktualna waga [kg]: %.1f%n", getWeight());
     }
 
     public void info() {
@@ -66,7 +68,7 @@ public abstract class Animal implements Salable, Collectible {
         System.out.println("Koszt zakupu: " + cost + "PLN");
         System.out.println("Tempo przybierania na wadze: " + weightGainPerWeek + "kg/tydzien");
         System.out.println("Czas wzrostu do dojrzalosci: " + timeToMaturity + " tygodni");
-        System.out.println("Ilosc jedzenia na tydzien: " + weightOfFood + "kg");
+        System.out.println("Ilosc jedzenia na tydzien: " + weightOfFood + "kg = "+ weightOfFood*5.00 + "PLN na tydzien");
         System.out.println(edibles);
         System.out.println("Szanse na rozmnozenie: "+chanceOfReproduction+"%");
     }
@@ -107,7 +109,7 @@ public abstract class Animal implements Salable, Collectible {
     }
 
     public Boolean isAdult(LocalDate today) {
-        return getAgeInWeeks(today)>=timeToMaturity;
+        return getAgeInWeeks(today)>=timeToMaturity+ageInWeeks;
     }
 
     public abstract String collect();

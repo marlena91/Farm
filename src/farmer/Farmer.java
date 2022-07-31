@@ -25,11 +25,15 @@ public class Farmer {
     private List<Plant> plantStock = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
-    private static final Double DEFAULT_CASH_FOR_START = 6000000.00;
+    private static final Double DEFAULT_CASH_FOR_START = 2000000.00;
 
     public Farmer(String name) {
         this.name = name;
         this.cash = DEFAULT_CASH_FOR_START;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Double getCash() {

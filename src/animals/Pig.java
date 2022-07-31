@@ -8,6 +8,7 @@ public class Pig extends Animal{
     private static final Double PRICE = 700.00;
     private static final String HOUSE = "Pighouse";
     private static final String FOOD = "Beetroot";
+    private static final String FOOD_PL = "Buraki";
     private static final String NAME = "Swinia";
     private static final String EDIBLES = "Swinia zywi sie np sianem, zbozem, jablkami, burakami";
 
@@ -39,6 +40,7 @@ public class Pig extends Animal{
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

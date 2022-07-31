@@ -25,10 +25,11 @@ public class EventsCreator {
                 "Ogromna ulewa spowodowala powodz wymyla jedno z Twoich pol razem z cala roslinnoscia na nim zasiana: ",
                 "Robak typu stonka urzadzil sobie na jednym z Twoich pole impreze, calkowicie zniszczyl jedno pole z: ",
                 "To byl zwykly sloneczny dzien kiedy na jednym z Twoich pol wyladowalo UFO teraz nie masz juz roslin masz kregi na: ",
-                "Strajk GMO okupuje jedno z Twoich pol, calkowicie zniszyli uprawe: "
+                "Strajk GMO okupuje jedno z Twoich pol, calkowicie zniszyli uprawe: ",
+                "Przyszla ogromna susza, starales sie jak mogles ale niestety jedna z Twoich upraw calkowicie wyschla: "
         );
 
-        RandomInteger randomEvent = new RandomInteger(0, 4);
+        RandomInteger randomEvent = new RandomInteger(0, events.size()-1);
         String event = events.get(randomEvent.getRandom());
 
         RandomInteger randomCrop = new RandomInteger(0, this.myFarmer.getCrops().size()-1);

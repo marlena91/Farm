@@ -6,7 +6,7 @@ public class FertileField implements Field {
 
     private static final Integer AREA = 1;
 
-    private Integer area;
+    private final Integer area;
     private Integer freeArea;
 
     public FertileField(){
@@ -34,6 +34,6 @@ public class FertileField implements Field {
 
     @Override
     public String toString() {
-        return "FertileField, freearea: "+ getFreeArea();
+        return "\n\t~ Pole uprawne 1ha";
     }
 }

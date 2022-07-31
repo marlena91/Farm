@@ -18,10 +18,6 @@ public abstract class Outbuilding {
         this.value = value;
     }
 
-    public Double getValue() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

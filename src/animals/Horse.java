@@ -9,6 +9,7 @@ public class Horse extends Animal{
     private static final Double PRICE = 7000.00;
     private static final String HOUSE = "Stable";
     private static final String FOOD = "Apple";
+    private static final String FOOD_PL = "Jablka";
     private static final String NAME = "Kon";
     private static final String EDIBLES = "Kon zywi sie np sianem, zbozem, jablkami, burakami";
 
@@ -41,6 +42,7 @@ public class Horse extends Animal{
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

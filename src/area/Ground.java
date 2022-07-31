@@ -4,11 +4,11 @@ import area.interfaces.Field;
 
 public class Ground implements Field {
 
-    private Integer area;
+    private final Integer area;
     private Integer freeArea;
 
     private Integer numberOfBuildings;
-    private Double value;
+    private final Double value;
 
     private static final Double COST_OF_ONE_HECTARE = 400000.00;
 
@@ -43,8 +43,8 @@ public class Ground implements Field {
 
     @Override
     public String toString() {
-        return "\t~Pole: " +
-                "powierzchnia: " + area + "ha, maksymalna liczba budynkow: " + numberOfBuildings +", wartosc: "+value + ", freearea: "+getFreeArea();
+        return "\n\t~ Pole: " +
+                "powierzchnia: " + area + "ha, maksymalna liczba budynkow: " + numberOfBuildings +", wartosc: "+value ;
     }
 
     @Override

@@ -65,7 +65,7 @@ public class Bee extends Animal {
 
     @Override
     public Boolean isAdult(LocalDate today) {
-        return false;
+        return true;
     }
 
     @Override

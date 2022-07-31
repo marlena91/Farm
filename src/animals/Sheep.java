@@ -10,6 +10,7 @@ public class Sheep extends Animal implements Collectible {
     private static final Double PRICE = 200.00;
     private static final String HOUSE = "Farm";
     private static final String FOOD = "Carrot";
+    private static final String FOOD_PL = "Marchew";
     private static final String NAME = "Owca";
     private static final String EDIBLES = "Owca zywi sie np sianem, zbozem, marchewka, burakami";
 
@@ -43,6 +44,7 @@ public class Sheep extends Animal implements Collectible {
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override

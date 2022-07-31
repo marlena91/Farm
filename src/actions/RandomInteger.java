@@ -4,8 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomInteger {
 
-    private Integer min;
-    private Integer max;
+    private final Integer min;
+    private final Integer max;
 
     public RandomInteger(Integer min, Integer max){
         this.min = min;

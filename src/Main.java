@@ -1,9 +1,7 @@
 import actions.*;
-import area.Ground;
 import farmer.Farmer;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +15,7 @@ public class Main {
         TimeManager time = new TimeManager();
         Action action = new Action(myFarmer, time);
 
-        action.newWeek();
+        action.firstDay();
 
     }
 }

@@ -28,9 +28,7 @@ public class BeeYard extends Outbuilding implements HouseForPets {
     }
 
     @Override
-    public void newAnimal(LocalDate date) {
-        //
-    }
+    public void newAnimal(LocalDate date) {}
 
     @Override
     public String toString() {

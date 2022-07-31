@@ -10,6 +10,8 @@ public class Dog extends Animal {
     private static final Double PRICE = 5000.00;
     private static final String HOUSE = "Doghouse";
     private static final String FOOD = "";
+    private static final String FOOD_PL = "Specjalistyczna karma dla psow";
+
     private static final String NAME = "Pies";
     private static final String EDIBLES = "Pies zywi sie np specjalistyczna karma, miesem, zbozem, jajkami, nabialem czy rosolem";
 
@@ -42,6 +44,7 @@ public class Dog extends Animal {
         this.name = NAME;
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
+        this.foodPl = FOOD_PL;
     }
 
     @Override
