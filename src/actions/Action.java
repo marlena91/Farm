@@ -122,6 +122,7 @@ public class Action {
         endWeek.reproductionAnimals();
         endWeek.randomEvent();
         endWeek.collectGoods();
+        endWeek.protectionAgainstPests();
 
         this.time.addWeek();
         this.next();

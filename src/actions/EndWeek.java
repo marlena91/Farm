@@ -42,13 +42,21 @@ public class EndWeek {
             EventsCreator eventsCreator = new EventsCreator(this.myFarmer, this.plantsManager);
             eventsCreator.createRandomEvent();
         }
-
     }
 
     public void collectGoods(){
         if(!myFarmer.getAllAnimals().isEmpty()){
             GoodsCollector goodsCollector = new GoodsCollector(this.myFarmer, this.time);
             goodsCollector.collect();
+        }
+    }
+
+    public void protectionAgainstPests(){
+        if(!myFarmer.getCrops().isEmpty()){
+            Double cost = myFarmer.getCrops().size() * 300.00;
+            System.out.println("");
+            System.out.println("Ponosisz cotygodniowe koszty ochrony przed szkodnikami "+ cost+ "PLN");
+            this.myFarmer.subtractCash(cost);
         }
     }
 }
