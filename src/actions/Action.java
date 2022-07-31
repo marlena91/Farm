@@ -1,8 +1,6 @@
 package actions;
 
-import animals.Animal;
-import animals.AnimalsManager;
-import animals.Salable;
+import animals.*;
 import area.FieldsManager;
 import area.Ground;
 import building.BuildingsManager;
@@ -12,11 +10,8 @@ import crops.PlantsManager;
 import crops.Seedable;
 import farmer.Farmer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Action {
 
@@ -123,13 +118,15 @@ public class Action {
             System.out.println("Karmienie zwierzat ...");
             AnimalFeeder animalFeeder = new AnimalFeeder(this.myFarmer, this.time);
             animalFeeder.feedingAnimals();
+            System.out.println("..... karmienie zakonczone");
             }
 
+        if (this.myFarmer.getAllAnimals().size() > 0) {
+            AnimalMultiplicationer animalMultiplicationer = new AnimalMultiplicationer(this.myFarmer, this.time);
+            animalMultiplicationer.animalReproduction();
+        }
 
 
-        System.out.println("Dzieja sie rozne rzeczy");
-
-        //rozmonazanie zwierzat
 
 
         //uprawy

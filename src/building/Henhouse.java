@@ -1,12 +1,15 @@
 package building;
 
 import animals.Animal;
+import animals.Hen;
+import animals.Pig;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class Henhouse extends Outbuilding implements HouseForPets{
+public class Henhouse extends Outbuilding implements HouseForPets {
 
-    public Henhouse(Double value){
+    public Henhouse(Double value) {
         super(value);
     }
 
@@ -25,12 +28,15 @@ public class Henhouse extends Outbuilding implements HouseForPets{
         animals.remove(animal);
     }
 
+    public void newAnimal(LocalDate date) {
+        Hen hen = new Hen(date);
+        animals.add(hen);
+    }
+
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~Kurnik. Zwierzeta w kurniku: "+animals +"\n";
-        } else {
-            return "\t~Kurnik,\n";
-        }
+
+        return "\t~Kurnik, ";
+
     }
 }

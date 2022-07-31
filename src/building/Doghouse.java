@@ -1,10 +1,13 @@
 package building;
 
 import animals.Animal;
+import animals.Cow;
+import animals.Dog;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class Doghouse extends Outbuilding implements HouseForPets{
+public class Doghouse extends Outbuilding implements HouseForPets {
     public Doghouse(Double value) {
         super(value);
     }
@@ -24,12 +27,13 @@ public class Doghouse extends Outbuilding implements HouseForPets{
         animals.remove(animal);
     }
 
+    public void newAnimal(LocalDate date) {
+        Dog dog = new Dog(date);
+        animals.add(dog);
+    }
+
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~Zagroda dla psow. Zwierzeta w zagrodzie: "+animals +"\n";
-        } else {
-            return "\t~Zagroda dla psow,\n";
-        }
+        return "\t~Zagroda dla psow, ";
     }
 }

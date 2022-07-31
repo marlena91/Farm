@@ -4,13 +4,11 @@ import actions.RandomInteger;
 
 public class RandomFarm {
 
-    private Integer minArea = 1;
-    private Integer maxArea = 4;
-    private Integer minBuilding = 1;
-    private Integer maxBuilding = 2;
-
-
     public Ground generateRandomFarm() {
+        int maxArea = 4;
+        int minArea = 1;
+        int minBuilding = 1;
+        int maxBuilding = 2;
         RandomInteger size = new RandomInteger(minArea, maxArea);
         RandomInteger numberOfBuildings = new RandomInteger(minBuilding, maxBuilding);
         return new Ground(size.getRandom(), numberOfBuildings.getRandom());

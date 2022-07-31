@@ -1,11 +1,16 @@
 package building;
 
+import actions.RandomInteger;
 import animals.Animal;
+import animals.Goat;
+import animals.Sheep;
+import area.Ground;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Farm extends Outbuilding implements HouseForPets {
-    public Farm(Double value){
+    public Farm(Double value) {
         super(value);
     }
 
@@ -21,15 +26,23 @@ public class Farm extends Outbuilding implements HouseForPets {
 
     @Override
     public void deleteAnimal(Animal animal) {
-     animals.remove(animal);
+        animals.remove(animal);
+    }
+
+    public void newAnimal(LocalDate date) {
+        RandomInteger random = new RandomInteger(1, 2);
+        if (random.getRandom() == 1) {
+            animals.add(new Goat(date));
+        } else {
+            animals.add(new Sheep(date));
+        }
+
     }
 
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~Zagroda. Zwierzeta w zagrodzie: "+animals +"\n";
-        } else {
-            return "\t~Zagroda,\n";
-        }
+
+        return "\t~Zagroda, ";
+
     }
 }

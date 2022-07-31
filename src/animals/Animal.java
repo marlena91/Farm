@@ -1,29 +1,110 @@
 package animals;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
-public abstract class Animal {
+public abstract class Animal implements Salable {
 
-    public abstract Double getCost();
+    protected Double cost;
+    protected Double price;
+    protected Double weight;
+    protected Double weightGainPerWeek;
+    protected Double weightOfFood;
 
-    public abstract void info();
+    protected Integer timeToMaturity;
+    protected Integer chanceOfReproduction;
+    protected Integer ageInWeeks;
 
-    public abstract void animalInfoDetailed(LocalDate today);
+    protected String house;
+    protected String food;
+    protected String name;
+    protected String edibles;
 
-    public abstract long howManyWeeksAfterBuying(LocalDate today);
+    protected LocalDate dateOfBuy;
 
-    public abstract Integer getAgeInWeeks(LocalDate today);
+    public Double getCost(){
+        return cost;
+    }
 
-    public abstract void setDateOfBuy(LocalDate date);
+    public void setWeight(Double weight){
+        this.weight = weight;
+    }
 
-    public abstract Integer getWeeksToMaturity(LocalDate date);
+    public String getHouse() {
+        return house;
+    }
 
-    public abstract Double getWeight();
-    public abstract void addWeight(Double weight);
-    public abstract void subtractWeight(Double weight);
-    public abstract String getTypeOfFood();
-    public abstract Double getKilosOfFood();
-    public abstract void gainingWeight(LocalDate today);
-    public abstract void losingWeight();
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getTypeOfFood() {
+        return food;
+    }
+
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    public void animalInfoDetailed(LocalDate today) {
+        System.out.println("\t wiek: "+ this.getAgeInWeeks(today)+ " tygodni" );
+        if(getWeeksToMaturity(today)>=0){
+            System.out.println("\t do osiagniecia dojrzalosci pozostalo: "+ this.getWeeksToMaturity(today)+" tygodni");
+        } else {
+            System.out.println("\t dorosle zwierze gotowe do rozmnazania");
+        }
+        System.out.println("\t zjada "+ weightOfFood+"kg na tydzien");
+        System.out.println("\t aktualna waga: "+ getWeight() +"kg");
+    }
+
+    public void info() {
+        System.out.println("");
+        System.out.println(name);
+        System.out.println("Koszt zakupu: " + cost + "PLN");
+        System.out.println("Tempo przybierania na wadze: " + weightGainPerWeek + "kg/tydzien");
+        System.out.println("Czas wzrostu do dojrzalosci: " + timeToMaturity + " tygodni");
+        System.out.println("Ilosc jedzenia na tydzien: " + weightOfFood + "kg");
+        System.out.println(edibles);
+        System.out.println("Szanse na rozmnozenie: "+chanceOfReproduction+"%");
+    }
+
+    public long howManyWeeksAfterBuying(LocalDate today) {
+        return this.dateOfBuy.until(today, ChronoUnit.WEEKS);
+    }
+
+    public Integer getAgeInWeeks(LocalDate today) {
+        return Math.toIntExact(ageInWeeks + howManyWeeksAfterBuying(today));
+    }
+
+    public void setDateOfBuy(LocalDate date) {
+        this.dateOfBuy = date;
+    }
+
+    public Integer getWeeksToMaturity(LocalDate today) {
+        return Math.toIntExact(timeToMaturity - howManyWeeksAfterBuying(today));
+    }
+
+    public String toString() {
+        return name;
+    }
+
+    public Double getKilosOfFood() {
+        return weightOfFood;
+    }
+
+    public void gainingWeight(LocalDate today) {
+        boolean maxWeight = this.weight >= getAgeInWeeks(today)*weightGainPerWeek;
+        if(!maxWeight){
+            this.weight += weightGainPerWeek;
+        }
+    }
+
+    public void losingWeight() {
+        this.weight -= weightGainPerWeek;
+    }
+
+    public Boolean isAdult(LocalDate today) {
+        return getAgeInWeeks(today)>=timeToMaturity;
+    }
 
 }

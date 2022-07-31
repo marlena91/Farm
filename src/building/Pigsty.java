@@ -3,18 +3,20 @@ package building;
 import animals.Animal;
 import animals.Pig;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class Pigsty extends Outbuilding implements HouseForPets{
+public class Pigsty extends Outbuilding implements HouseForPets {
 
-    public Pigsty(Double value){
+    public Pigsty(Double value) {
         super(value);
     }
 
-    public void addPig(){
-        Pig pig = new Pig();
+    public void newAnimal(LocalDate date) {
+        Pig pig = new Pig(date);
         animals.add(pig);
     }
+
     @Override
     public List<Animal> getAnimals() {
         return animals;
@@ -22,20 +24,18 @@ public class Pigsty extends Outbuilding implements HouseForPets{
 
     @Override
     public void addAnimal(Animal animal) {
-    animals.add(animal);
+        animals.add(animal);
     }
 
     @Override
     public void deleteAnimal(Animal animal) {
-    animals.remove(animal);
+        animals.remove(animal);
     }
 
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~chlew. Zwierzeta w chlewie: "+animals +"\n";
-        } else {
-            return "\t~chlew,\n";
-        }
+
+        return "\t~chlew, ";
+
     }
 }

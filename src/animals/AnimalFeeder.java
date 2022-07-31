@@ -1,7 +1,6 @@
-package actions;
+package animals;
 
-import animals.Animal;
-import animals.Salable;
+import actions.TimeManager;
 import crops.Harvestable;
 import crops.Plant;
 import farmer.Farmer;
@@ -72,15 +71,14 @@ public class AnimalFeeder {
     }
 
     private void feedingWithMoney(Animal animal, Double foodWeight) {
-        Double priceForFood = foodWeight * 500.00;
+        Double priceForFood = foodWeight * 25.00;
         if (myFarmer.getCash() >= priceForFood) {
             this.myFarmer.subtractCash(priceForFood);
             animal.gainingWeight(this.time.getToday());
         } else {
             animal.losingWeight();
             if (animal.getWeight() <= 0) {
-                Salable dieAnimal = (Salable) animal;
-                this.myFarmer.deleteAnimal(animal, dieAnimal.getHouse());
+                this.myFarmer.deleteAnimal(animal, animal.getHouse());
                 System.out.println("Brak gotowki na zakup jedzenia Twoje zwierzta umieraja");
             }
         }

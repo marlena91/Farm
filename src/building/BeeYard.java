@@ -3,13 +3,12 @@ package building;
 import animals.Animal;
 import animals.Bee;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class BeeYard extends Outbuilding implements HouseForPets{
+public class BeeYard extends Outbuilding implements HouseForPets {
 
-    private Bee bees;
-
-    public BeeYard(Double value){
+    public BeeYard(Double value) {
         super(value);
     }
 
@@ -28,20 +27,13 @@ public class BeeYard extends Outbuilding implements HouseForPets{
         animals.remove(animal);
     }
 
-    public Bee getBees() {
-        return bees;
-    }
-
-    public void setBees(Bee bees) {
-        this.bees = bees;
+    @Override
+    public void newAnimal(LocalDate date) {
+        //
     }
 
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~Pasieka. Zwierzeta w Pasiece: "+animals +"\n";
-        } else {
-            return "\t~Pasieka,\n";
-        }
+        return "\t~Pasieka, ";
     }
 }

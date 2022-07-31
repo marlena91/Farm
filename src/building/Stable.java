@@ -1,10 +1,12 @@
 package building;
 
 import animals.Animal;
+import animals.Horse;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class Stable extends Outbuilding implements HouseForPets{
+public class Stable extends Outbuilding implements HouseForPets {
     public Stable(Double value) {
         super(value);
     }
@@ -24,12 +26,15 @@ public class Stable extends Outbuilding implements HouseForPets{
         animals.remove(animal);
     }
 
+    public void newAnimal(LocalDate date) {
+        Horse horse = new Horse(date);
+        animals.add(horse);
+    }
+
     @Override
     public String toString() {
-        if(animals.size() > 0){
-            return "\t~Stajnia. Zwierzeta w Stajni: "+animals +"\n";
-        } else {
-            return "\t~Stajnia,\n";
-        }
+
+        return "\t~Stajnia, ";
+
     }
 }
