@@ -1,7 +1,8 @@
-package animals;
+package animals.actions;
 
 import actions.TimeManager;
-import crops.Harvestable;
+import animals.Animal;
+import crops.interfaces.Harvestable;
 import crops.Plant;
 import farmer.Farmer;
 

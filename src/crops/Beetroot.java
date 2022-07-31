@@ -1,5 +1,8 @@
 package crops;
 
+import crops.interfaces.Harvestable;
+import crops.interfaces.Seedable;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 

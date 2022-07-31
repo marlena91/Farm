@@ -4,7 +4,7 @@ import actions.RandomInteger;
 import animals.Animal;
 import animals.Goat;
 import animals.Sheep;
-import area.Ground;
+import building.interfaces.HouseForPets;
 
 import java.time.LocalDate;
 import java.util.List;

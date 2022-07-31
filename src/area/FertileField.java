@@ -1,6 +1,8 @@
 package area;
 
-public class FertileField implements Field{
+import area.interfaces.Field;
+
+public class FertileField implements Field {
 
     private static final Integer AREA = 1;
 
@@ -22,7 +24,12 @@ public class FertileField implements Field{
 
     @Override
     public void subtractFreeArea() {
-        this.freeArea -= area;
+        this.freeArea -= 1;
+    }
+
+    @Override
+    public void giveFreeArea() {
+        this.freeArea += 1;
     }
 
     @Override

@@ -1,9 +1,12 @@
-package crops;
+package crops.actions;
 
 import actions.Action;
 import actions.TimeManager;
-import area.Field;
-import building.BuildingsManager;
+import area.interfaces.Field;
+import building.actions.BuildingsManager;
+import crops.*;
+import crops.interfaces.Harvestable;
+import crops.interfaces.Seedable;
 import farmer.Farmer;
 
 import java.util.Objects;
@@ -163,6 +166,15 @@ public class PlantsManager {
         }
     }
 
+    public void giveFreeArea(){
+        for (Field field : this.myFarmer.getFields()) {
+            if (field.getFreeArea() < field.getArea()) {
+                field.giveFreeArea();
+                break;
+            }
+        }
+    }
+
     public void harvestCrop() {
         System.out.println("");
         if (this.buildingsManager.checkBuildingInFarm("Barn")) {
@@ -209,6 +221,7 @@ public class PlantsManager {
     public void finallyHarvestCrop(Harvestable crop) {
         if (this.myFarmer.getCash() >= crop.getCostOfHarvest()) {
             this.myFarmer.subtractCrop((Seedable) crop);
+            this.giveFreeArea();
             this.myFarmer.subtractCash(crop.getCostOfHarvest());
             this.myFarmer.addPlantToStock((Plant) crop);
             crop.setCurrentAmount(crop.getCropYields());

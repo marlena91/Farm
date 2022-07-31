@@ -2,16 +2,15 @@ package farmer;
 
 import animals.Animal;
 import area.FertileField;
-import area.Field;
+import area.interfaces.Field;
 import area.Ground;
-import building.HouseForPets;
+import building.interfaces.HouseForPets;
 import building.Outbuilding;
 import crops.Plant;
-import crops.Seedable;
+import crops.interfaces.Seedable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleToIntFunction;
 
 public class Farmer {
 

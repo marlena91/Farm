@@ -1,9 +1,9 @@
-package animals;
+package animals.actions;
 
 import actions.RandomInteger;
 import actions.TimeManager;
-import area.Ground;
-import building.HouseForPets;
+import animals.Animal;
+import building.interfaces.HouseForPets;
 import farmer.Farmer;
 
 import java.util.List;

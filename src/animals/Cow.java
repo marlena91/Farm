@@ -1,8 +1,10 @@
 package animals;
 
+import animals.interfaces.Collectible;
+
 import java.time.LocalDate;
 
-public class Cow extends Animal implements Collectible{
+public class Cow extends Animal{
 
     private static final Double COST = 1500.00;
     private static final Double PRICE = 800.00;
@@ -43,8 +45,8 @@ public class Cow extends Animal implements Collectible{
     }
 
     @Override
-    public void collect() {
-        System.out.println("Zbieram");
+    public String collect() {
+        return "mleko, ";
     }
 
 

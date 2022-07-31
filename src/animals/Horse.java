@@ -42,4 +42,9 @@ public class Horse extends Animal{
         this.edibles = EDIBLES;
         this.ageInWeeks = AGE_IN_WEEKS;
     }
+
+    @Override
+    public String collect() {
+        return "";
+    }
 }

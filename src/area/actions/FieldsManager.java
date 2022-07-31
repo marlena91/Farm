@@ -1,7 +1,10 @@
-package area;
+package area.actions;
 
 import actions.Action;
 import actions.TimeManager;
+import area.FertileField;
+import area.Ground;
+import area.interfaces.Field;
 import farmer.Farmer;
 
 import java.sql.Time;

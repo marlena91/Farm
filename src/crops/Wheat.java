@@ -1,8 +1,10 @@
 package crops;
 
+import crops.interfaces.Harvestable;
+import crops.interfaces.Seedable;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 public class Wheat extends Plant implements Seedable, Harvestable {
 

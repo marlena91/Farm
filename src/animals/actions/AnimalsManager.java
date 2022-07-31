@@ -1,11 +1,11 @@
-package animals;
+package animals.actions;
 
 import actions.Action;
-import area.Ground;
-import building.BuildingsManager;
+import animals.*;
+import animals.interfaces.Salable;
+import building.actions.BuildingsManager;
 import actions.TimeManager;
 import farmer.Farmer;
-import animals.Salable;
 
 import java.util.Objects;
 import java.util.Scanner;

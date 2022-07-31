@@ -1,8 +1,10 @@
 package animals;
 
+import animals.interfaces.Salable;
+
 import java.time.LocalDate;
 
-public class Dog extends Animal implements Salable{
+public class Dog extends Animal {
 
     private static final Double COST = 6500.00;
     private static final Double PRICE = 5000.00;
@@ -42,4 +44,8 @@ public class Dog extends Animal implements Salable{
         this.ageInWeeks = AGE_IN_WEEKS;
     }
 
+    @Override
+    public String collect() {
+        return "";
+    }
 }

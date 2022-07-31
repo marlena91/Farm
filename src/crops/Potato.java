@@ -1,9 +1,12 @@
 package crops;
 
+import crops.interfaces.Harvestable;
+import crops.interfaces.Seedable;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Potato extends Plant implements Seedable,Harvestable {
+public class Potato extends Plant implements Seedable, Harvestable {
 
     private static final Double COST_OF_PREPARATION_AND_PLANTING = 2600.00;
     private static final Double COST_OF_PROTECTION_AGAINST_PESTS = 800.00;

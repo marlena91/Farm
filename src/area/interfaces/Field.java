@@ -1,4 +1,4 @@
-package area;
+package area.interfaces;
 
 public interface Field {
 
@@ -6,4 +6,5 @@ public interface Field {
     Integer getArea();
 
     void subtractFreeArea();
+    void giveFreeArea();
 }

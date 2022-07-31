@@ -1,11 +1,10 @@
 package building;
 
-import animals.Animal;
-import crops.Seedable;
+import crops.interfaces.Seedable;
 
 import java.util.List;
 
-public class Barn extends Outbuilding implements PlantStorage{
+public class Barn extends Outbuilding{
 
     private List<Seedable> plants;
 
@@ -17,18 +16,4 @@ public class Barn extends Outbuilding implements PlantStorage{
         return "\t~Stodola,\n";
     }
 
-    @Override
-    public List<Seedable> getPlants() {
-        return plants;
-    }
-
-    @Override
-    public void addPlant(Seedable plant) {
-        plants.add(plant);
-    }
-
-    @Override
-    public void deletePlant(Seedable plant) {
-        plants.remove(plant);
-    }
 }

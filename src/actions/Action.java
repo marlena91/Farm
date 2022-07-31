@@ -1,13 +1,17 @@
 package actions;
 
 import animals.*;
-import area.FieldsManager;
+import animals.actions.AnimalFeeder;
+import animals.actions.AnimalMultiplicationer;
+import animals.actions.AnimalsManager;
+import animals.interfaces.Salable;
+import area.actions.FieldsManager;
 import area.Ground;
-import building.BuildingsManager;
-import crops.Harvestable;
+import building.actions.BuildingsManager;
+import crops.interfaces.Harvestable;
 import crops.Plant;
-import crops.PlantsManager;
-import crops.Seedable;
+import crops.actions.PlantsManager;
+import crops.interfaces.Seedable;
 import farmer.Farmer;
 
 import java.util.Objects;
@@ -113,24 +117,11 @@ public class Action {
     }
 
     public void endWeek() {
-        System.out.println("");
-        if (this.myFarmer.getAllAnimals().size() > 0) {
-            System.out.println("Karmienie zwierzat ...");
-            AnimalFeeder animalFeeder = new AnimalFeeder(this.myFarmer, this.time);
-            animalFeeder.feedingAnimals();
-            System.out.println("..... karmienie zakonczone");
-            }
-
-        if (this.myFarmer.getAllAnimals().size() > 0) {
-            AnimalMultiplicationer animalMultiplicationer = new AnimalMultiplicationer(this.myFarmer, this.time);
-            animalMultiplicationer.animalReproduction();
-        }
-
-
-
-
-        //uprawy
-        System.out.println("Robaki zjadaja plony");
+        EndWeek endWeek = new EndWeek(this.myFarmer, this.time, this.plantsManager);
+        endWeek.feedAnimals();
+        endWeek.reproductionAnimals();
+        endWeek.randomEvent();
+        endWeek.collectGoods();
 
         this.time.addWeek();
         this.next();

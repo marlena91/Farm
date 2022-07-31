@@ -1,8 +1,8 @@
 package animals;
 
+import animals.interfaces.Collectible;
+
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 public class Sheep extends Animal implements Collectible {
 
@@ -46,7 +46,7 @@ public class Sheep extends Animal implements Collectible {
     }
 
     @Override
-    public void collect() {
-        System.out.println("Zbieram");
+    public String collect() {
+        return "welne, ";
     }
 }

@@ -1,4 +1,4 @@
-package animals;
+package animals.interfaces;
 
 public interface Salable {
     String getHouse();

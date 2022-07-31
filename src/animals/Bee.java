@@ -1,7 +1,6 @@
 package animals;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class Bee extends Animal {
 
@@ -67,5 +66,10 @@ public class Bee extends Animal {
     @Override
     public Boolean isAdult(LocalDate today) {
         return false;
+    }
+
+    @Override
+    public String collect() {
+        return "miod, ";
     }
 }

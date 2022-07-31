@@ -1,6 +1,8 @@
 package area;
 
-public class Ground implements Field{
+import area.interfaces.Field;
+
+public class Ground implements Field {
 
     private Integer area;
     private Integer freeArea;
@@ -45,11 +47,9 @@ public class Ground implements Field{
                 "powierzchnia: " + area + "ha, maksymalna liczba budynkow: " + numberOfBuildings +", wartosc: "+value + ", freearea: "+getFreeArea();
     }
 
-    //    String[] typesOfGround = {"A", "B", "C"};
-//    getRandom(typesOfGround);
-//
-//    public static String getRandom(String[] array) {
-//        int rnd = new Random().nextInt(array.length);
-//        return array[rnd];
-//    }
+    @Override
+    public void giveFreeArea() {
+        this.freeArea += 1;
+    }
+
 }

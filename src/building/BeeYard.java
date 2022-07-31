@@ -1,7 +1,7 @@
 package building;
 
 import animals.Animal;
-import animals.Bee;
+import building.interfaces.HouseForPets;
 
 import java.time.LocalDate;
 import java.util.List;

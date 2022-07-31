@@ -1,6 +1,7 @@
-package area;
+package area.actions;
 
 import actions.RandomInteger;
+import area.Ground;
 
 public class RandomFarm {
 

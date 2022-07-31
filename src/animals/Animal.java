@@ -1,9 +1,12 @@
 package animals;
 
+import animals.interfaces.Collectible;
+import animals.interfaces.Salable;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public abstract class Animal implements Salable {
+public abstract class Animal implements Salable, Collectible {
 
     protected Double cost;
     protected Double price;
@@ -106,5 +109,7 @@ public abstract class Animal implements Salable {
     public Boolean isAdult(LocalDate today) {
         return getAgeInWeeks(today)>=timeToMaturity;
     }
+
+    public abstract String collect();
 
 }

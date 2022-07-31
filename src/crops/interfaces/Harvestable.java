@@ -1,4 +1,4 @@
-package crops;
+package crops.interfaces;
 
 public interface Harvestable {
     Double getCostOfHarvest();
